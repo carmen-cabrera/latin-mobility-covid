@@ -1,0 +1,139 @@
+\RequirePackage[l2tabu,orthodox]{nag}
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{crimson}
+\usepackage{helvet}
+\usepackage[strict,autostyle]{csquotes}
+\usepackage[USenglish]{babel}
+\usepackage{microtype}
+\usepackage{authblk}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{endnotes}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{rotating}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{url}
+\usepackage{soul}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[many]{tcolorbox}
+\newtcolorbox{mybox}{colback = black!5!gray!50, colframe = black!75!black, segmentation style={solid}} % create text box
+\usepackage{hanging}
+
+% location of figure files, via graphicx package
+\graphicspath{{./figures/}}
+
+% configure the page layout, via geometry package
+\geometry{
+	paper=letterpaper,
+	top=2.5cm,
+	bottom=2.5cm,
+	left=2.5cm,
+	right=2.5cm}
+\setstretch{1.02}
+\clubpenalty=10000
+\widowpenalty=10000
+
+% set section/subsection headings as the sans serif font
+\titleformat{\section}{\normalfont\sffamily\large\bfseries}{\thesection.}{0.3em}{}
+\titleformat{\subsection}{\normalfont\sffamily\small\bfseries}{\thesubsection.}{0.3em}{}
+
+% make figure/table captions sans-serif small font
+\captionsetup{font={footnotesize,sf},labelfont=bf,labelsep=period}
+
+% configure pdf metadata and link handling
+\hypersetup{
+	pdfauthor={Carmen Cabrera-Arnau},
+	pdftitle={The mid-term impact of COVID-19 on human mobility patterns in Latin American countries},
+	pdfsubject={Title},
+	pdfkeywords={Keywords},
+	pdffitwindow=true,
+	breaklinks=true,
+	colorlinks=false,
+	pdfborder={0 0 0}}
+
+\title{The mid-term impact of COVID-19 on human mobility patterns in Latin American countries\footnote{\textbf{Citation}: Cabrera-Arnau, C., González-Leonardo, M., Nasuto, A., Neville, R., Rowe, F. (2023). The mid-term impact of COVID-19 on human mobility patterns in Latin American countries}}
+\author[1]{Carmen Cabrera-Arnau \thanks{\textit{Corresponding author}: c.cabrera-arnau@liverpool.ac.uk}}
+\author[2]{Miguel González-Leonardo}
+\author[1]{Andrea Nasuto}
+\author[1]{Ruth Neville}
+\author[1]{Francisco Rowe}
+\affil[1]{Geographic Data Science Lab, Department of Geography and Planning, University of Liverpool, Liverpool, United Kingdom}
+\affil[2]{Center for Demographic, Urban and Environmental Studies, El Colegio de México (COLMEX), Mexico City, Mexico}
+
+\date{}
+
+% From pandoc:
+% https://github.com/jgm/pandoc-templates/blob/master/default.latex
+$if(pagestyle)$
+\pagestyle{$pagestyle$}
+$endif$
+$if(csl-refs)$
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+$endif$
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% https://stackoverflow.com/questions/41052687/rstudio-pdf-knit-fails-with-environment-shaded-undefined-error
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+
+\begin{document}
+
+\maketitle
+
+
+\begin{abstract}
+
+Recent empirical studies, predominantly from countries in the Global North, have shown that the COVID-19 pandemic disrupted human mobility at different spatial scales, but particularly in big cities, initially identified as epicentres of infections. Lockdowns, remote work, and online education decreased the demand for commuting and urban living, resulting in an "urban exodus". Despite the existing evidence, little is known about whether counterurbanisation movements have unfolded similarly in the Global South. In this study, we use anonymised, high-resolution location data from Facebook users to answer the following research questions: i) to what extent are people leaving cities? ii) are there variations across countries? iii) are there changes in mobility patterns over time? iv) how long do these changes last? The methodology involves three steps. Firstly, we quantify the number of movements between different locations in each country. Second, we use statistical modelling and spatial interaction models to assess the strength of the flows between specific origin-destination pairs at different points in time. Thirdly, for each country, we use cluster analysis to characterise different mobility behaviours according to the population density at the origin and the destination. We obtain population density data from Worldpop at a resolution of 1 sqkm, and we use it as a proxy of the level of urbanisation at these locations. 
+
+%\vspace{1cm}
+\end{abstract}
+
+
+
+\pagebreak
+
+$body$
+
+
+
+
+% print the bibliography
+\setlength{\bibsep}{0.00cm plus 0.05cm} % no space between items
+\bibliographystyle{apalike}
+\bibliography{sim_refs}
+
+
+
+\end{document}
