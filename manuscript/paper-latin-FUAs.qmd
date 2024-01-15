@@ -11,6 +11,24 @@ editor_options:
     wrap: sentence
 ---
 
+[Journal guideline](https://www.nature.com/natcities/content)
+
+Article
+An Article is a substantial novel research study of high quality and general interest to urban-focused researchers. 
+
+Format:
+
+Title – Up to 90 characters including spaces. Avoid punctuation and active verbs.
+Abstract – Up to 150 words, unreferenced. 
+Main text – Up to 4,000 words, divided as follows: 
+Introduction (without heading)
+Results
+Discussion
+Methods – Up to 3,000 words, following the main text as a separate section. It can include further conceptual framing to justify research design.
+References – As a guideline, we typically recommend up to 50. Please follow Nature's reference style.
+Display items – Up to 6 figures and/or tables (additional items should go in a separate Supplementary Information file).
+
+
 \section{Introduction}
 
 \subsection{General context}
