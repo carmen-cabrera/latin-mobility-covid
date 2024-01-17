@@ -133,7 +133,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
-  pdftitle={The recovery patterns of human mobility in Latin American urban areas after COVID-19},
+  pdftitle={Urban mobility in Latin America after COVID-19},
   pdfauthor={Carmen Cabrera-Arnau; Francisco Rowe; Miguel González-Leonardo; Andrea Nasuto; Ruth Neville},
   colorlinks=true,
   linkcolor={blue},
@@ -142,8 +142,7 @@
   urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
 
-\title{\textbf{The recovery patterns of human mobility in Latin American
-urban areas after COVID-19}}
+\title{\textbf{Urban mobility in Latin America after COVID-19}}
 
 
 \author[1]{Carmen Cabrera-Arnau}
@@ -179,7 +178,106 @@ focuses on administrative areas that are within the boundaries of
 functional urban areas as specified by the Global Human Settlement
 Layer. For each administrative area, we compute the Relative Deprivation
 Index based on data from NASA's Socioeconomic Data and Applications
-Centre (SEDAC). Further details are given in Section~\ref{sec-methods}.
+Centre (SEDAC). Figure X displays the administrative areas included in
+the study, coloured according to the Relative Index of Deprivation.
+Predictions about the evolution of the levels of movement are made using
+the Prophet forecasting procedure. Further details are provided in
+Section~\ref{sec-methods}.
+
+\subsection{The impact of COVID-19 on patterns of urban
+mobility}\label{the-impact-of-covid-19-on-patterns-of-urban-mobility}
+
+We analysed the evolution of the relative intensity of urban mobility
+with respect to a baseline period prior to the pandemic. Specifically,
+movements covering a distance of at most 70 km are considered. For a
+movement to be classified as urban it needs to start or end within a
+functional urban area from Argentina, Chile, Colombia and Mexico. The
+observed data is available for a two-year period starting in April 2020,
+just after the first wave of COVID-19 pandemic cases, and ending in
+March 2022. After 2022 no observations are available, however, we
+generate a 12-month forecast up to March 2023 in order to gain a better
+understanding of the recovery trends.
+
+Figure X displays the patterns of recovery for the mobility levels in
+the administrative units belonging to functional urban areas in the
+countries of interest. The three lines in each panel represent the mean
+levels of mobility for administrative units grouped into one of three
+terciles, according to their average relative deprivation index.
+
+Generally, there was a drop in the levels of mobility with respect to
+the baseline period in all four countries. This drop was especially
+large for Argentina, Chile and Colombia, with Mexico displaying a
+smaller decrease in the number of movements with respect to the
+baseline. Following the initial drop in movement, all four countries
+evolve towards the recovery of baseline levels of urban mobility, with a
+generally increasing trend. There are fluctuations from the general
+trend, which manifest differently for each country. These fluctuations
+mirror each other in the case of Argentina and Colombia, where urban
+mobility sharply bounces back closer to pre-pandemic levels around July
+of 2020. Chile and Mexico display more progressive patterns of recovery,
+although Chile never reaches baseline levels. These fluctuations are
+unique to each country and can be attributed to local factors such as
+the effects of seasonality or the different stringency measures imposed
+by the national governments during the pandemic.
+
+From Figure X, we observe that there is a consistent tendency in how
+administrative units with varying levels of deprivation were affected by
+the pandemic. For all four countries, we observe that the administrative
+units in the most deprived tercile are the ones that experienced the
+smallest loss in levels of mobility at the beginning of the pandemic.
+Differences in the levels of mobility across relative deprivation
+terciles diminish with time. Argentina and Chile stand out as the
+countries with the largest differences in mobility levels for different
+relative deprivation terciles.
+
+\subsection{Socioeconomic deprivation and recovery of urban
+mobility}\label{socioeconomic-deprivation-and-recovery-of-urban-mobility}
+
+In this section we explore further the role of socioeconomic deprivation
+in the evolution of the levels of urban mobility. For a given point in
+time (i.e.~a month), we start by considering the relationship between
+the number of movements relative to the pre-pandemic baseline period and
+the average relative deprivation index, at the administrative unit
+level. We assume that this relationship is linear and we use a linear
+regression to estimate the slope and intercept characterising the line
+of best fit. This is shown for April 2020 and March 2022, in the
+right-hand side panels of Figure X. After obtaining the slope and
+intercept for every month, we are able to plot the evolution of these
+parameters for both the observed and forecasted data, as displayed on
+the left-hand-side panels of the same Figure.
+
+We find patterns in the evolution of the estimated parameters that
+characterise the relationship between the levels of urban mobility and
+RDI. In Argentina, Colombia and Mexico, we observe that the slope of
+this relationship evolves to become smaller over time. The tendency is
+not apparent in Chile, where the slope of the relationship remains
+approximately the same despite the temporary fluctuations. The slope
+captures the extent of differences in the level of urban mobility across
+administrative units with varying levels of socioeconomic deprivation.
+It can therefore be regarded as a measure of inequality. A slope equal
+to zero would mean that all administrative units display the same
+intensity of movement regardless of their socioeconomic deprivation
+levels. Given the patterns observed in Argentina, Colombia and Mexico,
+we find that at the beginning of the pandemic there were notable
+inequalities between socioeconomic groups in terms of the levels of
+urban mobility. While it has taken more than two years for Argentina and
+Mexico to close the gap (their slope is close to zero from spring 2022),
+inequalities persist in Chile and Colombia as of March 2023.
+
+The intercept of the relationship displays stronger patterns, which are
+consistent across the four countries. The intercept captures the urban
+mobility levels in administrative where relative deprivation is zero, or
+in other words, if there was no socioeconomic deprivation in an
+administrative area, the intercept would represent its level of
+mobility. The intercept was well below the baseline level at the early
+stages of the pandemic. As observed in Figure X, while there are some
+differences between countries in the evolution of the intercept, the
+general tendency is for the intercept to increase. While Argentina and
+Mexico reach values that are closer to the baseline towards the end of
+the forecast period, the intercept for Chile and Colombia remains lower.
+Therefore, if there were areas with no socioeconomic deprivation, we
+would have seen a recovery in the levels of mobility, although not quite
+back to baseline levels in the case of Chile and Colombia.
 
 \section{Discussion}\label{sec-discussion}
 
