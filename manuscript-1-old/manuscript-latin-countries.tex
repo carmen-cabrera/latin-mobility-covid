@@ -50,7 +50,7 @@
 % configure pdf metadata and link handling
 \hypersetup{
 	pdfauthor={Carmen Cabrera-Arnau},
-	pdftitle={The mid-term impact of COVID-19 on human mobility patterns in Latin American countries},
+	pdftitle={The influence of socioeconomic deprivation on the recovery of urban mobility after COVID-19 in Latin America},
 	pdfsubject={Title},
 	pdfkeywords={Keywords},
 	pdffitwindow=true,
@@ -58,7 +58,7 @@
 	colorlinks=false,
 	pdfborder={0 0 0}}
 
-\title{The mid-term impact of COVID-19 on human mobility patterns in Latin American countries\footnote{\textbf{Citation}: Cabrera-Arnau, C., González-Leonardo, M., Nasuto, A., Neville, R., Rowe, F. (2023). The mid-term impact of COVID-19 on human mobility patterns in Latin American countries}}
+\title{The influence of socioeconomic deprivation on the recovery of urban mobility after COVID-19 in Latin America}
 \author[1]{Carmen Cabrera-Arnau \thanks{\textit{Corresponding author}: c.cabrera-arnau@liverpool.ac.uk}}
 \author[2]{Miguel González-Leonardo}
 \author[1]{Andrea Nasuto}
@@ -108,7 +108,7 @@
 
 \begin{abstract}
 
-Recent empirical studies, predominantly from countries in the Global North, have shown that the COVID-19 pandemic disrupted human mobility at different spatial scales, but particularly in big cities, initially identified as epicentres of infections. Lockdowns, remote work, and online education decreased the demand for commuting and urban living, resulting in an "urban exodus". Despite the existing evidence, little is known about whether counterurbanisation movements have unfolded similarly in the Global South. In this study, we use anonymised, high-resolution location data from Facebook users to answer the following research questions: i) to what extent are people leaving cities? ii) are there variations across countries? iii) are there changes in mobility patterns over time? iv) how long do these changes last? The data is aggregated into spatial units according to the Bing Maps Tile System and temporally aggregated into 8-hour time windows for a period of approximately 2 years. The methodology involves three steps. Firstly, we classify the Bing tiles into different population density categories according to population data from WorldPop. Secondly, we quantify and analyse the number and characteristics of movements between different locations in each country. Finally, we use statistical modelling and spatial interaction models to assess how the population density category at the origin and destination affects the strength of the flows at different points in time. We observe that the strength of flows between Bing tiles belonging to different population density categories was systematically reduced in the early days of the pandemic and, even though by 2022 it seemed to have increased, it never returned to pre-pandemic levels. In the early days of COVID-19, we also find a systematically increase above pre-pandemic levels of the strength of the flows between Bing tiles belonding to the the same population density category. As of 2022, the frequency of these movements within population density classes have decreased with respect to 2020.
+
 
 %\vspace{1cm}
 \end{abstract}
@@ -499,9 +499,9 @@ density according to the Jenks natural breaks classification method,
 hence obtaining a categorisation of Bing tiles a lot more detailed than
 the traditional binary rural/urban classification.
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=6.51042in,height=6.66667in]{images/Map_density_histogram.png}
+{\centering \includegraphics[width=6.51042in,height=6.66667in]{figures/Map_density_histogram.png}
 
 }
 
@@ -509,7 +509,7 @@ the traditional binary rural/urban classification.
 histograms, showing that the distribution of Bing tiles in each density
 category.}
 
-\end{figure}
+\end{figure}%
 
 \subsection{Estimating the strength of the flows between tiles of different population density categories}
 
@@ -626,52 +626,52 @@ class Jth.
 
 \section{References}
 
-\hypertarget{refs}{}
+\phantomsection\label{refs}
 \begin{CSLReferences}{1}{0}
-\leavevmode\vadjust pre{\hypertarget{ref-aromuxed2023}{}}%
+\bibitem[\citeproctext]{ref-aromuxed2023}
 Aromí, Daniel, María Paula Bonel, Julian Cristia, Martín Llada, Juan
 Pereira, Xiomara Pulido, and Julieth Santamaria. 2023. {``\#StayAtHome:
 Social Distancing Policies and Mobility in Latin America and the
 Caribbean.''} \emph{Economía} 22 (1).
 \url{https://doi.org/10.31389/eco.4}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-BBCnews2023}{}}%
+\bibitem[\citeproctext]{ref-BBCnews2023}
 BBC news. 2023. {``Unemployment: Who Are the Millions of Britons Not
 Working?''} \url{https://www.bbc.co.uk/news/business-52660591}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-bell2015}{}}%
+\bibitem[\citeproctext]{ref-bell2015}
 Bell, Martin, Elin Charles-Edwards, Philipp Ueffing, John Stillwell,
 Marek Kupiszewski, and Dorota Kupiszewska. 2015. {``Internal Migration
 and Development: Comparing Migration Intensities Around the World.''}
 \emph{Population and Development Review} 41 (1): 33--58.
 \url{https://doi.org/10.1111/j.1728-4457.2015.00025.x}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-bernard2017}{}}%
+\bibitem[\citeproctext]{ref-bernard2017}
 Bernard, Aude, Francisco Rowe, Martin Bell, Philipp Ueffing, and Elin
 Charles-Edwards. 2017. {``Comparing Internal Migration Across the
 Countries of Latin America: A Multidimensional Approach.''} Edited by
 Osman Alimamy Sankoh. \emph{PLOS ONE} 12 (3): e0173895.
 \url{https://doi.org/10.1371/journal.pone.0173895}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-bhadra2020}{}}%
+\bibitem[\citeproctext]{ref-bhadra2020}
 Bhadra, Arunava, Arindam Mukherjee, and Kabita Sarkar. 2020. {``Impact
 of Population Density on Covid-19 Infected and Mortality Rate in
 India.''} \emph{Modeling Earth Systems and Environment} 7 (1): 623--29.
 \url{https://doi.org/10.1007/s40808-020-00984-7}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-blustein2020}{}}%
+\bibitem[\citeproctext]{ref-blustein2020}
 Blustein, David L., Ryan Duffy, Joaquim A. Ferreira, Valerie
 Cohen-Scali, Rachel Gali Cinamon, and Blake A. Allan. 2020.
 {``Unemployment in the Time of COVID-19: A Research Agenda.''}
 \emph{Journal of Vocational Behavior} 119 (June): 103436.
 \url{https://doi.org/10.1016/j.jvb.2020.103436}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-borsdorf2003}{}}%
+\bibitem[\citeproctext]{ref-borsdorf2003}
 Borsdorf, Axel. 2003. {``Cómo Modelar El Desarrollo y La Dinámica de La
 Ciudad Latinoamericana.''} \emph{EURE (Santiago)} 29 (86).
 \url{https://doi.org/10.4067/s0250-71612003008600002}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-branduxe9n2020}{}}%
+\bibitem[\citeproctext]{ref-branduxe9n2020}
 Brandén, Maria, Siddartha Aradhya, Martin Kolk, Juho Härkönen, Sven
 Drefahl, Bo Malmberg, Mikael Rostila, Agneta Cederström, Gunnar
 Andersson, and Eleonora Mussino. 2020. {``Residential Context and
@@ -680,311 +680,311 @@ Population-Based, Observational Study Using Individual-Level Data.''}
 \emph{The Lancet Healthy Longevity} 1 (2): e80--88.
 \url{https://doi.org/10.1016/s2666-7568(20)30016-7}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Brea03}{}}%
+\bibitem[\citeproctext]{ref-Brea03}
 Brea, J. 2003. {``Population Dynamics in Latin America.''}
 \emph{Population Bulletin} 58: 3--36.
 \url{https://population.un.org/wup/Publications/Files/WUP2018-Report.pdf}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-chuxe1vezgalindo2016}{}}%
+\bibitem[\citeproctext]{ref-chuxe1vezgalindo2016}
 Chávez Galindo, Ana María, Jorge Rodríguez Vignoli, Mario Acuña, Jorge
 Barquero, Daniel Macadar, José Marcos Pinto da Cunha, and Jaime Sobrino.
 2016. {``Migración Interna y Cambios Metropolitanos.''} \emph{Revista
 Latinoamericana de Población} 10 (18): 7--41.
 \url{https://doi.org/10.31406/relap2016.v10.i1.n18.1}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Chen2004}{}}%
+\bibitem[\citeproctext]{ref-Chen2004}
 Chen, Wenhong, and Barry Wellman. 2004. {``The Global Digital Divide -
 Within and Between Countries.''} \emph{IT \& Society} 1: 39--45.
 \url{http://www.ifs.tuwien.ac.at/~dieter/teaching/GmA/Chen2004.pdf}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-fielding2021}{}}%
+\bibitem[\citeproctext]{ref-fielding2021}
 Fielding, Tony, and Yoshitaka Ishikawa. 2021. {``COVID{-}19 and
 Migration: A Research Note on the Effects of COVID{-}19 on Internal
 Migration Rates and Patterns in Japan.''} \emph{Population, Space and
 Place} 27 (6). \url{https://doi.org/10.1002/psp.2499}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-firebaugh1979}{}}%
+\bibitem[\citeproctext]{ref-firebaugh1979}
 Firebaugh, Glenn. 1979. {``Structural Determinants of Urbanization in
 Asia and Latin America, 1950- 1970.''} \emph{American Sociological
 Review} 44 (2): 199. \url{https://doi.org/10.2307/2094505}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-florida2021}{}}%
+\bibitem[\citeproctext]{ref-florida2021}
 Florida, Richard, Andrés Rodríguez-Pose, and Michael Storper. 2021.
 {``Critical Commentary: Cities in a Post-COVID World.''} \emph{Urban
 Studies} 60 (8): 1509--31.
 \url{https://doi.org/10.1177/00420980211018072}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-ghosh2020}{}}%
+\bibitem[\citeproctext]{ref-ghosh2020}
 Ghosh, Somenath, Pallabi Seth, and Harsha Tiwary. 2020. {``How Does
 Covid-19 Aggravate the Multidimensional Vulnerability of Slums in India?
 A Commentary.''} \emph{Social Sciences \& Humanities Open} 2 (1):
 100068. \url{https://doi.org/10.1016/j.ssaho.2020.100068}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-ginsburg2022}{}}%
+\bibitem[\citeproctext]{ref-ginsburg2022}
 Ginsburg, Carren, Mark A. Collinson, F. Xavier Gómez-Olivé, Sadson
 Harawa, Chantel F. Pheiffer, and Michael J. White. 2022. {``The Impact
 of COVID-19 on a Cohort of Origin Residents and Internal Migrants from
 South Africa's Rural Northeast.''} \emph{SSM - Population Health} 17
 (March): 101049. \url{https://doi.org/10.1016/j.ssmph.2022.101049}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Glaeser20}{}}%
+\bibitem[\citeproctext]{ref-Glaeser20}
 Glaeser, Edward L. 2020. {``Cities and Pandemics Have a Long History.
 City Journal.''}
 \url{https://www.city-journal.org/article/cities-and-pandemics-have-a-long-history}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-gonzuxe1lezollino2006}{}}%
+\bibitem[\citeproctext]{ref-gonzuxe1lezollino2006}
 González Ollino, Daniela, and Jorge Rodríguez Vignoli. 2006. {``Spatial
 Redistribution and Internal Migration of the Populationin Chile over the
 Past 35 Years (1965-20).''} \emph{Estudios Demográficos y Urbanos} 21
 (2): 369. \url{https://doi.org/10.24201/edu.v21i2.1253}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-gonzuxe1lez-leonardo2022b}{}}%
+\bibitem[\citeproctext]{ref-gonzuxe1lez-leonardo2022b}
 González-Leonardo, Miguel, Antonio López-Gay, Niall Newsham, Joaquín
 Recaño, and Francisco Rowe. 2022. {``Understanding Patterns of Internal
 Migration During the COVID{-}19 Pandemic in Spain.''} \emph{Population,
 Space and Place} 28 (6). \url{https://doi.org/10.1002/psp.2578}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-gonzuxe1lez-leonardo2023}{}}%
+\bibitem[\citeproctext]{ref-gonzuxe1lez-leonardo2023}
 González-Leonardo, Miguel, Michaela Potančoková, Dilek Yildiz, and
 Francisco Rowe. 2023. {``Quantifying the Impact of COVID-19 on
 Immigration in Receiving High-Income Countries.''} Edited by Ricky Chee
 Jiun Chia. \emph{PLOS ONE} 18 (1): e0280324.
 \url{https://doi.org/10.1371/journal.pone.0280324}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-gonzuxe1lez-leonardo2022a}{}}%
+\bibitem[\citeproctext]{ref-gonzuxe1lez-leonardo2022a}
 González-Leonardo, Miguel, Francisco Rowe, and Alberto
 Fresolone-Caparrós. 2022. {``Rural Revival? The Rise in Internal
 Migration to Rural Areas During the COVID-19 Pandemic. Who Moved and
 Where?''} \emph{Journal of Rural Studies} 96 (December): 332--42.
 \url{https://doi.org/10.1016/j.jrurstud.2022.11.006}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-gonzuxe1lez-leonardo2022}{}}%
+\bibitem[\citeproctext]{ref-gonzuxe1lez-leonardo2022}
 González-Leonardo, Miguel, and Jeroen Spijker. 2022. {``The Impact of
 Covid-19 on Demographic Components in Spain, 2020{\textendash}31: A
 Scenario Approach.''} \emph{Population Studies}, November, 1--17.
 \url{https://doi.org/10.1080/00324728.2022.2138521}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-graizbord2007}{}}%
+\bibitem[\citeproctext]{ref-graizbord2007}
 Graizbord, Boris, and Beatriz Acuña. 2007. {``Movilidad Residencial En
 La Ciudad de México / Residential Mobility in Mexico City.''}
 \emph{Estudios Demográficos y Urbanos} 22 (2): 291.
 \url{https://doi.org/10.24201/edu.v22i2.1281}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-green2021}{}}%
+\bibitem[\citeproctext]{ref-green2021}
 Green, Mark, Frances Darlington Pollock, and Francisco Rowe. 2021.
 {``New Forms of Data and New Forms of Opportunities to Monitor and
 Tackle a Pandemic.''} In, 423--29. Springer International Publishing.
 \url{https://doi.org/10.1007/978-3-030-70179-6_56}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-haslag2021}{}}%
+\bibitem[\citeproctext]{ref-haslag2021}
 Haslag, Peter H., and Daniel Weagley. 2021. {``From L.A. To Boise: How
 Migration Has Changed During the COVID-19 Pandemic.''} \emph{SSRN
 Electronic Journal}. \url{https://doi.org/10.2139/ssrn.3808326}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-huremovic2019}{}}%
+\bibitem[\citeproctext]{ref-huremovic2019}
 Huremović, Damir. 2019. {``Brief History of Pandemics (Pandemics
 Throughout History).''} In, 7--35. Springer International Publishing.
 \url{https://doi.org/10.1007/978-3-030-15346-5_2}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-internat2021}{}}%
+\bibitem[\citeproctext]{ref-internat2021}
 {``International Migration 2020: Highlights.''} 2021, January.
 \url{https://doi.org/10.18356/9789210052689}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-irudayarajan2020}{}}%
+\bibitem[\citeproctext]{ref-irudayarajan2020}
 Irudaya Rajan, S., P. Sivakumar, and Aditya Srinivasan. 2020. {``The
 COVID-19 Pandemic and Internal Labour Migration in India: A {`}Crisis of
 Mobility{'}.''} \emph{The Indian Journal of Labour Economics} 63 (4):
 1021--39. \url{https://doi.org/10.1007/s41027-020-00293-8}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-janoschka2002}{}}%
+\bibitem[\citeproctext]{ref-janoschka2002}
 Janoschka, Michael. 2002. {``El Nuevo Modelo de La Ciudad
 Latinoamericana: Fragmentación y Privatización.''} \emph{EURE
 (Santiago)} 28 (85).
 \url{https://doi.org/10.4067/s0250-71612002008500002}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-kotsubo2022}{}}%
+\bibitem[\citeproctext]{ref-kotsubo2022}
 Kotsubo, Masaki, and Tomoki Nakaya. 2022. {``Trends in Internal
 Migration in Japan, 2012{\textendash}2020: The Impact of the COVID{-}19
 Pandemic.''} \emph{Population, Space and Place} 29 (4).
 \url{https://doi.org/10.1002/psp.2634}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-lattes95}{}}%
+\bibitem[\citeproctext]{ref-lattes95}
 Lattes, A. 1995. {``Urbanización, Crecimiento Urbano y Migraciones En
 América Latina. Población y Desarrollo: Tendencias y Desafíos.''}
 \emph{Notas de Población} 62: 211--60.
 \url{https://repositorio.cepal.org/handle/11362/38594}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-lattes2017}{}}%
+\bibitem[\citeproctext]{ref-lattes2017}
 Lattes, Alfredo E., Jorge Rodríguez, and Miguel Villa. 2017.
 {``Population Dynamics and Urbanization in Latin America: Concepts and
 Data Limitations.''} In, 89--111. Routledge.
 \url{https://doi.org/10.4324/9781315248073-5}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-lucchini2023}{}}%
+\bibitem[\citeproctext]{ref-lucchini2023}
 Lucchini, Lorenzo, Ollin Langle-Chimal, Lorenzo Candeago, Lucio Melito,
 Alex Chunet, Aleister Montfort, Bruno Lepri, Nancy Lozano-Gracia, and
 Samuel P. Fraiberger. 2023. {``Socioeconomic Disparities in Mobility
 Behavior During the COVID-19 Pandemic in Developing Countries.''}
 \url{https://doi.org/10.48550/ARXIV.2305.06888}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Maas19}{}}%
+\bibitem[\citeproctext]{ref-Maas19}
 Maas, P., S. Iyer, A. Gros, W. Park, L. McGorman, C. Nayak, and P. A.
 Dow. 2019. {``Facebook Disaster Maps: Aggregate Insights for Crisis
 Response and Recovery.''} In \emph{16th International Conference on
 Information Systems for Crisis Response and Management}, 836--47.
 
-\leavevmode\vadjust pre{\hypertarget{ref-McKinsey21}{}}%
+\bibitem[\citeproctext]{ref-McKinsey21}
 McKinsey \& Company. 2021. {``What Executives Are Saying about the
 Future of Hybrid Work.''}
 \url{https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/what-executives-are-saying-about-the-future-of-hybrid-work}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-ILO2020}{}}%
+\bibitem[\citeproctext]{ref-ILO2020}
 Nair, Shabari, and Divya Verma. 2020. {``A Policy Framework for India's
 Covid-19 Migration. International Labour Organization.''}
 \url{https://www.ilo.org/newdelhi/info/public/fs/WCMS_746654/lang--en/index.htm}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-nathan2020}{}}%
+\bibitem[\citeproctext]{ref-nathan2020}
 Nathan, Max, and Henry Overman. 2020. {``Will Coronavirus Cause a Big
 City Exodus?''} \emph{Environment and Planning B: Urban Analytics and
 City Science} 47 (9): 1537--42.
 \url{https://doi.org/10.1177/2399808320971910}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-UNpopulation19}{}}%
+\bibitem[\citeproctext]{ref-UNpopulation19}
 Nations", "United. 2019. {``World Urbanization Prospects. The 2018
 Revision.''}
 \url{https://population.un.org/wup/Publications/Files/WUP2018-Report.pdf}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-nouvellet2021}{}}%
+\bibitem[\citeproctext]{ref-nouvellet2021}
 Nouvellet, Pierre, Sangeeta Bhatia, Anne Cori, Kylie E. C. Ainslie, Marc
 Baguelin, Samir Bhatt, Adhiratha Boonyasiri, et al. 2021. {``Reduction
 in Mobility and COVID-19 Transmission.''} \emph{Nature Communications}
 12 (1). \url{https://doi.org/10.1038/s41467-021-21358-2}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-oecdreg}{}}%
+\bibitem[\citeproctext]{ref-oecdreg}
 \emph{OECD Regions and Cities at a Glance}. n.d. OECD.
 \url{https://doi.org/10.1787/26173212}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-oecdsoc}{}}%
+\bibitem[\citeproctext]{ref-oecdsoc}
 {``OECD Social, Employment and Migration Working Papers.''} n.d.
 \url{https://doi.org/10.1787/1815199x}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-perales2022}{}}%
+\bibitem[\citeproctext]{ref-perales2022}
 Perales, Francisco, and Aude Bernard. 2022. {``Continuity or Change? How
 the Onset of COVID{-}19 Affected Internal Migration in Australia.''}
 \emph{Population, Space and Place} 29 (2).
 \url{https://doi.org/10.1002/psp.2626}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Puxe9rez-Campuzano13}{}}%
+\bibitem[\citeproctext]{ref-Puxe9rez-Campuzano13}
 Pérez-Campuzano, C., E. y Santos-Cerquera. 2013. {``Tendencias Recientes
 de La Migración Interna En México.''} \emph{"Papeles de Población"} 19:
 53--88.
-\url{https://www.scielo.org.mx/scielo.php?script=sci_arttext\&pid=S1405-74252013000200003}.
+\url{https://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S1405-74252013000200003}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Pinilla2021}{}}%
+\bibitem[\citeproctext]{ref-Pinilla2021}
 Pinilla, Vicente, and Luis Antonio Sáez. 2021. {``La Despoblación Rural
 En España: Características, Causas e Implicaciones Para Las Políticas
 Públicas.''} \emph{Presupuesto y Gasto Público} 102: 75--92.
 \url{https://www.ief.es/docs/destacados/publicaciones/revistas/pgp/102.pdf\#page=75}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-PintoDaCunha02}{}}%
+\bibitem[\citeproctext]{ref-PintoDaCunha02}
 Pinto da Cunha, J. M. P. 2002. {``Urbanización, Redistribución Espacial
 de La Población y Transformaciones Socioeconómicas En América Latina.''}
 \emph{United Nations}.
 \url{https://repositorio.cepal.org/bitstream/handle/11362/7168/1/S029663_es.pdf}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Pomeroy2021}{}}%
+\bibitem[\citeproctext]{ref-Pomeroy2021}
 Pomeroy, Robin, and Ross Chiney. 2021. {``Has COVID Killed Our Cities?
 World Economic Forum.''}
 \url{https://www.weforum.org/agenda/2020/11/cities-podcast-new-york-dead/}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-ramani2021}{}}%
+\bibitem[\citeproctext]{ref-ramani2021}
 Ramani, Arjun, and Nicholas Bloom. 2021. {``The Donut Effect of Covid-19
 on Cities.''} \url{https://doi.org/10.3386/w28876}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-rodruxedguezvignoli2017}{}}%
+\bibitem[\citeproctext]{ref-rodruxedguezvignoli2017}
 Rodríguez Vignoli, Jorge, and Francisco Rowe. 2017. {``¿Contribuye La
 Migración Interna a Reducir La Segregación Residencial?''} \emph{Revista
 Latinoamericana de Población} 11 (21): 7--45.
 \url{https://doi.org/10.31406/relap2017.v11.i2.n21.1}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-rodruxedguez-vignoli2018}{}}%
+\bibitem[\citeproctext]{ref-rodruxedguez-vignoli2018}
 Rodríguez-Vignoli, Jorge, and Francisco Rowe. 2018. {``How Is Internal
 Migration Reshaping Metropolitan Populations in Latin America? A New
 Method and New Evidence.''} \emph{Population Studies} 72 (2): 253--73.
 \url{https://doi.org/10.1080/00324728.2017.1416155}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-rowe2021}{}}%
+\bibitem[\citeproctext]{ref-rowe2021}
 Rowe, Francisco. 2021. {``Big Data and Human Geography.''}
 \url{http://dx.doi.org/10.31235/osf.io/phz3e}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-rowe2022}{}}%
+\bibitem[\citeproctext]{ref-rowe2022}
 Rowe, Francisco, Alessia Calafiore, Daniel Arribas-Bel, Krasen
 Samardzhiev, and Martin Fleischmann. 2022. {``Urban Exodus?
 Understanding Human Mobility in Britain During the COVID-19 Pandemic
 Using Facebook Data.''} \url{https://doi.org/10.48550/ARXIV.2206.03272}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-rowe2023}{}}%
+\bibitem[\citeproctext]{ref-rowe2023}
 Rowe, Francisco, Miguel González-Leonardo, and Tony Champion. 2023.
 {``Virtual Special Issue: Internal Migration in Times of COVID{-}19.''}
 \emph{Population, Space and Place}, March.
 \url{https://doi.org/10.1002/psp.2652}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-OIT2018}{}}%
+\bibitem[\citeproctext]{ref-OIT2018}
 Salazar-Xirinachs, Juan, José Manuel \& Chacaltana. 2018. {``Políticas
 de Formalización En América Latina: Avances y Desafíos. Organización
 Internacional Del Trabajo.''}
 \url{https://www.ilo.org/americas/publicaciones/WCMS_645159/lang--es/index.htm}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-sobrino12}{}}%
+\bibitem[\citeproctext]{ref-sobrino12}
 Sobrino, J. 2012. {``La Urbanización En El México Contemporáneo.''}
 \emph{Notas de Población} 94: 93--122.
 \url{https://repository.eclac.org/handle/11362/12898}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-sobrino2006}{}}%
+\bibitem[\citeproctext]{ref-sobrino2006}
 Sobrino, Jaime. 2006. {``Comptetitiveness and Employment in the Largest
 Metropolitan Areas of Mexico.''} In, 309--54. El Colegio de México.
 \url{https://doi.org/10.2307/j.ctv3dnrw3.15}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-stawarz2022}{}}%
+\bibitem[\citeproctext]{ref-stawarz2022}
 Stawarz, Nico, Matthias Rosenbaum-Feldbrügge, Nikola Sander, Harun
 Sulak, and Vanessa Knobloch. 2022. {``The Impact of the COVID{-}19
 Pandemic on Internal Migration in Germany: A Descriptive Analysis.''}
 \emph{Population, Space and Place} 28 (6).
 \url{https://doi.org/10.1002/psp.2566}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-storper2004}{}}%
+\bibitem[\citeproctext]{ref-storper2004}
 Storper, M., and A. J. Venables. 2004. {``Buzz: Face-to-Face Contact and
 the Urban Economy.''} \emph{Journal of Economic Geography} 4 (4):
 351--70. \url{https://doi.org/10.1093/jnlecg/lbh027}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-TheGuardian2020}{}}%
+\bibitem[\citeproctext]{ref-TheGuardian2020}
 The Guardian. 2020. {``Escape to the Country: How Covid Is Driving an
 Exodus from Britain's Cities.''}
 \url{https://www.theguardian.com/world/2020/sep/26/escape-country-covid-exodus-britain-cities-pandemic-urban-green-space}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-tuxf8nnessen2021}{}}%
+\bibitem[\citeproctext]{ref-tuxf8nnessen2021}
 Tønnessen, Marianne. 2021. {``Movers from the City in the First Year of
 Covid.''} \emph{Nordic Journal of Urban Studies} 1 (2): 131--47.
 \url{https://doi.org/10.18261/issn.2703-8866-2021-02-03}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-USBureauLabor2021}{}}%
+\bibitem[\citeproctext]{ref-USBureauLabor2021}
 US Bureau of Labor Statistics. 2021. {``Unemployment Rises in 2020, as
 the Country Battles the COVID-19 Pandemic.''}
 \url{https://www.bls.gov/opub/mlr/2021/article/unemployment-rises-in-2020-as-the-country-battles-the-covid-19-pandemic.htm}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-vogiazides2022}{}}%
+\bibitem[\citeproctext]{ref-vogiazides2022}
 Vogiazides, Louisa, and Juta Kawalerowicz. 2022. {``Internal Migration
 in the Time of Covid: Who Moves Out of the Inner City of Stockholm and
 Where Do They Go?''} \emph{Population, Space and Place} 29 (4).
 \url{https://doi.org/10.1002/psp.2641}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-wang2022}{}}%
+\bibitem[\citeproctext]{ref-wang2022}
 Wang, Yikang, Chen Zhong, Qili Gao, and Carmen Cabrera-Arnau. 2022.
 {``Understanding Internal Migration in the UK Before and During the
 COVID-19 Pandemic Using Twitter Data.''} \emph{Urban Informatics} 1 (1).
 \url{https://doi.org/10.1007/s44212-022-00018-w}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-WorldBank2023}{}}%
+\bibitem[\citeproctext]{ref-WorldBank2023}
 World Bank", "The. 2023. {``LAC Equity Lab: Poverty - Poverty Rate.''}
 \url{https://www.worldbank.org/en/topic/poverty/lac-equity-lab1/poverty/head-count}.
 
@@ -996,7 +996,7 @@ World Bank", "The. 2023. {``LAC Equity Lab: Poverty - Poverty Rate.''}
 % print the bibliography
 \setlength{\bibsep}{0.00cm plus 0.05cm} % no space between items
 \bibliographystyle{apalike}
-\bibliography{sim_refs}
+\bibliography{refs}
 
 
 
