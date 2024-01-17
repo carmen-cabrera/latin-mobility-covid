@@ -1,0 +1,125 @@
+---
+title: "The recovery patterns of human mobility in Latin American urban areas after COVID-19"
+author: "Carmen Cabrera-Arnau, Miguel González-Leonardo, Andrea Nasuto, Ruth Neville, Francisco Rowe"
+format:
+  pdf:
+    template: template.tex
+editor: visual
+bibliography: refs.bib
+editor_options:
+  markdown:
+    wrap: sentence
+---
+
+```{=html}
+<!--# The abstract has to be set up in the tex file, but I copy it below.
+
+
+Recent empirical studies, predominantly from countries in the Global North, have shown that the COVID-19 pandemic disrupted human mobility at different spatial scales, but particularly in big cities, initially identified as epicentres of infections. Lockdowns, remote work, and online education decreased the demand for commuting and urban living, resulting in an "urban exodus". Despite the existing evidence, little is known about whether counterurbanisation movements have unfolded similarly in the Global South. In this study, we use anonymised, high-resolution location data from Facebook users to answer the following research questions: i) to what extent are people leaving cities? ii) are there variations across countries? iii) are there changes in mobility patterns over time? iv) how long do these changes last? The data is aggregated into spatial units according to the Bing Maps Tile System and temporally aggregated into 8-hour time windows for a period of approximately 2 years. The methodology involves three steps. Firstly, we classify the Bing tiles into different population density categories according to population data from WorldPop. Secondly, we quantify and analyse the number and characteristics of movements between different locations in each country. Finally, we use statistical modelling and spatial interaction models to assess how the population density category at the origin and destination affects the strength of the flows at different points in time. We observe that the strength of flows between Bing tiles belonging to different population density categories was systematically reduced in the early days of the pandemic and, even though by 2022 it seemed to have increased, it never returned to pre-pandemic levels. In the early days of COVID-19, we also find a systematically increase above pre-pandemic levels of the strength of the flows between Bing tiles belonding to the the same population density category. As of 2022, the frequency of these movements within population density classes have decreased with respect to 2020.
+
+-->
+```
+\section{Introduction}
+
+<!--# Add comments using this -->
+
+\section{Data}
+
+The analysis proposed in this paper is based on several data sets.
+Firstly, Facebook Population and Facebook Movements are data sets based on the Facebook users' location history.
+The data sets were created by Facebook's owner company Meta and can be accessed through their Data for Good programme (\url{https://dataforgood.facebook.com/}).
+Prior to releasing the data sets, Meta applies three techniques to ensure privacy and anonymisation.
+First, a small undisclosed amount of random noise is added to ensure that precise location cannot be identified for small population counts in sparsely populated areas.
+While removing small counts may lead to an underrepresentation of the population in these places, the geographic distribution of population is still reflected in the data.
+Second, spatial smoothing is applied to produce a smooth population count surface using inverse distance-weighted averaging.
+Third, any remaining population counts of less than 10 are removed from the final data set (see Maas et al. @Maas19 for details).
+
+Both data sets Facebook Population and Facebook Movements contain data corresponding to a time period comprising approximately two years, starting from March 2020, and to four Latin American countries, Argentina, Chile, Colombia and Mexico.
+The data in both data sets is temporally aggregated into three 8-hour windows (00:00--08:00, 08:00--16:00 and 16:00--00:00) for every day in the aforementioned two-year period.
+It is spatially aggregated into tiles according to the Bing Maps Tile System.
+This geospatial indexing system was developed by Microsoft and it partitions the world into square cells at various levels of resolution.
+The Facebook Movements and Facebook Population datasets are aggregated into various levels of resolution depending on the country, and the length of the Bing tile sides vary also by country according to the country's distance to the Equator, even when two countries use tiles at the same level of resolution.
+
+The Facebook Population data set provides information on the number of active Facebook users in each tile.
+The data set Facebook Movements captures the total number of Facebook users moving between pairs of origin and destination Bing tiles.
+We note here that due to the nature of the Facebook Movement data, we cannot distinguish between different types of movements, for example, daily commutes to work or permanent changes of address.
+However, we are still able to detect the evolution of movements between origin-destination pairs of Bing tiles and hence, we are able to capture the impact that COVID-19 has on mobility patterns.
+
+On top of the data for the two-year period, each entry in the Facebook Population and Facebook Movements datasets include data for baseline levels before COVID-19.
+The baseline values are computed based on a 45-day period ending on the 10th of March of 2020.
+The data sets also include a 'quality' score indicating the number of standard deviations by which the observed data at specific locations and time windows differ from the baseline values, hence highlighting statistically significant changes.
+
+An additional data set from WorldPop was used to capture the spatial distribution of population density in the different countries analysed here.
+The WorlPop dataset is in raster format and contains gridded population data at 1 sqkm resolution.
+
+\section{Method}
+
+\subsection{Data pre-processing}
+
+Ultimately, we work with a dataset where each entry represents a population flow between an origin and a destination pair.
+For each entry, we consider when the movement took place, the population density at the origin and destination, the number of active Facebook users at the origin and destination and?
+
+\subsubsection{Spatial aggregation}
+
+The working dataset is aggregated at the same level as the Bing tiles used to track the movements in a given country.
+To each Bing tile, we aggregate WorldPop population data and use it to estimate the population density of each Bing tile.
+
+\subsubsection{Temporal aggregation}
+
+The raw data is aggregated into 8-hour windows for every day in the two-year period.
+However, we are interested in longer-term trends and not in how population flows vary throughout the day.
+For this reason, we obtain estimates for the parameters in the models described in subsection \ref{subsec-models} by splitting the total data set by month.
+For the visualisations in section \ref{sec-results}, we also present the data aggregated by month.
+
+\subsection{Classifying Bing tiles according to their population density}
+
+Here we aim to understand how the population density at the origin and the destination might influence mobility behaviours.
+To help characterise the population density between orign and destination, we classify the Bing tiles into 10 discrete categories of population density according to the Jenks natural breaks classification method, hence obtaining a categorisation of Bing tiles a lot more detailed than the traditional binary rural/urban classification.
+
+![Maps of population density categories by country with histograms, showing that the distribution of Bing tiles in each density category.](figures/Map_density_histogram.png){fig-align="center" width="625" height="640"}
+
+\subsection{Estimating the strength of the flows between tiles of different population density categories}
+
+\ref{subsec-models}
+
+In this section, we propose a statistical model to capture the extent to which the strength of the population flows is systematically impacted by the density classes of the origin and destination tiles, and how this effect varies over time.
+Our approach here is very similar to that proposed by \cite{Rowe}.
+
+While we could obtain the population flows between different population classes and their evolution over time, the results would fail to capture specifically the effect of the density classes of the origin and destination tiles.
+This is due to the fact that movement patterns are influenced not only by the population density of the starting and ending locations, but also by factors such as the distance, the population size, the time of the week and day at which movements take place, etc.
+These additional variables can act as confounding factors, obscuring the actual impact of population density.
+In order to disentangle and obtain a more accurate estimation of the importance of population density, we chose to utilise a regression modeling approach.
+I AM HERE
+
+We adopted a spatial interaction framework (Rowe, Lovelace, et al., 2022).
+We used population flows between tiles by time window and day (as described in Section 3), and modelled them as a function of characteristics of the flow itself (Fij), the origin (Tilei) and destination (Tilej) tiles and the temporal nature of the flow (Tw).
+Crucially, we included indicator variables that capture the pair of population classes (Figure 1) of the origin and destination tile.
+In mathematical form:
+
+(2) where µijw is the expectation of the flow of people from tile i to tile j in the time window w; ⍺ is an intercept; is a series of indicator variables that reflect the pair of population density classes of a given origin i (I) and destination tile j (J), resulting in 99 pairs (10 classes × 10 classes minus one so it is not collinear with ⍺); dij is the geographic distance between tiles i and j; qijw is a measure of the quality of the flow estimate provided by Meta-Facebook and related to the uncertainty behind the user count of the flow as described in Section 3; Popi,j represents the population at the origin (i) and destination (j) tiles; are parameters to estimate in the model linking their respective covariates to µijw; D is a trend tracking the day to which the flow relates to during the period in analysis; while Wk and H are indicator variables capturing day of the week (i.e., weekday or weekend) and hour window (i.e., 00:00--08:00, 08:00--16:00 and 16:00--00:00). Our focus in Equation (2) is centred on . Controlling for all other variables, these parameters capture the extent to which, the expected flow between a given origin-destination population density class pair of tiles (e.g., a high-density origin to a low-density destination) is systematically higher or lower than if it occurred between a baseline origin-destination population density class pair of tiles (e.g., a low-density origin to a low-density destination). Additionally, we standardised continuous variables (dij, qijw, Popi j), α so that they can be interpreted as the expected flow on the first day (D = 0), during the first temporal window (H = 00:00--08:00), on a weekday (Wk = 0), for the baseline origin-population population density class pair, when all the other variables are at their mean value. In this context, each can also be seen as the 'modulation factor' around that expectation associated with each pair of origin-destination classes. The baseline origin-destination population density class pair is the lowest population density class as origin and destination.
+
+We used a count data regression model.
+Specifically, we fitted a generalised linear model (GLM) where the error term is assumed to be distributed following a Poisson distribution, with a flow expectation of (µijw) linked to the flow count (Fijw) through a log link: (3) (4) The Poisson regression model (PRM) assumes that equidispersion, that is, equality of mean and variance in the response variable (Cameron & Trivedi, 2013).
+In practice, the equidispersion property is commonly violated because of overdispersion, that is, the variance exceeds the mean.
+When this occurs, the PRM may produce biased parameter estimates, causing the standard errors of the estimates to be underestimated, and compromising the statistical inference process (Hilbe, 2011).
+To test for overdispersion, we used a regression-based test based on an auxiliary regression of the conditional variance as described in Cameron and Trivedi (2013).
+
+Following Gelman and Hill (2006), we used a quasi-PRM to address overdispersion in our response variable.
+This is one of the most common strategies to deal with overdispersion in count data models (Hilbe, 2011).
+Intuitively, this model adjusts the standard errors of the estimates to account for the extra dispersion in the data.
+To implement this, we estimated Equation (2) by using robust variance estimators.
+The number of active Facebook users were used as a weight to account for the variability of the observed count of population movement over time.
+This strategy is also used to mitigate for any potential biases regarding the variation in the observed number of active Facebook users changes over time across Britain.
+
+We fitted Equation (2) using iteratively reweighted least squares (IWLS).
+We separately estimated models for individual months in our data, resulting in 18 sets of estimates.
+Our key aim was to generate estimates for ⍺ and , so that we focused on discussing the evolution of these estimates in a grid of line plots with 10 rows and 10 columns, each of them representing one of our population density classes.
+The plot corresponding to the Ith row and Jth column displays the evolution of the parameter that tracks the intensity of population flows from tiles in population density class Ith to those in population density class Jth.
+
+\section{Results}\label{sec-results}
+
+\section{Discussion}
+
+\section{Conclusion}
+
+\section{References}
