@@ -283,6 +283,94 @@ back to baseline levels in the case of Chile and Colombia.
 
 \section{Methods}\label{sec-methods}
 
+\subsection{Meta-Facebook movement
+data}\label{meta-facebook-movement-data}
+
+To capture population movements, we used anonymised aggregate mobile
+phone location data from Meta users for Argentina, Colombia, Chile and
+Mexico, covering a 24-month period from April 2020 to March 2022. We
+used the dataset Facebook Movements created by Meta and accessed through
+their Data for Good Initiative (https://dataforgood.facebook.com). The
+data are built from Facebook app users who have the location services
+setting turned on on their smartphone. Prior to releasing the datasets,
+Meta ensures privacy and anonymity by removing personal information and
+applying privacy-preserving techniques (Maas et al.~2019). Small-count
+dropping is one of these techniques. A data entry is removed if the
+population or movement count for an area is lower than 10. The removal
+of small counts may mean that population counts in small sparsely
+populated areas are not captured. A second technique consists in adding
+a small undisclosed amount of random noise to ensure that it is not
+possible to ascertain precise, true counts for sparsely populated
+locations. Third, spatial smoothing using inverse distance-weighted
+averaging is also applied is applied to produce a smooth population
+count surface. The Facebook Movements dataset offers information on the
+total number of Facebook users moving between and within spatial units
+in the form of origin-destination matrices. The data is temporally
+aggregated into three daily 8-hour time windows (i.e.~00:00-08:00,
+08:00-16:00 and 16:00-00:00). The dataset includes a baseline capturing
+the number of movements before COVID-19 based on a 45-day period ending
+on March 10th 2020. The baseline is computed using an average for the
+same time of the day and day of the week in the period preceding March
+10th. For instance, the baseline for Monday 00:00-08:00 time window is
+obtained by averaging over data collected on Mondays from 00:00 to 8:00
+for the 45-day period. Details about the baseline can be found in Maas
+et al.~(2019). The Bing Maps Tile System developed by Microsoft
+(Microsoft) is used a spatial framework to organise the data. The Tile
+System is a geospatial indexing system that partitions the world into
+tile cells in a hierarchical way, comprising 23 different levels of
+detail (Microsoft). At the lowest level of detail (Level 1), the world
+is divided into four tiles with a coarse spatial resolution. At each
+successive level, the resolution increases by a factor of two. The data
+that we used are spatially aggregated into Bing tile levels 13. That is
+about 4.9 x 4.9km at the Equator (Maas et al.~2019).
+
+\subsection{Spatiotemporal data
+aggregation}\label{spatiotemporal-data-aggregation}
+
+Since the focus of this work is on urban mobility, we focus the analysis
+on Functional Urban Areas (FUAs), defined by the Global Human Settlement
+Layer. The spatial extent of the FUAs is often large and may include
+several towns and neighbourhoods displaying a variety of socioeconomic
+characteristics, hence using FUAs as the spatial units of aggregation
+would considerably mask the heterogeneity in the mobility patterns.
+While the original unit of aggregation for the movement data, i.e.~the
+tiles from the Bing Maps Tile System, offers the highest degree of
+spatial granularity available, the interpretation of findings from an
+analysis based on administrative units is often more valuable. For this
+reason, we perform a spatial join to aggregate the movement data into
+administrative units at the GADM level 2 or 3. Only flows of people
+starting or ending within the boundaries of a FUA are considered.
+
+While the original movement data is originally aggregated into 8-hour
+windows, this resolution is too fine for our analysis. Since the
+analysis is focused on the longer-term evolution of patterns of urban
+mobility, we aggregate the movement data by month.
+
+In our analysis, we use the Relative Deprivation Index (RDI) as a
+measure of socioeocnomic deprivation. The RDI data is made available via
+NASA's Socioeconomic Data and Applications Centre (SEDAC), with a
+spatial resolution of 1km pixels. We perform a spatial join of the
+gridded data and the administrative units and compute the average RDI
+within each of these units.
+
+\subsection{Time series analysis}\label{time-series-analysis}
+
+For the countries included in the analysis, the movement data is
+available until March 2022. In order to gain a better understanding of
+the recovery trends after the pandemic, we generate a 12-month forecast
+up to March 2023. This is done using Prophet, a procedure to forecast
+time series data based on an additive model where non-linear trends can
+be fit with seasonality effects, holiday effects and other external
+factors such as the stringency index. For the analysis, only seasonality
+effects are included as they yield the most realistic predictions.
+
+In Figures X and Y, outliers are removed. Outliers are defined as
+administrative units which, at any given month, have a z-score greater
+than 4 for the relative intensity of movement. Furthermore, a
+Savitzky-Golay filter is applied to smooth the time series data, using a
+length of 4 units for the filter window and order 2 polynomials to fit
+the samples.
+
 \section{References}\label{references}
 
 
