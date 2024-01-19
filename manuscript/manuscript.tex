@@ -85,6 +85,10 @@
 \renewcommand\Affilfont{\small}
 \usepackage{lipsum} \usepackage{libertine}
 \makeatletter
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
 \ifdefined\contentsname
@@ -120,16 +124,23 @@
 \newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
 \makeatother
 \makeatletter
-\makeatother
-\makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
 \makeatother
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\usepackage{bookmark}
-
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
@@ -164,10 +175,58 @@ Colegio de México, Ciudad de México, México}
 The COVID‐19 pandemic has impacted the national systems of population
 movement around the world.
 \end{abstract}
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, borderline west={3pt}{0pt}{shadecolor}, frame hidden, boxrule=0pt, interior hidden, breakable, sharp corners]}{\end{tcolorbox}}\fi
 
-\section{Introduction}\label{sec-intro}
+\hypertarget{sec-intro}{%
+\section{Introduction}\label{sec-intro}}
 
-\section{Results}\label{sec-results}
+Spatial human mobility is key to creating sustainable, liveable and
+inclusive cities. At the societal level, spatial mobility enables the
+transfer of knowledge, skills and labour to places they are needed.
+Spatial mobility also shapes service and transport demand across urban
+spaces, and enables the monitoring and control of transmissible
+diseases. At the individual level, spatial mobility enables people to
+access and achieve opportunities and aspirations. Understanding spatial
+human mobility is thus important to supporting appropriate policy
+responses to address societal challenges relating to carbon emissions,
+urban planning, service delivery, public health, disaster management and
+transport.
+
+The COVID-19 pandemic resulted in a notable reduction in mobility within
+cities. Nonpharmaceutical interventions to contain the spread of
+COVID‐19 reduced overall levels of mobility. Especially during
+lockdowns, mobility recorded reductions in the frequency, distance and
+time of trips in cities across the globe. Rises in teleworking, online
+schooling and remote shopping activity reduced the need to travel for
+work, education, shopping and leisure. Coupled with fears of crowded
+public spaces, nonpharmaceutical interventions prompted more
+geographically localised mobility patterns. Reductions in mobility were
+however socioeconomically highly unequal, with more affluent households
+recording greater drops in mobility levels. Wealthier individuals can
+afford to move less as they are more likely to work on jobs that can be
+done remotely, while individuals from more deprived background tend to
+engage in face-to-face activities requiring physical presence.
+
+\begin{itemize}
+\tightlist
+\item
+  Context and importance of human mobility: public health , climate
+  change\\
+\item
+  The pandemic resulted in major changes in human mobility - unequal
+  impacts across socioeconomic groups\\
+\item
+  Gap 1: Little work on understanding the long-term changes in mobility
+  - recovery\\
+\item
+  Gap 2: little work on less developed countries - where inequalities
+  are more pronounced\\
+\item
+  Aim - focus on South American countries as case study.
+\end{itemize}
+
+\hypertarget{sec-results}{%
+\section{Results}\label{sec-results}}
 
 The evolution of the levels of movement was measured with respect to a
 baseline period prior to the pandemic as described in
@@ -184,8 +243,9 @@ Predictions about the evolution of the levels of movement are made using
 the Prophet forecasting procedure. Further details are provided in
 Section~\ref{sec-methods}.
 
+\hypertarget{the-impact-of-covid-19-on-patterns-of-urban-mobility}{%
 \subsection{The impact of COVID-19 on patterns of urban
-mobility}\label{the-impact-of-covid-19-on-patterns-of-urban-mobility}
+mobility}\label{the-impact-of-covid-19-on-patterns-of-urban-mobility}}
 
 We analysed the evolution of the relative intensity of urban mobility
 with respect to a baseline period prior to the pandemic. Specifically,
@@ -230,8 +290,9 @@ terciles diminish with time. Argentina and Chile stand out as the
 countries with the largest differences in mobility levels for different
 relative deprivation terciles.
 
+\hypertarget{socioeconomic-deprivation-and-recovery-of-urban-mobility}{%
 \subsection{Socioeconomic deprivation and recovery of urban
-mobility}\label{socioeconomic-deprivation-and-recovery-of-urban-mobility}
+mobility}\label{socioeconomic-deprivation-and-recovery-of-urban-mobility}}
 
 In this section we explore further the role of socioeconomic deprivation
 in the evolution of the levels of urban mobility. For a given point in
@@ -240,7 +301,7 @@ the number of movements relative to the pre-pandemic baseline period and
 the average relative deprivation index, at the administrative unit
 level. We assume that this relationship is linear and we use a linear
 regression to estimate the slope and intercept characterising the line
-of best fit. This is shown for April 2020 and March 2022, in the
+of best fit. This is shown for April 2020 and March 2022 in the
 right-hand side panels of Figure X. After obtaining the slope and
 intercept for every month, we are able to plot the evolution of these
 parameters for both the observed and forecasted data, as displayed on
@@ -279,12 +340,15 @@ Therefore, if there were areas with no socioeconomic deprivation, we
 would have seen a recovery in the levels of mobility, although not quite
 back to baseline levels in the case of Chile and Colombia.
 
-\section{Discussion}\label{sec-discussion}
+\hypertarget{sec-discussion}{%
+\section{Discussion}\label{sec-discussion}}
 
-\section{Methods}\label{sec-methods}
+\hypertarget{sec-methods}{%
+\section{Methods}\label{sec-methods}}
 
+\hypertarget{meta-facebook-movement-data}{%
 \subsection{Meta-Facebook movement
-data}\label{meta-facebook-movement-data}
+data}\label{meta-facebook-movement-data}}
 
 To capture population movements, we used anonymised aggregate mobile
 phone location data from Meta users for Argentina, Colombia, Chile and
@@ -324,8 +388,9 @@ successive level, the resolution increases by a factor of two. The data
 that we used are spatially aggregated into Bing tile levels 13. That is
 about 4.9 x 4.9km at the Equator (Maas et al.~2019).
 
+\hypertarget{spatiotemporal-data-aggregation}{%
 \subsection{Spatiotemporal data
-aggregation}\label{spatiotemporal-data-aggregation}
+aggregation}\label{spatiotemporal-data-aggregation}}
 
 Since the focus of this work is on urban mobility, we focus the analysis
 on Functional Urban Areas (FUAs), defined by the Global Human Settlement
@@ -353,7 +418,8 @@ spatial resolution of 1km pixels. We perform a spatial join of the
 gridded data and the administrative units and compute the average RDI
 within each of these units.
 
-\subsection{Time series analysis}\label{time-series-analysis}
+\hypertarget{time-series-analysis}{%
+\subsection{Time series analysis}\label{time-series-analysis}}
 
 For the countries included in the analysis, the movement data is
 available until March 2022. In order to gain a better understanding of
@@ -371,7 +437,8 @@ Savitzky-Golay filter is applied to smooth the time series data, using a
 length of 4 units for the filter window and order 2 polynomials to fit
 the samples.
 
-\section{References}\label{references}
+\hypertarget{references}{%
+\section{References}\label{references}}
 
 
 

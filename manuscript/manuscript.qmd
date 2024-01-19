@@ -47,16 +47,24 @@ editor_options:
     wrap: sentence
 ---
 
+<!--# Are sections supposed to be numbered? -->
+
 # Introduction {#sec-intro}
 
 <!--# Francisco to write this -->
 
-Make it general
+Spatial human mobility is key to creating sustainable, liveable and inclusive cities. At the societal level, spatial mobility enables the transfer of knowledge, skills and labour to places they are needed. Spatial mobility also shapes service and transport demand across urban spaces, and enables the monitoring and control of transmissible diseases. At the individual level, spatial mobility enables people to access and achieve opportunities and aspirations. Understanding spatial human mobility is thus important to supporting appropriate policy responses to address societal challenges relating to carbon emissions, urban planning, service delivery, public health, disaster management and transport. 
 
-• Context and importance: Focus on urban spaces, livability, resilience and recov- ery - links to public health and climate change\
-• Previous work\
-• Gap: focus on medium - long term impacts of COVID-19 / recovery - explain why focus on South America (global south could be Africa too, or less developed countries in Asia).\
-• Aim:
+The COVID-19 pandemic resulted in a notable reduction in mobility within cities. Nonpharmaceutical interventions to contain the spread of COVID‐19 reduced overall levels of mobility. Especially during lockdowns, mobility recorded reductions in the frequency, distance and time of trips in cities across the globe. Rises in teleworking, online schooling and remote shopping activity reduced the need to travel for work, education, shopping and leisure. Coupled with fears of crowded public spaces, nonpharmaceutical interventions prompted more geographically localised mobility patterns. Reductions in mobility were however socioeconomically highly unequal, with more affluent households recording greater drops in mobility levels. Wealthier individuals can afford to move less as they are more likely to work on jobs that can be done remotely, while individuals from more deprived background tend to engage in face-to-face activities requiring physical presence.
+
+
+
+* Context and importance of human mobility: public health , climate change\
+* The pandemic resulted in major changes in human mobility - unequal impacts across socioeconomic groups\
+* Gap 1: Little work on understanding the long-term changes in mobility - recovery\
+* Gap 2: little work on less developed countries - where inequalities are more pronounced\
+* Aim - focus on South American countries as case study.
+
 
 # Results {#sec-results}
 
@@ -101,7 +109,7 @@ Argentina and Chile stand out as the countries with the largest differences in m
 In this section we explore further the role of socioeconomic deprivation in the evolution of the levels of urban mobility.
 For a given point in time (i.e. a month), we start by considering the relationship between the number of movements relative to the pre-pandemic baseline period and the average relative deprivation index, at the administrative unit level.
 We assume that this relationship is linear and we use a linear regression to estimate the slope and intercept characterising the line of best fit.
-This is shown for April 2020 and March 2022, in the right-hand side panels of Figure X. After obtaining the slope and intercept for every month, we are able to plot the evolution of these parameters for both the observed and forecasted data, as displayed on the left-hand-side panels of the same Figure.
+This is shown for April 2020 and March 2022 in the right-hand side panels of Figure X. After obtaining the slope and intercept for every month, we are able to plot the evolution of these parameters for both the observed and forecasted data, as displayed on the left-hand-side panels of the same Figure.
 
 We find patterns in the evolution of the estimated parameters that characterise the relationship between the levels of urban mobility and RDI.
 In Argentina, Colombia and Mexico, we observe that the slope of this relationship evolves to become smaller over time.
@@ -167,6 +175,8 @@ The RDI data is made available via NASA's Socioeconomic Data and Applications Ce
 We perform a spatial join of the gridded data and the administrative units and compute the average RDI within each of these units.
 
 ## Time series analysis
+
+<!--# would sell a bit more why Prophet - what is new and can done "better" in comparison to existing approaches - and include citation to [the paper](https://doi.org/10.7287/peerj.preprints.3190v2) -->
 
 For the countries included in the analysis, the movement data is available until March 2022.
 In order to gain a better understanding of the recovery trends after the pandemic, we generate a 12-month forecast up to March 2023.
