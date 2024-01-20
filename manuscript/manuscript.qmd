@@ -104,7 +104,7 @@ Further details are provided in @sec-methods.
 
 <!--# Add Figure X. -->
 
-## The impact of COVID-19 on patterns of urban mobility
+## The impact of COVID-19 on urban mobility
 
 We analysed the evolution of the relative intensity of urban mobility with respect to a baseline period prior to the pandemic.
 Specifically, movements covering a distance of at most 70 km are considered.
