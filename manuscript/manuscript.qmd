@@ -53,18 +53,42 @@ editor_options:
 
 <!--# Francisco to write this -->
 
-Spatial human mobility is key to creating sustainable, liveable and inclusive cities. At the societal level, spatial mobility enables the transfer of knowledge, skills and labour to places they are needed. Spatial mobility also shapes service and transport demand across urban spaces, and enables the monitoring and control of transmissible diseases. At the individual level, spatial mobility enables people to access and achieve opportunities and aspirations. Understanding spatial human mobility is thus important to supporting appropriate policy responses to address societal challenges relating to carbon emissions, urban planning, service delivery, public health, disaster management and transport. 
+Spatial human mobility is key to creating sustainable, liveable and inclusive cities.
+At the societal level, spatial mobility enables the transfer of knowledge, skills and labour to places they are needed.
+Spatial mobility also shapes service and transport demand across urban spaces, and enables the monitoring and control of transmissible diseases.
+At the individual level, spatial mobility enables people to access and achieve opportunities and aspirations.
+Understanding spatial human mobility is thus important to supporting appropriate policy responses to address societal challenges relating to carbon emissions, urban planning, service delivery, public health, disaster management and transport.
 
-The COVID-19 pandemic resulted in a notable reduction in mobility within cities. Nonpharmaceutical interventions to contain the spread of COVID‐19 reduced overall levels of mobility. Especially during lockdowns, mobility recorded reductions in the frequency, distance and time of trips in cities across the globe. Rises in teleworking, online schooling and remote shopping activity reduced the need to travel for work, education, shopping and leisure. Coupled with fears of crowded public spaces, nonpharmaceutical interventions prompted more geographically localised mobility patterns. Reductions in mobility were however socioeconomically highly unequal, with more affluent households recording greater drops in mobility levels. Wealthier individuals can afford to move less as they are more likely to work on jobs that can be done remotely, while individuals from more deprived background tend to engage in face-to-face activities requiring physical presence.
+The COVID-19 pandemic resulted in a notable reduction in mobility within cities.
+Nonpharmaceutical interventions to contain the spread of COVID‐19 reduced overall levels of mobility.
+Especially during lockdowns, mobility recorded reductions in the frequency, distance and time of trips in cities across the globe.
+Rises in teleworking, online schooling and remote shopping activity reduced the need to travel for work, education, shopping and leisure.
+Coupled with fears of crowded public spaces, nonpharmaceutical interventions prompted more geographically localised mobility patterns.
 
+However, reductions in mobility levels were highly unequal reflecting existing socioeconomic inequalities.
+In most countries, affluent individuals tended to record the greatest drops in mobility levels as they are predominantly employed in knowledge-intensive jobs which can be done fully or partly remotely.
+During the COVID-19 pandemic, the adoption of remote work reduced the need of commuting for knowledge-intensive, non-public facing jobs.
+At the same time, individuals from less privileged socioeconomic backgrounds displayed less pronounced declines mirroring the nature of their work requiring public-facing, face-to-face interaction, and thus a requirement for daily work commutes.
 
+Thus, while a growing body of empirical evidence has contributed to advancing our understanding of the impacts of the COVID-19 pandemic on spatial mobility within cities, existing research has focused on more developed countries and the immediate effects of the pandemic during 2020.
+Less is known about the longer term patterns of resilience in urban mobility in less developed countries.
+Assessing the extent to which the intensity of movement has returned back to pre-pandemic levels across socioeconomic groups is important to understand the potentially unequal impacts of hybrid working in the society.
 
-* Context and importance of human mobility: public health , climate change\
-* The pandemic resulted in major changes in human mobility - unequal impacts across socioeconomic groups\
-* Gap 1: Little work on understanding the long-term changes in mobility - recovery\
-* Gap 2: little work on less developed countries - where inequalities are more pronounced\
-* Aim - focus on South American countries as case study.
+A key barrier to continously monitor changes in geographic mobility patterns in less developed countries during and post the COVID-19 pandemic has been the lack of suitable data.
+Traditionally census and survey data have been employed to analyse human mobility patterns in these countries.
+Yet, these data streams are not frequently updated and suffer from slow releases, with census data for example
+being collected over intervals of ten years in most countries.
+These data streams thus lack the temporal granularity to analyse population movements over short-time periods.
+Data resulting from social interactions on digital platforms has emerged as an unique source of information to capture human population movement at scale in less developed countries.
+Particularly location data from mobile phone applications have become a prominent source to sense patterns of human mobility at higher geographical and temporal resolution over in real time.
 
+We aim to
+
+-   Context and importance of human mobility: public health , climate change\
+-   The pandemic resulted in major changes in human mobility - unequal impacts across socioeconomic groups\
+-   Gap 1: Little work on understanding the long-term changes in mobility - recovery\
+-   Gap 2: little work on less developed countries - where inequalities are more pronounced\
+-   Aim - focus on South American countries as case study.
 
 # Results {#sec-results}
 
