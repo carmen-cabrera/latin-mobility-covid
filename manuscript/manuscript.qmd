@@ -56,7 +56,7 @@ editor_options:
 Spatial human mobility is key to creating sustainable, liveable and inclusive cities.
 At the societal level, spatial mobility enables the transfer of knowledge, skills and labour to places they are needed.
 Spatial mobility also shapes service and transport demand across urban spaces, and enables the monitoring and control of transmissible diseases.
-At the individual level, spatial mobility enables people to access and achieve opportunities and aspirations.
+At the individual level, mobility enables people to access and achieve opportunities and aspirations in space.
 Understanding spatial human mobility is thus important to supporting appropriate policy responses to address societal challenges relating to carbon emissions, urban planning, service delivery, public health, disaster management and transport.
 
 The COVID-19 pandemic resulted in a notable reduction in mobility within cities.
@@ -74,13 +74,12 @@ Thus, while a growing body of empirical evidence has contributed to advancing ou
 Less is known about the longer term patterns of resilience in urban mobility in less developed countries.
 Assessing the extent to which the intensity of movement has returned back to pre-pandemic levels across socioeconomic groups is important to understand the potentially unequal impacts of hybrid working in the society.
 
-A key barrier to continously monitor changes in geographic mobility patterns in less developed countries during and post the COVID-19 pandemic has been the lack of suitable data.
+A key barrier to continuously monitor changes in geographic mobility patterns in less developed countries during and post the COVID-19 pandemic has been the lack of suitable data.
 Traditionally census and survey data have been employed to analyse human mobility patterns in these countries.
-Yet, these data streams are not frequently updated and suffer from slow releases, with census data for example
-being collected over intervals of ten years in most countries.
-These data streams thus lack the temporal granularity to analyse population movements over short-time periods.
-Data resulting from social interactions on digital platforms has emerged as an unique source of information to capture human population movement at scale in less developed countries.
-Particularly location data from mobile phone applications have become a prominent source to sense patterns of human mobility at higher geographical and temporal resolution over in real time.
+Yet, these data streams are not frequently updated and suffer from slow releases, with census data for example being collected over intervals of ten years in most countries.
+Traditional data streams thus lack the temporal granularity to analyse population movements over short-time periods and offer an up-to-date representation of the urban mobility system.
+Data resulting from social interactions on digital platforms have emerged as an unique source of information to deliver this representation and capture human population movement in less developed countries at scale.
+Particularly location data from mobile phone applications have become a prominent source to sense patterns of human mobility at higher geographical and temporal resolution in real time.
 
 We aim to
 
