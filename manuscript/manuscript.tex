@@ -85,10 +85,6 @@
 \renewcommand\Affilfont{\small}
 \usepackage{lipsum} \usepackage{libertine}
 \makeatletter
-\makeatother
-\makeatletter
-\makeatother
-\makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
 \ifdefined\contentsname
@@ -124,23 +120,16 @@
 \newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
 \makeatother
 \makeatletter
+\makeatother
+\makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
-\makeatother
-\makeatletter
-\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
-\makeatother
-\makeatletter
-\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
-\makeatother
-\makeatletter
-\makeatother
-\makeatletter
 \makeatother
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
+
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
@@ -175,10 +164,8 @@ Colegio de México, Ciudad de México, México}
 The COVID‐19 pandemic has impacted the national systems of population
 movement around the world.
 \end{abstract}
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, interior hidden, enhanced, breakable, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, frame hidden]}{\end{tcolorbox}}\fi
 
-\hypertarget{sec-intro}{%
-\section{Introduction}\label{sec-intro}}
+\section{Introduction}\label{sec-intro}
 
 Spatial human mobility is key to creating sustainable, liveable and
 inclusive cities. At the societal level, spatial mobility enables the
@@ -277,8 +264,7 @@ working.
   Aim - focus on South American countries as case study.
 \end{itemize}
 
-\hypertarget{sec-results}{%
-\section{Results}\label{sec-results}}
+\section{Results}\label{sec-results}
 
 The evolution of the levels of movement was measured with respect to a
 baseline period prior to the pandemic as described in
@@ -295,9 +281,8 @@ Predictions about the evolution of the levels of movement are made using
 the Prophet forecasting procedure. Further details are provided in
 Section~\ref{sec-methods}.
 
-\hypertarget{the-impact-of-covid-19-on-urban-mobility}{%
 \subsection{The impact of COVID-19 on urban
-mobility}\label{the-impact-of-covid-19-on-urban-mobility}}
+mobility}\label{the-impact-of-covid-19-on-urban-mobility}
 
 We analysed the evolution of the relative intensity of urban mobility
 with respect to a baseline period prior to the pandemic. Specifically,
@@ -342,9 +327,8 @@ terciles diminish with time. Argentina and Chile stand out as the
 countries with the largest differences in mobility levels for different
 relative deprivation terciles.
 
-\hypertarget{socioeconomic-deprivation-and-recovery-of-urban-mobility}{%
 \subsection{Socioeconomic deprivation and recovery of urban
-mobility}\label{socioeconomic-deprivation-and-recovery-of-urban-mobility}}
+mobility}\label{socioeconomic-deprivation-and-recovery-of-urban-mobility}
 
 In this section we explore further the role of socioeconomic deprivation
 in the evolution of the levels of urban mobility. For a given point in
@@ -392,15 +376,12 @@ Therefore, if there were areas with no socioeconomic deprivation, we
 would have seen a recovery in the levels of mobility, although not quite
 back to baseline levels in the case of Chile and Colombia.
 
-\hypertarget{sec-discussion}{%
-\section{Discussion}\label{sec-discussion}}
+\section{Discussion}\label{sec-discussion}
 
-\hypertarget{sec-methods}{%
-\section{Methods}\label{sec-methods}}
+\section{Methods}\label{sec-methods}
 
-\hypertarget{meta-facebook-movement-data}{%
 \subsection{Meta-Facebook movement
-data}\label{meta-facebook-movement-data}}
+data}\label{meta-facebook-movement-data}
 
 To capture population movements, we used anonymised aggregate mobile
 phone location data from Meta users for Argentina, Colombia, Chile and
@@ -440,9 +421,8 @@ successive level, the resolution increases by a factor of two. The data
 that we used are spatially aggregated into Bing tile levels 13. That is
 about 4.9 x 4.9km at the Equator (Maas et al.~2019).
 
-\hypertarget{spatiotemporal-data-aggregation}{%
 \subsection{Spatiotemporal data
-aggregation}\label{spatiotemporal-data-aggregation}}
+aggregation}\label{spatiotemporal-data-aggregation}
 
 Since the focus of this work is on urban mobility, we focus the analysis
 on Functional Urban Areas (FUAs), defined by the Global Human Settlement
@@ -470,8 +450,7 @@ spatial resolution of 1km pixels. We perform a spatial join of the
 gridded data and the administrative units and compute the average RDI
 within each of these units.
 
-\hypertarget{time-series-analysis}{%
-\subsection{Time series analysis}\label{time-series-analysis}}
+\subsection{Time series analysis}\label{time-series-analysis}
 
 For the countries included in the analysis, the movement data is
 available until March 2022. In order to gain a better understanding of
@@ -489,8 +468,7 @@ Savitzky-Golay filter is applied to smooth the time series data, using a
 length of 4 units for the filter window and order 2 polynomials to fit
 the samples.
 
-\hypertarget{references}{%
-\section{References}\label{references}}
+\section{References}\label{references}
 
 
 
