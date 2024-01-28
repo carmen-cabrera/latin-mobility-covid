@@ -156,45 +156,29 @@ Therefore, if there were areas with no socioeconomic deprivation, we would have 
 # Discussion {#sec-discussion}
 
 Using location data from Meta-Facebook users, our study aimed to examine the evolution of patterns of mobility across socioeconomic groups in functional urban areas from Argentina, Chile, Colombia and Mexico from April 2020 to March 2023, following the COVID-19 pandemic.
-We found a systematic decline in population movement levels during the implementation of non-pharmaceutical interventions in April 2020, with the largest reductions observed in the most affluent administrative units within functional urban areas from Argentina, Chile and Colombia.
-While mobility rebounded closer to pre-pandemic levels approximately two years later after COVID-19 restrictions eased, movement intensity remained below pre-pandemic levels in Chile and generally in areas where the relative deprivation index is lower.
+We found a systematic drop in the number of population movements in April 2020, with the largest reductions observed in the most affluent administrative units within functional urban areas from Argentina, Chile and Colombia.
+While mobility rebounded closer to pre-pandemic levels approximately two years later, when COVID-19 restrictions eased, the number of movements remained below pre-pandemic in Chile.
 Furthermore, we found that at the beginning of the pandemic there were inequalities between socioeconomic groups in terms of the levels of urban mobility.
 While it has taken more than two years for Argentina and Mexico to gradually close the gap, inequalities persist in Chile and Colombia as of March 2023 according to our estimated data.
 
-<!--- Interpretation --->
+We focused the analysis on short-distance movements in urban areas, especifically those covering 70 km or less.
+These journeys are typically considered to represent local and routine mobility (Owen and Green 1992).
+However, due to the characteristics of the Meta-Facebook movement data, we are unable to distinguish the purpose of these short-distance movements.
+Hence, some of our data could be capturing journeys that involve a permanent change of place of residence.
+Our work therefore motivates the need to answer questions regarding the validity of digital footprint data for the analysis of human mobility.
+Further research should focus on inferring more specific information about the nature of the journeys, for example following the approach in X and Y (cite JOana), and quantifying the extent to which the digital footprint data mirrors the true mobility patterns.
 
-<!--- Limitations --->
+Conducting research on urban mobility using digital footprint data is not straightforward, due to the challenges in accessing and working with unstructured data sets which are often subject to biases and statistical representation issues.
+These biases often arise from inequalities in access and usage of digital technologies across demographic groups (cite).
+Despite these challenges, the data and analysis that we used for this work provide evidence for non-trivial patterns that are consistent across four countries in Latin America and with other parts of the world.
+Our findings highlight the dynamic interplay between socioeconomic status and urban mobility, and shall be used to motivate and inform the public debate on the deep societal consecuences of how disparities in urban mobility may be affecting the wider socioeconomic landscape in Latin American countries.
 
-We focused the analysis on short-distance movements in urban areas, which are typically considered to capture local and routine mobility (Owen and Green 1992).
-However, due to the characteristics of the dataset, we are unable to distinguish movements of this nature from short-distance movements that involve a permanent change of place of residence.
-Future work could extend and validate our work identifying changes to moves relating permanent and
-temporary displacements, and triangulating alternative DFD and traditional data sources, such as censuses
-and representative surveys collecting information on residential location.
-Further research is also needed to establish the cause of the observed changes in the spatial patterns of
-internal population movement since the start of the COVID-19 pandemic.
-Understanding these causes can
-assist in anticipating long-term structural changes in the direction of mobility flows in the coming years.
-
-
-Additionally, accessing and working with DFD to measure human mobility and migration is challenging.
-DFD are known to suffer from biases and issues of statistical representation reflecting differences in technology usage and accessibility (Rowe 2023).
-While concerted efforts to develop data services and
-methodological frameworks to leverage on DFD exist in the Global North \[REF\], limited progress has been
-done in Latin America.
-National government and statistical agencies have a prime position to promote
-the creation of data sharing partnerships with private companies and create the digital infrastructure to
-ensure equal and secure access to DFD sources for the social good.
-With academia, these agencies could
-play a major role in promoting the creation of a methodological framework for the use and analysis of
-DFD, setting common definitions, metrics, and standard approaches to measure and correct data biases
-and validate data analyses.
-Location data have been proven key to monitor and develop appropriate policy
-responses to population displacement and movement during natural disasters, wars and epidemics (Green,
-Pollock, and Rowe 2021).
-We envision resources like those created by the European Commission Joint
-Research Centre (2022) and the UNSD (2019), identifying sources of non-traditional data and establishing
-methodological guidelines for the use of mobile phone data for official mobility statistics.
-Existing resources have a global character, we call for initiatives with a regional focus accounting for differences in the local landscape of data availability and digital technology usage.
+In conclusion, we argue that this work goes beyond the analysis of specific patterns by demonstrating the potential of digital footprint data for policy-relevant research on human mobility at an unprecedented level of spatiotemporal granularity.
+While we have seen a rise in initiatives to improve data services and methodological frameworks to facilitate the use of digital footprint data for social good, progress is still limited, especially in some parts of the world including Latin America.
+It is in the hands of governments and public organisations to prioritise maximiasing the societal benefits that digital footprint data has to offer.
+This includes engaging in activities such as building strategic partnerships with commercial data-holders and academic institutions to establish a unified framework for the use of digital footprint data in policy and research.
+In particular, we call for the creation of resources like those developed by the European Commission Joint Research Centre (2022) and the UNSD (2019), which identify sources of non-traditional data and set methodological protocols for incorporating mobile phone data into official mobility statistics.
+While current resources tend to have a global reach, we advocate for more tailored local initiatives that acknowledge disparities in regional data availability and adoption of digital technologies.
 
 # Methods {#sec-methods}
 
