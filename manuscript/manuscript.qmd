@@ -1,5 +1,5 @@
 ---
-title: "**Socioeconomic deprivation and urban mobility in Latin America after COVID-19**"
+title: "**Urban mobility and socioeconomic deprivation in Latin America after COVID-19**"
 author:
   - name: Carmen Cabrera-Arnau
     affil-id: 1
@@ -66,7 +66,7 @@ At the same time, individuals from less privileged socioeconomic backgrounds dis
 
 Thus, while a growing body of empirical evidence has contributed to advancing our understanding of the impacts of the COVID-19 pandemic on spatial mobility within cities, existing research has focused on more developed countries and the immediate effects of the pandemic during 2020.
 Less is known about the longer term patterns of resilience in urban mobility in less developed countries.
-Assessing the extent to which the intensity of movement has returned back to pre-pandemic levels across socioeconomic groups is important to understand the potentially unequal impacts of hybrid working in the society.
+Assessing the extent to which the level of mobility has returned back to the pre-pandemic baseline level across socioeconomic groups is important to understand the potentially unequal impacts of hybrid working in the society.
 
 A key barrier to monitor changes in geographic mobility patterns in less developed countries during and post the COVID-19 pandemic has been the lack of suitable data.
 Traditionally census and survey data have been employed to analyse human mobility patterns in these countries.
@@ -78,7 +78,7 @@ Particularly location data from mobile phone applications have become a prominen
 Drawing on a dataset of 213 million observations from Meta-Facebook users' mobile location data, we aim to assess socioeconomic differences in the extent and persistence of decline in urban mobility in Argentina, Chile, Colombia and Mexico during and after the COVID-19 pandemic from March 2020 to March 2023.
 We use Meta-Facebook data to measure origin-destination flows from March 2020 to May 2022, and Meta Prophet time-series forecasting machine learning algorithm to predict origin-destination flows from June 2022 to March 2023.
 <!--# Perhaps say how predictions have been validated --> We use Functional Urban Areas (FUAs) boundaries from the Global Human Settlement Layer (GHSL), developed by the European Comission's Joint Research Centre [@GHSL19] to define urban areas; and the Global Gridded Relative Deprivation Index (GRDI) developed by NASA’s Socioeconomic Data and Applications Centre [@RDI2022] from sociodemographic and satellite data inputs.
-Building on existing evidence (e.g. [@roweCalafiore2022; @wang2022]), we hypothesised that (1) urban mobility has recovered returning to pre-pandemic levels of movement as nonpharmaceuthical restrictions were lifted; and (2) socioeconomic differences in urban mobility have endured the pandemic reflecting deep societal inequalities as knowledge-intensive businesses adopt hybrid working.
+Building on existing evidence (e.g. [@roweCalafiore2022; @wang2022]), we hypothesised that (1) urban mobility has recovered returning to the pre-pandemic baseline level of movement as nonpharmaceuthical restrictions were lifted; and (2) socioeconomic differences in urban mobility have endured the pandemic reflecting deep societal inequalities as knowledge-intensive businesses adopt hybrid working.
 <!--# Once we have a more definitive version of the results, highlight our novel contributions here. -->
 
 -   Context and importance of human mobility: public health , climate change\
@@ -90,19 +90,19 @@ Building on existing evidence (e.g. [@roweCalafiore2022; @wang2022]), we hypothe
 
 # Results {#sec-results}
 
-The evolution of the levels of movement is measured with respect to a baseline period prior to the pandemic as described in @sec-methods.
+The evolution of the percentage change in the number of movements is measured with respect to a baseline period prior to the pandemic as described in @sec-methods.
 For the purposes of the analysis, we aggregate the raw movement data temporally into months and spatially into administrative units at various levels according to GADM, the Database of Global Administrative Areas [@GADM24].
 The analysis focuses on administrative units that are within the boundaries of functional urban areas as specified by the Global Human Settlement Layer (GHSL).
 For each administrative unit, we compute the Relative Deprivation Index (RDI) based on data from NASA's Socioeconomic Data and Applications Centre (SEDAC).
 Figure 1 displays the administrative units included in the study, coloured according to their average RDI.
-Predictions about the evolution of the levels of movement are made using the Prophet forecasting procedure.
+Predictions about the evolution of the percentage change in the number of movements are made using the Prophet forecasting procedure.
 Further details are provided in @sec-methods.
 
 ![Administrative units within functional urban areas in Argentina, Chile, Colombia and Mexico, coloured according to the average Relative Deprivation Index.](figures/maps.pdf)
 
 ## The heterogeneous impact of COVID-19 on urban mobility
 
-We analyse the evolution of the relative intensity of urban mobility with respect to a baseline period prior to the pandemic.
+We analyse the evolution of the percentage change in the number of movements with respect to a baseline period prior to the pandemic.
 Specifically, we focus the analysis on short-distance movements in urban areas to represent local and routine mobility [@owen1992migration], so only movements covering a distance of at most 70 km are considered.
 For a movement to be classified as urban it needs to start or end within a functional urban area from Argentina, Chile, Colombia and Mexico.
 The observed data is available for a two-year period starting in April 2020, just after the first wave of COVID-19 pandemic cases, and ending in March 2022.
@@ -114,8 +114,8 @@ The three lines in each panel represent the mean levels of mobility for administ
 ![Patterns of recovery for urban mobility in administrative units from Argentina, Chile, Colombia and Mexico.](figures/prediction-rdi-band.pdf)
 
 Generally, there was a drop in the levels of mobility with respect to the baseline period in all four countries.
-This drop was especially large for Argentina, Chile and Colombia, with Mexico displaying a smaller decrease in the relative number of movements with respect to the baseline.
-Following the initial drop in mobility, all four countries evolve towards the recovery of baseline levels, with a generally increasing trend.
+This drop was especially large for Argentina, Chile and Colombia, with Mexico displaying a smaller decrease in the percentage change in the number of movements with respect to the baseline.
+Following the initial drop in mobility, all four countries evolve towards the recovery of baseline levels of mobility, with a generally increasing trend.
 There are, however, fluctuations from the general trend which manifest differently for each country.
 These fluctuations mirror each other in the case of Argentina and Colombia, where urban mobility sharply bounces back closer to pre-pandemic levels around July of 2020.
 Chile and Mexico display more progressive patterns of recovery, although Chile never reaches baseline levels.
@@ -126,22 +126,22 @@ For all four countries, we observe that the administrative units in the most dep
 Differences in the levels of mobility across relative deprivation terciles diminish with time.
 Argentina and Chile stand out as the countries with the largest differences in mobility levels for different relative deprivation terciles.
 
-## The most deprived areas experienced the smallest drop in mobility relative to pre-pandemic levels 
+## The most deprived areas experienced the smallest drop in mobility relative to pre-pandemic levels
 
 In this section we explore further the role of socioeconomic deprivation in the evolution of the levels of urban mobility.
-For a given point in time (i.e. a month), we start by considering the relationship between the number of movements relative to the pre-pandemic baseline period and the average RDI, at the administrative unit level.
+For a given point in time (i.e. a month), we start by considering the relationship between the percentage change in the number of movements relative to the pre-pandemic baseline period and the average RDI, at the administrative unit level.
 We assume that this relationship is linear and we use a linear regression to estimate the slope and intercept characterising the line of best fit.
 This is shown for April 2020 and March 2022 in the right-hand side panels of Figure 3.
 After obtaining the slope and intercept for every month, we are able to plot the evolution of these parameters for both the observed and forecasted data, as displayed on the left-hand-side panels of the same Figure.
 
-![Evolution of the parameters characterising the relationship between relative deprivation index and number of movements relative to the pre-pandemic baseline period.](figures/regression-evo-nobackground.pdf)
+![Evolution of the parameters characterising the relationship between relative deprivation index and the percentage change in the number of movements relative to the pre-pandemic baseline level of mobility.](figures/regression-evo-nobackground.pdf)
 
 We find patterns in the evolution of the estimated parameters that characterise the relationship between the levels of urban mobility and RDI.
 In Argentina, Colombia and Mexico, we observe that the slope of this relationship evolves to become smaller over time.
 The tendency is not apparent in Chile, where the slope of the relationship remains approximately the same over time despite the temporary fluctuations.
 The slope captures the extent of differences in the level of urban mobility across administrative units with varying levels of socioeconomic deprivation.
 It can therefore be regarded as a measure of inequality in mobility patterns across socioeconomic groups.
-A slope equal to zero would mean that all administrative units display the same intensity of movement regardless of their average RDI.
+A slope equal to zero would mean that all administrative units display the same level of mobility regardless of their average RDI.
 Given the patterns observed in Argentina, Colombia and Mexico, we find that at the beginning of the pandemic there were notable inequalities between socioeconomic groups in terms of the levels of urban mobility.
 While it has taken more than two years for Argentina and Mexico to close the gap (their slope is close to zero from spring 2022), inequalities persist in Chile and Colombia as of March 2023.
 
@@ -222,15 +222,15 @@ We perform a spatial join of the gridded data and the administrative units and c
 
 ## Time series analysis
 
-<!--# would sell a bit more why Prophet - what is new and can done "better" in comparison to existing approaches - and include citation to [the paper](https://doi.org/10.7287/peerj.preprints.3190v2) -->
-
 For the countries included in the analysis, the movement data is available until March 2022.
 In order to gain a better understanding of the recovery trends after the pandemic, we generate a 12-month forecast up to March 2023.
-This is done using Prophet, a procedure to forecast time series data based on an additive model where non-linear trends can be fit with seasonality effects, holiday effects and other external factors such as the stringency index.
-For the analysis, only seasonality effects are included as they yield the most realistic predictions.
+This is done using Prophet [@prophet17], a procedure developed by Meta's Core Data Science team to forecast time series data based on an additive model.
+Prophet stands out from other forecasting methods due to its ability to capture recurring seasonal trends inherent in mobility data, such as fluctuations during holidays, or changes in the general trend due to the impact of particular circumstances, such as the COVID-19 pandemic.
+It is particularly intuitive to use compared to other models due to its automated trend-detection capabilities, making it accessible to users with no expertise on the underlying model, while being robust to missing data and outliers.
+For the analysis in this paper, yearly seasonality effects are included as they yield the most realistic predictions.
 
-In Figures 2 and 3, outliers are removed.
-Outliers are defined as administrative units which, at any given month, have a z-score greater than 4 for the relative intensity of movement.
+Figures 2 and 3 have been created by removing statistical outliers.
+We define these as the administrative units which, at any given month, have a z-score greater than 4 for the percentage change in the number of movements.
 Furthermore, a Savitzky-Golay filter is applied to smooth the time series data, using a length of 4 units for the filter window and order 2 polynomials to fit the samples.
 
 # References
