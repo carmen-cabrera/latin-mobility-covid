@@ -16,10 +16,8 @@ affiliations:
     name: Geographic Data Science Lab, Department of Geography and Planning, University of Liverpool, Liverpool, UK
   - id: 2
     name: Centre for Demographic Urban and Environmental Studies, El Colegio de México, Ciudad de México, México
-#  - id: 3
-#    name: International Institute for Applied Systems Analysis, Wittgenstein Centre, Vienna, Austria
 abstract: |
-  The movement of people between locations is crucial for sustainable and inclusive cities, facilitating the exchange of knowledge and resources. Due to restrictions, lockdowns and fear of crowded places, the COVID-19 pandemic significantly reduced the number and extent of people's movements. Existing research suggests that the impact of the pandemic on mobility was unequal across locations and socioeconomic groups. However, evidence and analysis of long-term changes in mobility is scarce, especially in less developed countries. In this study, we use location data from Meta-Facebook users to analyse patterns of urban mobility in X Functional Urban Areas from South American countries. Findings reveal a general decrease in mobility during the pandemic, with gradual recovery trends up to April 2023. However, socioeconomic disparities are present through the period of analysis, with deprived areas experiencing smaller initial losses in mobility. These disparities generally diminish over time, although they persist in all the countries included in the analysis. Our research highlights the importance of timely mobility data with high spatiotemporal resolution to understand the long-term effects of the pandemic and to inform equitable policy responses that address societal challenges in urban areas. 
+  The movement of people between locations is crucial for sustainable and inclusive cities, facilitating the exchange of knowledge and resources. Due to restrictions, lockdowns and fear of crowded places, the COVID-19 pandemic significantly reduced the number and extent of people's movements. Existing research suggests that the impact of the pandemic on mobility was unequal across locations and socioeconomic groups. However, evidence and analysis of long-term changes in mobility is scarce, especially in less developed countries. In this study, we use location data from Meta-Facebook users to analyse patterns of urban mobility in X Functional Urban Areas from South American countries. Findings reveal a general decrease in mobility during the pandemic, with gradual recovery trends up to April 2023. However, socioeconomic disparities are present through the period of analysis, with deprived areas experiencing smaller initial losses in mobility. These disparities generally diminish over time, although they persist in all the countries included in the analysis <!--# They seem to converge in Argentina and Mexico -->. Our research highlights the importance of timely mobility data with high spatiotemporal resolution to understand the long-term effects of the pandemic and inform equitable policy responses that address societal challenges in urban areas. 
 format: 
   pdf:
     fontsize: 11pt
@@ -41,6 +39,7 @@ format:
         \renewcommand\Affilfont{\small}
 number-sections: true
 editor: visual
+csl: nature.csl
 bibliography: refs.bib
 editor_options:
   markdown:
@@ -50,41 +49,39 @@ editor_options:
 # Introduction {#sec-intro}
 
 Spatial human mobility is key to creating sustainable, livable and inclusive cities.
-At the societal level, spatial mobility enables the transfer of knowledge, skills and labour to places they are needed.
-Spatial mobility also shapes service and transport demand across urban spaces, and enables the monitoring and control of transmissible diseases.
-At the individual level, mobility enables people to access and achieve opportunities and aspirations in space.
-Understanding spatial human mobility is thus important to supporting appropriate policy responses to address societal challenges relating to carbon emissions, urban planning, service delivery, public health, disaster management and transport.
+At the societal level, spatial mobility enables the transfer of knowledge, skills and labour to places they are needed [@ackers2005].
+Spatial mobility also shapes service and transport demand across urban spaces [@chen2016], and enables the monitoring and control of transmissible diseases [@belik2011].
+At the individual level, mobility enables people to access and achieve opportunities and aspirations in space [@klugman2009human].
+Understanding spatial human mobility is thus important to supporting appropriate policy responses to address societal challenges relating to carbon emissions, urban planning, service delivery, public health, disaster management and transport [@barbosa2018; @chinazzi2020].
 
-The COVID-19 pandemic resulted in a notable decrease in mobility, particularly in cities.
-This decrease in the overall levels of mobility was prompted by nonpharmaceutical interventions to contain the spread of COVID‐19, coupled with general fears of visiting crowded public spaces.Especially during lockdowns, mobility recorded reductions in the frequency, distance and time of trips in cities across the globe.
-Higher engagement with remote working, online schooling and shopping activity reduced the need to travel for work, education, shopping and leisure, hence giving rise to more geographically localised mobility patterns.
+The COVID-19 pandemic resulted in a notable decrease in mobility, particularly in cities [@nouvellet2021].
+Coupled with fears of contagion in crowded public spaces, nonpharmaceutical interventions to contain the spread of COVID‐19 prompted this decrease in the overall levels of mobility [@nouvellet2021; @rowe2023].
+Especially during lockdowns, mobility recorded reductions in the frequency, distance and time of trips in cities across the globe [@abdullah2020; @bonaccorsi2020; @abu-rayash2020; @lee2023].
+Higher engagement with remote working, online schooling and shopping activity reduced the need to travel for work, education, shopping and leisure, hence giving rise to more geographically localised mobility patterns [@borkowski2021].
 
-However, reductions in mobility levels were highly unequal reflecting existing socioeconomic inequalities.
-In most countries, affluent individuals tended to record the greatest drops in mobility levels as they are predominantly employed in knowledge-intensive jobs which can be done fully or partly remotely.
-During the COVID-19 pandemic, the adoption of remote work reduced the need of commuting for knowledge-intensive, non-public facing jobs.
-At the same time, individuals from less privileged socioeconomic backgrounds displayed less pronounced declines mirroring the nature of their work requiring public-facing, face-to-face interaction, and thus a requirement for daily work commutes.
+However, reductions in mobility levels were highly unequal reflecting existing socioeconomic inequalities in our societies [@chang2020].
+In most countries, affluent individuals tended to record the greatest drops in mobility levels as they are predominantly employed in knowledge-intensive jobs which can be done fully or partly remotely [@fraiberger2020; @bonaccorsi2020; @weill2020; @dueñas2021; @santana2023].
+During the COVID-19 pandemic, the adoption of remote work reduced the need of commuting for knowledge-intensive, non-public facing jobs [@florida2021].
+At the same time, individuals from less privileged socioeconomic backgrounds displayed less pronounced declines mirroring the nature of their work requiring public-facing, face-to-face interaction, and thus a requirement for daily work commutes [@dueñas2021; @santana2023].
 
 Thus, while a growing body of empirical evidence has contributed to advancing our understanding of the impacts of the COVID-19 pandemic on spatial mobility within cities, existing research has focused on more developed countries and the immediate effects of the pandemic during 2020.
-Less is known about the longer term patterns of resilience in urban mobility in less developed countries.
-Assessing the extent to which the level of mobility has returned back to the pre-pandemic baseline level across socioeconomic groups is important to understand the potentially unequal impacts of hybrid working in the society.
+Less is known about the longer term patterns of resilience in urban mobility in less developed countries extending beyond this period [@rowe2023a].
+Urban spaces have changed considerably since then, from going through waves of high COVID-19 fatality, infections, school and business closures to the removal of all COVID-19 restrictions as the UN World Health Organization (WHO) declared an end to the pandemic as a public health emergency; yet, different configurations of hybrid working have remained in the norm across many sector of the economy [@barrero2021; @aksoy2022].
+Thus, assessing the extent to which the level of mobility has returned back to the pre-pandemic baseline level across socioeconomic groups is important to understand the potentially unequal long-term impacts of hybrid working.
 
-A key barrier to monitor changes in geographic mobility patterns in less developed countries during and post the COVID-19 pandemic has been the lack of suitable data.
-Traditionally census and survey data have been employed to analyse human mobility patterns in these countries.
-Yet, these data streams are not frequently updated and suffer from slow releases, with census data for example being collected over intervals of ten years in most countries.
-Traditional data streams thus lack the temporal granularity to analyse population movements over short-time periods and to offer an up-to-date representation of the urban mobility system.
-Data resulting from social interactions on digital platforms have emerged as an unique source of information to deliver this representation and capture human population movement in less developed countries at scale.
-Particularly location data from mobile phone applications have become a prominent source to sense patterns of human mobility at higher geographical and temporal resolution in real time.
+A key barrier to monitor changes in geographic mobility patterns in less developed countries during and post the COVID-19 pandemic has been the lack of suitable data [@rowe2023a].
+Traditionally census and survey data have been employed to analyse human mobility patterns in these countries [@green2021].
+Yet, these data streams are not frequently updated and suffer from slow releases, with census data for example being collected over intervals of ten years in most countries [@bell2014].
+Traditional data streams thus lack the temporal granularity to analyse population movements over short-time periods and to offer an up-to-date representation of the urban mobility system [@rowe2023big].
+Data resulting from social interactions on digital platforms have emerged as an unique source of information to deliver this representation and capture human population movement in less developed countries at scale [@rowe2023big].
+Particularly location data from mobile phone applications have become a prominent source to sense patterns of human mobility at higher geographical and temporal resolution in real time [@calafiore2023].
 
 Drawing on a dataset of 213 million observations from Meta-Facebook users' mobile location data, we aim to assess socioeconomic differences in the extent and persistence of decline in urban mobility in Argentina, Chile, Colombia and Mexico during and after the COVID-19 pandemic from March 2020 to March 2023.
-We use Meta-Facebook data to measure origin-destination flows from March 2020 to May 2022, and Meta Prophet time-series forecasting machine learning algorithm to predict origin-destination flows from June 2022 to March 2023.
-<!--# Perhaps say how predictions have been validated --> We use Functional Urban Areas (FUAs) boundaries from the Global Human Settlement Layer (GHSL), developed by the European Comission's Joint Research Centre [@GHSL19] to define urban areas; and the Global Gridded Relative Deprivation Index (GRDI) developed by NASA’s Socioeconomic Data and Applications Centre [@RDI2022] from sociodemographic and satellite data inputs.
-Building on existing evidence (e.g. [@roweCalafiore2022; @wang2022]), we hypothesised that (1) urban mobility has recovered returning to the pre-pandemic baseline level of movement as nonpharmaceuthical restrictions were lifted; and (2) socioeconomic differences in urban mobility have endured the pandemic reflecting deep societal inequalities as knowledge-intensive businesses adopt hybrid working.
-<!--# Once we have a more definitive version of the results, highlight our novel contributions here. -->
+We use Meta-Facebook data to measure origin-destination flows from March 2020 to May 2022, and Meta Prophet time-series forecasting machine learning algorithm [@prophet17] to predict origin-destination flows from June 2022 to March 2023.
+<!--# Perhaps say how predictions have been validated --> We use Functional Urban Areas (FUAs) boundaries from the Global Human Settlement Layer (GHSL), developed by the European Comission's Joint Research Centre [@GHSL19] to define urban areas; and the Global Gridded Relative Deprivation Index (GRDI) developed by NASA's Socioeconomic Data and Applications Centre [@RDI2022] from sociodemographic and satellite data inputs.
+Building on existing evidence [e.g. @roweCalafiore2022; @wang2022], we hypothesised that (1) urban mobility has recovered returning to the pre-pandemic baseline level of movement as nonpharmaceuthical restrictions were lifted; and, that (2) socioeconomic differences in urban mobility have endured the pandemic reflecting deep societal inequalities as knowledge-intensive businesses adopt hybrid working.
+<!--# Once we have a more definitive version of the results, highlight our novel contributions here. -->\
 
--   Context and importance of human mobility: public health , climate change\
--   The pandemic resulted in major changes in human mobility - unequal impacts across socioeconomic groups\
--   Gap 1: Little work on understanding the long-term changes in mobility - recovery\
--   Gap 2: little work on less developed countries - where inequalities are more pronounced\
 -   Aim - focus on Latin American countries as case study.
 -   Aim - focus on urban areas, as the future of humanity is the future of cities and Latin Ameriaca is highly urbanised
 
@@ -112,6 +109,8 @@ Figure 2 displays the patterns of recovery for the mobility levels in the admini
 The three lines in each panel represent the mean levels of mobility for administrative units grouped into one of three terciles, according to their average RDI.
 
 ![Patterns of recovery for urban mobility in administrative units from Argentina, Chile, Colombia and Mexico.](figures/prediction-rdi-band.pdf)
+
+<!--# please add a description of what the bands mean. -->
 
 Generally, there was a drop in the levels of mobility with respect to the baseline period in all four countries.
 This drop was especially large for Argentina, Chile and Colombia, with Mexico displaying a smaller decrease in the percentage change in the number of movements with respect to the baseline.
