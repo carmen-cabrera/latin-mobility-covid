@@ -17,7 +17,7 @@ affiliations:
   - id: 2
     name: Centre for Demographic Urban and Environmental Studies, El Colegio de México, Ciudad de México, México
 abstract: |
-  The movement of people between locations is crucial for sustainable and inclusive cities, facilitating the exchange of knowledge and resources. Due to restrictions, lockdowns and fear of crowded places, the COVID-19 pandemic significantly reduced the number and extent of people's movements. Existing research suggests that the impact of the pandemic on mobility was unequal across locations and socioeconomic groups. However, evidence and analysis of long-term changes in mobility is scarce, especially in less developed countries. In this study, we use location data from Meta-Facebook users to analyse patterns of urban mobility in X Functional Urban Areas from South American countries. Findings reveal a general decrease in mobility during the pandemic, with gradual recovery trends up to April 2023. However, socioeconomic disparities are present through the period of analysis, with deprived areas experiencing smaller initial losses in mobility. These disparities generally diminish over time, although they persist in all the countries included in the analysis <!--# They seem to converge in Argentina and Mexico -->. Our research highlights the importance of timely mobility data with high spatiotemporal resolution to understand the long-term effects of the pandemic and inform equitable policy responses that address societal challenges in urban areas. 
+  The movement of people between locations is crucial for sustainable and inclusive cities, facilitating the exchange of knowledge and resources. Due to restrictions, lockdowns and fear of crowded places, the COVID-19 pandemic significantly reduced the number and extent of people's movements. Existing research suggests that the impact of the pandemic on mobility was unequal across locations and socioeconomic groups. However, evidence and analysis of long-term changes in mobility is scarce, especially in less developed countries. In this study, we use location data from Meta-Facebook users to analyse patterns of urban mobility in X Functional Urban Areas from South American countries. Findings reveal a general decrease in mobility during the pandemic, with gradual recovery trends up to April 2023. However, socioeconomic disparities are present through the period of analysis, with deprived areas experiencing smaller initial losses in mobility. These disparities generally diminish over time, although they persist in all the countries included in the analysis <!--# FR: They seem to converge in Argentina and Mexico -->. Our research highlights the importance of timely mobility data with high spatiotemporal resolution to understand the long-term effects of the pandemic and inform equitable policy responses that address societal challenges in urban areas. 
 format: 
   pdf:
     fontsize: 11pt
@@ -45,6 +45,8 @@ editor_options:
   markdown:
     wrap: sentence
 ---
+
+<!--# FR: A few questions to think about: Have we validated the data? i.e. tested their extent of representativeness? Shall we do something quick using census data for each country comparing overall populations?  -->\
 
 # Introduction {#sec-intro}
 
@@ -82,8 +84,7 @@ We use Meta-Facebook data to measure origin-destination flows from March 2020 to
 Building on existing evidence [e.g. @roweCalafiore2022; @wang2022], we hypothesised that (1) urban mobility has recovered returning to the pre-pandemic baseline level of movement as nonpharmaceuthical restrictions were lifted; and, that (2) socioeconomic differences in urban mobility have endured the pandemic reflecting deep societal inequalities as knowledge-intensive businesses adopt hybrid working.
 <!--# Once we have a more definitive version of the results, highlight our novel contributions here. -->\
 
--   Aim - focus on Latin American countries as case study.
--   Aim - focus on urban areas, as the future of humanity is the future of cities and Latin Ameriaca is highly urbanised
+Latin America provides an ideal test-bed for testing these hypotheses because of its exceptionally high levels of inequalities [@de2004inequality; @carranza2023wealth] and urbanisation [@united2023world]. Half of the 20 most unequal countries in the planet are in this region. The average income Gini index of the region is 4 percentage points higher than that of Africa and 11 higher than China [@milanovic2016global], and cities display some of the starkest inequalities [@habitat2022world]. Currently, over 80% of the population in Latin America live in urban areas. By 2050, this share is predicted to reach 89%, with the largest share concentrating in a few megacities [@habitat2022world]. Developing an understanding of human mobility in Latin America is thus important to support sustainable and inclusive spaces [@habitat2022world].
 
 # Results {#sec-results}
 
