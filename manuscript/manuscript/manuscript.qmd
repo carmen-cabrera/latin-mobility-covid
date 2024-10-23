@@ -84,7 +84,7 @@ Drawing on a dataset of 213 million observations from Meta-Facebook users' mobil
 We use Meta-Facebook data to measure origin-destination flows from March 2020 to May 2022, and Meta Prophet time-series forecasting machine learning algorithm [@prophet17] to predict origin-destination flows from June 2022 to March 2023.
 <!--# Perhaps say how predictions have been validated --> We use Functional Urban Areas (FUAs) boundaries from the Global Human Settlement Layer (GHSL), developed by the European Comission's Joint Research Centre [@GHSL19] to define urban areas; and the Global Gridded Relative Deprivation Index (GRDI) developed by NASA's Socioeconomic Data and Applications Centre [@RDI2022] from sociodemographic and satellite data inputs.
 Building on existing evidence [e.g. @roweCalafiore2022; @wang2022], we hypothesised that (1) urban mobility has recovered returning to the pre-pandemic baseline level of movement as nonpharmaceuthical restrictions were lifted; and, that (2) socioeconomic differences in urban mobility have endured the pandemic reflecting deep societal inequalities as knowledge-intensive businesses adopt hybrid working.
-<!--# Once we have a more definitive version of the results, highlight our novel contributions here. -->\
+<!--# Once we have a more definitive version of the results, highlight our novel contributions here. -->
 
 Latin America provides an ideal test-bed for testing these hypotheses because of its exceptionally high levels of inequalities [@de2004inequality; @carranza2023wealth] and urbanisation [@united2023world].
 Half of the 20 most unequal countries in the planet are in this region.
@@ -95,6 +95,33 @@ Developing an understanding of human mobility in Latin America is thus important
 
 # Results {#sec-results}
 
+## Analysing the variability in the impact of COVID-19 on mobility across population groups 
+
+The focus of this work is on capturing how mobility patterns for different population groups have been impacted by COVID-19 in Latin America.
+For this purpose, we consider populations groups by classifying their local areas into categories according to their population density and their socioeconomic level.
+These two criteria for classification are chosen due to their relevance for ...
+
+We use five population density categories and three socioeconomic categories defined according to the relative deprivation index.
+These categories are used to classify the spatial units of analysis, following the methodology defined in section X.
+The geographic distribution of categories for each of the countries is displayed in Fig X.a), Fig X.a) and Fig X.a) for Argentina, Chile and Colombia respectively.
+Fig X.b), Fig X.b) and Fig.b) show, for each country, the population distribution into the categories of analysis, considering, on the one hand, Worldpop population estimations and on the other hand, Facebook population, based on user counts during the pre-pandemic baseline period (see section X of the methodology for further details).
+For the three countries we observe discrepancies in the population distribution according to WorldPop and Facebook data, which reflect the extent to which the Facebook data tends to overrepresent certain population groups with respect to the Worldpop data whilst underrepresenting others.
+For example, for Argentina and Chile, the proportion of population living in areas of low population density is higher according to Worldpop data, hence indicating that Facebook data underrepresents populations in these regions.
+Similarly, in those countries, Facebook data shows and overrepresentation of the most affluent socioeconomic group.
+
+Biases in Facebook data arise for a variety of reasons.
+EXPLAIN.
+Finally, Meta shares Facebook data for active user population and flows that has been spatially and temporally aggregated.
+Their data aggregation methodology is designed so that records corresponding to low counts are not included in the dataset in order to preserve the privacy of users.
+Analysing aggregated Facebook data in its raw format can therefore result in an underrepresentation of groups that produce low data counts.
+To counter these source of bias in the Facebook data, we propose a methodology to process the data, which is fully described in the section X.
+
+The analysis of mobility is done using Facebook data that has been pre-processed according to the proposed methodology for bias correction.
+Fig X.c), Fig X.c) and X.c) show, for Argentina, Chile and Colombia respectively, changes in the intensity of movement relative to pre-pandemic baseline levels, at two points during the period of analysis, May 2020 and March 2022.
+The patterns are consistent across the three countries in both dimensions of I'M HERE!!!!!
+
+## COVID-19 unevenly impacted human mobility across population categories in Latin America
+
 The evolution of the percentage change in the number of movements is measured with respect to a baseline period prior to the pandemic as described in @sec-methods.
 For the purposes of the analysis, we aggregate the raw movement data temporally into months and spatially into administrative units at various levels according to GADM, the Database of Global Administrative Areas [@GADM24].
 The analysis focuses on administrative units that are within the boundaries of functional urban areas as specified by the Global Human Settlement Layer (GHSL).
@@ -103,13 +130,9 @@ Figure 1 displays the administrative units included in the study, coloured accor
 Predictions about the evolution of the percentage change in the number of movements are made using the Prophet forecasting procedure.
 Further details are provided in @sec-methods.
 
-<!--![Administrative units within functional urban areas in Argentina, Chile, Colombia and Mexico, coloured according to the average Relative Deprivation Index.](figures/maps.pdf)!-->
-
-## The heterogeneous impact of COVID-19 on urban mobility
-
 We analyse the evolution of the percentage change in the number of movements with respect to a baseline period prior to the pandemic.
 Specifically, we focus the analysis on short-distance movements in urban areas to represent local and routine mobility [@owen1992migration], so only movements covering a distance of at most 70 km are considered.
-For a movement to be classified as urban it needs to start or end within a functional urban area from Argentina, Chile, Colombia and Mexico.
+For a movement to be classified as urban it needs to start or end within a functional urban area from Argentina, Chile and Colombia.
 The observed data is available for a two-year period starting in April 2020, just after the first wave of COVID-19 pandemic cases, and ending in March 2022.
 After 2022 no observations are available, however, we generate a 12-month forecast up to March 2023 in order to gain a better understanding of the recovery trends.
 
@@ -135,7 +158,7 @@ For all four countries, we observe that the administrative units in the most dep
 Differences in the levels of mobility across relative deprivation terciles diminish with time.
 Argentina and Chile stand out as the countries with the largest differences in mobility levels for different relative deprivation terciles.
 
-## The most deprived areas experienced the smallest drop in mobility relative to pre-pandemic levels
+## Recovery trajectories towards baseline mobility levels are heterogeneous across population categories in Latin America
 
 In this section we explore further the role of socioeconomic deprivation in the evolution of the levels of urban mobility.
 For a given point in time (i.e. a month), we start by considering the relationship between the percentage change in the number of movements relative to the pre-pandemic baseline period and the average RDI, at the administrative unit level.
@@ -216,7 +239,7 @@ At each successive level, the resolution increases by a factor of two.
 The data that we used are spatially aggregated into Bing tile levels 13.
 That is about 4.9 x 4.9km at the Equator [@Maas19].
 
-## WorlPpop population data
+## WorldPpop population data
 
 We used data from WorldPop [@tatem2017] to classify the spatial units of analysis according to their level of urbanisation, and to estimate missing baseline values in the Facebook population data.
 WorldPop offers open access gridded population estimates at a resolution as small as 3 arc-seconds approximately 100m and 1km at the Equator, respectively.
@@ -226,7 +249,7 @@ We perform a spatial join of the Facebook spatial units (Bing tiles) with the gr
 
 ## Socioeconomic deprivation data
 
-In our analysis, we use the Global Gridded Relative Deprivation Index (GRDI), Version 1 (GRDIv1) data set as a measure of socioeocnomic deprivation.
+We use the Global Gridded Relative Deprivation Index (GRDI), Version 1 (GRDIv1) data set as a measure of socioeocnomic deprivation.
 The GRDI data is made available via NASA's Socioeconomic Data and Applications Centre (SEDAC), at a spatial resolution of 30 arc-seconds, or 1 km$^2$ approximately.
 The index quantifies the relative levels of multidimensional deprivation and poverty, where a value of 100 represents the highest level of deprivation and a value of 0 the lowest.
 We perform a spatial join of the Facebook spatial units and the gridded relative deprivation data and compute the average RDI corresponding to each of the Facebook spatial units.
