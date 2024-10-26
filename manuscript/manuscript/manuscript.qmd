@@ -18,7 +18,10 @@ affiliations:
     name: Centre for Demographic Urban and Environmental Studies, El Colegio de México, Ciudad de México, México
 abstract: |
   COVID-19 triggered a reduction in the frequency and extent of people's movement. Existing evidence suggests that while the impact of the pandemic on mobility was widespread, the extent of this impact was unequally felt across socioeconomic groups in the early stages of the pandemic. Here, we find that the most deprived locations have experienced a more accelerated recovery towards pre-pandemic levels of mobility in the long term. Furthermore, the socioeconomic disparities in the patterns of mobility triggered by the first outbreak of COVID-19, have persisted as of April 2023. These findings are based on the analysis of time-series mobility data corresponding to X urban areas from Latin American countries collected from Meta-Facebook users upon their consent. Our research highlights the importance of timely mobility data with high spatiotemporal resolution to understand the long-term effects of the pandemic and to inform equitable policy responses that address societal challenges in urban areas.
+  
+  
 format: 
+  nature-pdf: default
   pdf:
     fontsize: 11pt
     geometry:
@@ -95,28 +98,30 @@ Developing an understanding of human mobility in Latin America is thus important
 
 # Results {#sec-results}
 
-## Analysing the variability in the impact of COVID-19 on mobility across population groups 
+## Analysing the variability in the impact of COVID-19 on mobility across population groups
 
 The focus of this work is on capturing how mobility patterns for different population groups have been impacted by COVID-19 in Latin America.
 For this purpose, we consider populations groups by classifying their local areas into categories according to their population density and their socioeconomic level.
 These two criteria for classification are chosen due to their relevance for ...
-
 We use five population density categories and three socioeconomic categories defined according to the relative deprivation index.
 These categories are used to classify the spatial units of analysis, following the methodology defined in section X.
 The geographic distribution of categories for each of the countries is displayed in Fig X.a), Fig X.a) and Fig X.a) for Argentina, Chile and Colombia respectively.
-Fig X.b), Fig X.b) and Fig.b) show, for each country, the population distribution into the categories of analysis, considering, on the one hand, Worldpop population estimations and on the other hand, Facebook population, based on user counts during the pre-pandemic baseline period (see section X of the methodology for further details).
-For the three countries we observe discrepancies in the population distribution according to WorldPop and Facebook data, which reflect the extent to which the Facebook data tends to overrepresent certain population groups with respect to the Worldpop data whilst underrepresenting others.
-For example, for Argentina and Chile, the proportion of population living in areas of low population density is higher according to Worldpop data, hence indicating that Facebook data underrepresents populations in these regions.
-Similarly, in those countries, Facebook data shows and overrepresentation of the most affluent socioeconomic group.
 
-Biases in Facebook data arise for a variety of reasons.
-EXPLAIN.
-Finally, Meta shares Facebook data for active user population and flows that has been spatially and temporally aggregated.
-Their data aggregation methodology is designed so that records corresponding to low counts are not included in the dataset in order to preserve the privacy of users.
-Analysing aggregated Facebook data in its raw format can therefore result in an underrepresentation of groups that produce low data counts.
-To counter these source of bias in the Facebook data, we propose a methodology to process the data, which is fully described in the section X.
+A key challenge in the in the analysis of population counts and movements with Facebook user data is the absence of small count records, which is a result of privacy-protection techniques applied to ensure that the location of individuals or small groups cannot be identified.
+As a consequence, the countries of the analysis have locations with null values for population counts and flows.
+Given that these missing data are not distributed randomly (Supplementary Table A1), simply deleting the incomplete records could lead to biased results (Afghari et al., 2019).
+Therefore, we designed an imputation method to estimate these missing values.
+The overview of this missing data imputation for Facebook user count is presented in Fig.
+1.
 
-The analysis of mobility is done using Facebook data that has been pre-processed according to the proposed methodology for bias correction.
+Even after applying the imputation method for the estimation of missing values, Facebook data tends to overrepresent certain population groups with respect to Wordlpop data whilst underrepresenting others.
+Fig X.b), Fig X.b) and Fig.b) show, for each country, the share of population in each of the categories of analysis, considering, on the one hand, Worldpop population estimations and on the other hand, Facebook population, based on user counts during the pre-pandemic baseline period (see section X of the methodology for further details).
+For the three countries we observe discrepancies in the population distribution according to WorldPop and Facebook data.
+For example, for Argentina and Chile, the share of population living in areas of low population density is higher according to Worldpop data, hence indicating that Facebook data underrepresents populations in these regions.
+Similarly, in those countries, Facebook data shows an overrepresentation of the most affluent socioeconomic group.
+"Addressing this type of representativity bias is beyond the scope of this paper, but we are aware of it and we recognise the importance of addressing this in future analysis".
+
+The analysis of mobility is therefore done using Facebook movementdata that has been pre-processed for imputation of low counts.
 Fig X.c), Fig X.c) and X.c) show, for Argentina, Chile and Colombia respectively, changes in the intensity of movement relative to pre-pandemic baseline levels, at two points during the period of analysis, May 2020 and March 2022.
 The patterns are consistent across the three countries in both dimensions of I'M HERE!!!!!
 
