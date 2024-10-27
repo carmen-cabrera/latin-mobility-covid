@@ -98,7 +98,7 @@ Furthermore, this method also applies a correction factor to eliminate the fluct
 The data processing method is described in section X.
 
 Even after applying the imputation method to estimate missing values, we acknowledge that Facebook data may still overrepresent certain population groups while underrepresenting others.
-For example, Figures @Fig1-ARG b), @Fig1-CHL b) and @Fig1-COL b) show, for each country, the proportion of the population across the various analysis categories.
+For example, Figure @Fig1 shows, for each country, the proportion of the population across the various analysis categories.
 These comparisons use WorldPop population estimates and Facebook population counts, with the latter reflecting active users on an average day during a pre-pandemic baseline period (see Section X of the methodology for details).
 In all three countries, notable discrepancies appear between the population distributions according to WorldPop and Facebook data.
 For instance, in Argentina and Chile, WorldPop data indicates a higher proportion of people living in low-density areas, suggesting that Facebook data underrepresents populations in these regions.
@@ -106,75 +106,35 @@ Similarly, in these countries, Facebook data shows an overrepresentation of the 
 While addressing this kind of representativity bias is beyond the scope of this paper, we recognise its significance and the importance of addressing it in future analyses.
 This issue is revisited in the Discussion section.
 
-![](figures/Fig1.png)
+![Classification of spatial units into categories by population density and by relative deprivation index. Spatial distribution of categories and population share in each category, by country.](figures/Fig1.png){#Fig1}
 
-The analysis of mobility is therefore done using Facebook movement data that has been pre-processed according to our methodology.
-Figures @Fig1-ARG c), @Fig1-CHL c) and @Fig1-COL c) show, for Argentina, Chile and Colombia respectively, changes in the intensity of movement relative to pre-pandemic baseline levels, at two points during the period of analysis, May 2020 and March 2022.
-The patterns show remarkable consistency across countries for both classification criteria.
+## COVID-19’s impact on human mobility displays consistently uneven patterns across population groups in Latin American countries
 
-## COVID-19 unevenly impacted human mobility across population categories in Latin America
+The analysis of mobility is done using Facebook movement data that has been pre-processed according to our methodology.
+Figure @Fig2 shows changes in the intensity of movement measured as the percentage change in the number of inflows relative to pre-pandemic baseline levels, at two points during the period of analysis, May 2020 and March 2022.
+These changes show remarkably consistent patterns across countries for both types of classification.
 
-The evolution of the percentage change in the number of movements is measured with respect to a baseline period prior to the pandemic as described in Methods.
-For the purposes of the analysis, we aggregate the raw movement data temporally into months and spatially into administrative units at various levels according to GADM, the Database of Global Administrative Areas [@GADM24].
-The analysis focuses on administrative units that are within the boundaries of functional urban areas as specified by the Global Human Settlement Layer (GHSL).
-For each administrative unit, we compute the Relative Deprivation Index (RDI) based on data from NASA's Socioeconomic Data and Applications Centre (SEDAC).
-Figure 1 displays the administrative units included in the study, coloured according to their average RDI.
-Predictions about the evolution of the percentage change in the number of movements are made using the Prophet forecasting procedure.
-Further details are provided in Methods.
+Focusing first on the early pandemic days, we observe a decrease in the number of inflows for all countries and most categories of analysis.
+This decrease displays a systematic gradient across categories of analysis whereby the more densely populated or the more affluent an area is, the higher the losses in the number of inflows.
+Differences in the levels of mobility across population density or RDI categories tend to diminish with time, with a less pronounced gradient across categories of analysis approximately two years later.
 
-We analyse the evolution of the percentage change in the number of movements with respect to a baseline period prior to the pandemic.
-Specifically, we focus the analysis on short-distance movements in urban areas to represent local and routine mobility [@owen1992migration], so only movements covering a distance of at most 70 km are considered.
-For a movement to be classified as urban it needs to start or end within a functional urban area from Argentina, Chile and Colombia.
-The observed data is available for a two-year period starting in April 2020, just after the first wave of COVID-19 pandemic cases, and ending in March 2022.
-After 2022 no observations are available, however, we generate a 12-month forecast up to March 2023 in order to gain a better understanding of the recovery trends.
+These patterns can be attributed to...
+remote work, movement to rural areas, affluent people being more able to abide to lockdowns, etc...
+and the patterns are consistent with what has been found in ...
 
-Figure 2 displays the patterns of recovery for the mobility levels in the administrative units belonging to functional urban areas in the countries of interest.
-The three lines in each panel represent the mean levels of mobility for administrative units grouped into one of three terciles, according to their average RDI.
-
-\<!-
---[Patterns of recovery for urban mobility in administrative units from Argentina, Chile, Colombia and Mexico.](figures/prediction-rdi-band.pdf)
----!\>
-
-<!--# please add a description of what the bands mean. -->
-
-Generally, there was a drop in the levels of mobility with respect to the baseline period in all four countries.
-This drop was especially large for Argentina, Chile and Colombia, with Mexico displaying a smaller decrease in the percentage change in the number of movements with respect to the baseline.
-Following the initial drop in mobility, all four countries evolve towards the recovery of baseline levels of mobility, with a generally increasing trend.
-There are, however, fluctuations from the general trend which manifest differently for each country.
-These fluctuations mirror each other in the case of Argentina and Colombia, where urban mobility sharply bounces back closer to pre-pandemic levels around July of 2020.
-Chile and Mexico display more progressive patterns of recovery, although Chile never reaches baseline levels.
-These fluctuations are unique to each country and can be attributed to local factors such as the effects of seasonality or the different stringency measures imposed by the national governments during the pandemic.
-
-From Figure 2, we observe that there is a consistent tendency in how administrative units with varying levels of deprivation were affected by the pandemic.
-For all four countries, we observe that the administrative units in the most deprived tercile are the ones that experienced the smallest loss in levels of mobility at the beginning of the pandemic.
-Differences in the levels of mobility across relative deprivation terciles diminish with time.
-Argentina and Chile stand out as the countries with the largest differences in mobility levels for different relative deprivation terciles.
+![Changes in the intensity of inflows as the percentage of change with respect to the pre-pandemic baseline levels, for each country and category of analysis.](figures/Fig2.png)
 
 ## Recovery trajectories towards baseline mobility levels are heterogeneous across population categories in Latin America
 
-In this section we explore further the role of socioeconomic deprivation in the evolution of the levels of urban mobility.
-For a given point in time (i.e. a month), we start by considering the relationship between the percentage change in the number of movements relative to the pre-pandemic baseline period and the average RDI, at the administrative unit level.
-We assume that this relationship is linear and we use a linear regression to estimate the slope and intercept characterising the line of best fit.
-This is shown for April 2020 and March 2022 in the right-hand side panels of Figure 3.
-After obtaining the slope and intercept for every month, we are able to plot the evolution of these parameters for both the observed and forecasted data, as displayed on the left-hand-side panels of the same Figure.
+In this section we explore trends in the intensity of movements over time across population groups.
+Generally, all categories of analysis experienced an initial drop in the number of movements followed by an upwards general trend of recovery towards baseline levels of mobility.
+The extent of the initial drop and the speed of recovery varied by country and by analysis category.
+These general patterns can be visually explored in Figure @Fig3 and @Fig4 for a classification by population density category and by RDI respectively.
+Below we further explore these patterns by following a three-step method consisting in i) time series decomposition into general trend, seasonality and noise, ii) modelling the general trend , iii) analysing the factors that influence the values of the parameters estimated in ii) to characterise the general trend.
 
-<!---![Evolution of the parameters characterising the relationship between relative deprivation index and the percentage change in the number of movements relative to the pre-pandemic baseline level of mobility.](figures/regression-evo-nobackground.pdf)!--->
+![](figures/Fig3.png)
 
-We find patterns in the evolution of the estimated parameters that characterise the relationship between the levels of urban mobility and RDI.
-In Argentina, Colombia and Mexico, we observe that the slope of this relationship evolves to become smaller over time.
-The tendency is not apparent in Chile, where the slope of the relationship remains approximately the same over time despite the temporary fluctuations.
-The slope captures the extent of differences in the level of urban mobility across administrative units with varying levels of socioeconomic deprivation.
-It can therefore be regarded as a measure of inequality in mobility patterns across socioeconomic groups.
-A slope equal to zero would mean that all administrative units display the same level of mobility regardless of their average RDI.
-Given the patterns observed in Argentina, Colombia and Mexico, we find that at the beginning of the pandemic there were notable inequalities between socioeconomic groups in terms of the levels of urban mobility.
-While it has taken more than two years for Argentina and Mexico to close the gap (their slope is close to zero from spring 2022), inequalities persist in Chile and Colombia as of March 2023.
-
-The intercept of the relationship displays stronger patterns, which are consistent across the four countries.
-The intercept estimates the urban mobility levels that would be observed in administrative units where the RDI is zero.
-The intercept was below the baseline level at the early stages of the pandemic.
-As observed in Figure 3, while there are some differences between countries in the evolution of the intercept, the general tendency is for the intercept to increase.
-While Argentina and Mexico reach values that are closer to the baseline towards the end of the forecast period, the intercept for Chile and Colombia remains lower.
-Therefore, if there were areas with no socioeconomic deprivation, we would have seen a recovery in the levels of mobility, especially in Argentina and Mexico
+![](figures/Fig4.png)
 
 # Discussion {#sec-discussion}
 
