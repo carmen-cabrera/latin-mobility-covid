@@ -40,7 +40,7 @@ library(sjPlot)
 wd <- '/Users/carmen/Library/CloudStorage/OneDrive-TheUniversityofLiverpool/research/RECAST/latin-mobility-covid-local-files'
 
 # Set the country
-country <- 'Mexico'
+country <- 'Argentina'
 
 # Initialize variables for country_short and country_code
 country_short <- ""
@@ -80,26 +80,64 @@ eq1 <- y ~ time
 m1 <- glmmTMB(eq1, data = df)
 summary(m1)
 
+###
+  
 eq2 <- y ~ time + O + D
 m2 <- glmmTMB(eq2, data = df)
 summary(m2)
+
+eq2o <- y ~ time + O
+m2o <- glmmTMB(eq2o, data = df)
+summary(m2o)
+
+###
 
 eq3 <- y ~ time + (1|O) + (1|D)
 m3 <- glmmTMB(eq3, data = df)
 m3_re <- plot_model(m3, type ="re")
 summary(m3)
 
+eq3o <- y ~ time + (1|O)
+m3o <- glmmTMB(eq3o, data = df)
+m3o_re <- plot_model(m3o, type ="re")
+summary(m3o)
+
+###
+
 df$Of <- factor(df$O)
 df$Df <- factor(df$D)
-eq4 <- y ~ time + (time|Of) + (time|Df)
+eq4 <- y ~ time + (0 + time|Of) + (0 + time|Df)
 m4 <- glmmTMB(eq4, data = df)
 m4_re <- plot_model(m4, type ="re")
 summary(m4)
 
-eq5 <- y ~ time + time2 + (time|O) + (time|D)
+df$Of <- factor(df$O)
+eq4o <- y ~ time + (0 + time|Of) 
+m4o <- glmmTMB(eq4o, data = df)
+m4o_re <- plot_model(m4o, type ="re")
+summary(m4o)
+
+###
+
+df$Of <- factor(df$O)
+df$Df <- factor(df$D)
+eq5 <- y ~ time + (time|Of) + (time|Df)
 m5 <- glmmTMB(eq5, data = df)
 m5_re <- plot_model(m5, type ="re")
 summary(m5)
+
+df$Of <- factor(df$O)
+eq5o <- y ~ time + (time|Of) 
+m5o <- glmmTMB(eq5o, data = df)
+m5o_re <- plot_model(m5o, type ="re")
+summary(m5o)
+
+###
+
+eq6 <- y ~ time + time2 + (time|O) + (time|D)
+m6 <- glmmTMB(eq6, data = df)
+m6_re <- plot_model(m6, type ="re")
+summary(m6)
 
 ```
 
@@ -108,16 +146,51 @@ summary(m5)
 |     |
 
 ```{r}
-m4_re[[1]]$data
-m4_re[[2]]$data
-m5_re[[2]]$data
-m5_re[[2]]$data
-m4_re
-m5_re
+m3o$fit$par
+m4o$fit$par
+m5o$fit$par
+m3o_re
+m4o_re
+m5o_re
 ```
 
+
 ```{r}
-p1_m1me <- plot_model(m, terms = c("1", "time")) %>% 
+
+file_m3o <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_m3o.csv')
+write.csv(m3o$fit$par, file_m3o, row.names = FALSE)
+
+file_m3o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_m3o_re.csv')
+write.csv(m3o_re[[1]], file_m3o_re, row.names = FALSE)
+
+###
+
+file_m4o <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_m4o.csv')
+write.csv(m4o$fit$par, file_m4o, row.names = FALSE)
+
+file_m4o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_m4o_re.csv')
+write.csv(m4o_re[[1]], file_m4o_re, row.names = FALSE)
+
+###
+
+file_m5o <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_m5o.csv')
+write.csv(m5o$fit$par, file_m5o, row.names = FALSE)
+
+file_m5o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_m5o_re.csv')
+write.csv(m5o_re[[1]], file_m5o_re, row.names = FALSE)
+
+
+
+```
+
+
+
+
+
+
+
+```{r}
+p1_m1me <- plot_model(m3o_re, terms = c("1", "time")) %>% 
   .$data %>% ggplot(aes(x=estimate, y=term, color=group)) +
   geom_point(size = 3.5,  colour = "black") +
   geom_errorbar(aes(xmin = conf.low, xmax = conf.high), 
@@ -171,13 +244,10 @@ p2_m2re
 eq <- y ~  time + (time | O) + (time | D)
 model <- glmmTMB(eq, data = df)
 ```
+`
 
 ```{r}
-summary(model)
-```
-
-```{r}
-p1_m <- plot_model(model, terms = c("time", "O", "D")) %>% 
+pm3o <- plot_model(m3o, terms = c("time", "O")) %>% 
   .$df %>% ggplot(aes(x=estimate, y=term, color=group)) +
   geom_point(size = 3.5,  colour = "black") +
   geom_errorbar(aes(xmin = conf.low, xmax = conf.high), 
@@ -200,39 +270,4 @@ p1_m <- plot_model(model, terms = c("time", "O", "D")) %>%
        subtitle = " Main fixed effects")
 
 p1_m
-```
-
-```{r}
-coef_model <- coef(model)
-head(coef_model$O)
-```
-
-```{r}
-ranef_model <- ranef(model)
-head(ranef_model$O)
-```
-
-```{r}
-# obtain estimates
-merTools::REsim(model) %>% head(10)
-```
-
-```{r}
-plotREsim(REsim(model)) 
-```
-
-```{r}
-## regression table
-tab_model(mode, 
-          collapse.ci = TRUE,
-          p.style = "stars",
-          show.aic = TRUE,
-          #terms = c(), # show selected coefficients
-          #rm.terms = c("time [1st degree]"), #remove selected coefficients
-          #pred.labels = c("Intercept", "Stringency t", "New Cases t", "Stringency t-1",
-          #                "Spline 1st degree", "Spline 2nd degree", 
-          #                "Spline 3rd degree", "New cases t-1"),
-          #dv.labels = c("Autoregressive", "Stringency random effects", "New COVID-19 cases random effects"),
-          #file = "../outputs/modelling/estimates/reg_table.txt"
-)
 ```
