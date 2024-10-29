@@ -81,60 +81,44 @@ Developing an understanding of human mobility in Latin America is thus important
 
 ## Analysing the variability in the impact of COVID-19 on mobility across population groups
 
-We focus on capturing how mobility patterns for different population groups have been impacted by COVID-19 in Latin America.
-We consider populations groups by classifying the spatial units of analysis into categories according to their population density and their socioeconomic level.
+We focus on capturing how mobility patterns for different population groups have been impacted by COVID-19 in Latin America. We consider populations groups by classifying the spatial units of analysis into categories according to their population density and their socioeconomic level.
 More details for the classification method are provided in section X.
 The two criteria for classification are chosen due to their relevance for ...
 We use five population density categories and three socioeconomic categories defined according to the relative deprivation index.
-The geographic distribution of categories for each of the countries is displayed in Figures @Fig1-ARG a), @Fig1-CHL a) and @Fig1-COL a) for Argentina, Chile and Colombia respectively.
-
-A key challenge in the in the analysis of population counts and movements with Facebook user data is the absence of small count records, which is a result of privacy-protection techniques applied to ensure that the location of individuals or small groups cannot be identified.
-As a consequence, the countries of the analysis have locations with null values for Facebook population counts and flows.
-These missing data are not distributed randomly.
-For example, the missing values for FB population counts display high spatial autocorrelation as shown in Supplementary Figure SF1.
-Therefore, simply removing the missing records from the analysis could lead to geographically biased results (Afghari et al., 2019).
-To address this, we designed a data processing method to estimate the missing values, both for Facebook population counts and flows.
-Furthermore, this method also applies a correction factor to eliminate the fluctuations in the daily number of observations, assuming that the representativeness of Facebook data across spatial units remains stable during the study period.
-The data processing method is described in section X.
-
-Even after applying the imputation method to estimate missing values, we acknowledge that Facebook data may still overrepresent certain population groups while underrepresenting others.
-For example, Figure @Fig1 shows, for each country, the proportion of the population across the various analysis categories.
-These comparisons use WorldPop population estimates and Facebook population counts, with the latter reflecting active users on an average day during a pre-pandemic baseline period (see Section X of the methodology for details).
-In all three countries, notable discrepancies appear between the population distributions according to WorldPop and Facebook data.
-For instance, in Argentina and Chile, WorldPop data indicates a higher proportion of people living in low-density areas, suggesting that Facebook data underrepresents populations in these regions.
-Similarly, in these countries, Facebook data shows an overrepresentation of the most affluent socioeconomic group.
-While addressing this kind of representativity bias is beyond the scope of this paper, we recognise its significance and the importance of addressing it in future analyses.
-This issue is revisited in the Discussion section.
-
-![Classification of spatial units into categories by population density and by relative deprivation index. Spatial distribution of categories and population share in each category, by country.](figures/Fig1.png){#Fig1}
-
-## COVID-19’s impact on human mobility displays consistently uneven patterns across population groups in Latin American countries
 
 The analysis of mobility is done using Facebook movement data that has been pre-processed according to our methodology.
-Figure @Fig2 shows changes in the intensity of movement measured as the percentage change in the number of inflows relative to pre-pandemic baseline levels, at two points during the period of analysis, May 2020 and March 2022.
-These changes show remarkably consistent patterns across countries for both types of classification.
 
-Focusing first on the early pandemic days, we observe a decrease in the number of inflows for all countries and most categories of analysis.
-This decrease displays a systematic gradient across categories of analysis whereby the more densely populated or the more affluent an area is, the higher the losses in the number of inflows.
-Differences in the levels of mobility across population density or RDI categories tend to diminish with time, with a less pronounced gradient across categories of analysis approximately two years later.
+
+## Affluent and densely populated areas saw steepest decline in daily mobility, but all population groups progress towards baseline levels
+
+We first focus the analysis on the variability in COVID-19's impact on daily mobility levels across different population groups. Figure @Fig-impact shows changes in the intensity of movement measured as the percentage change in the number of inflows relative to pre-pandemic baseline levels, at two key points during the period of analysis, May 2020 and March 2022. These two months are the most widely spaced months with complete data available for all countries within the period covered by the dataset. May 2020 represents the initial phase following the WHO's declaration of COVID-19 as a global pandemic on March 11, 2020, marked by stringent measures. March 2022 represents a later phase, roughly six months after most restrictions had been lifted in the countries included in the analysis. Figure @Fig-impact presents boxplots depicting the distribution of percentage change in movement counts across areas grouped by population density and deprivation index. The boxplots show mobility changes for each category in May 2020 and March 2022, with baseline levels marked by the dotted line at $y = 0$. Values above this line indicate increased mobility from pre-pandemic levels, while values below show a reduction. These changes show remarkably consistent patterns across countries for both types of classification. 
+
+Focusing first on the patterns by population density category, we generally observe a decrease in the number of inflows for all countries and most categories of analysis in the early pandemic days. The extent of this decrease tends to be larger for high-density areas. Although the majority of areas saw a decline in mobility during May 2020, some locations actually recorded higher movement levels compared to the pre-pandemic period, particularly in regions classified as low-density. In fact, some of these areas saw their mobility levels double, as indicated by outliers with percentage changes exceeding 100%. However, this does not imply that these areas correspond to large population numbers, as low-density regions typically contain very few residents, meaning that minor fluctuations in population can lead to significant percentage changes. Nonetheless, these percentage changes illustrate the extent of the impacts experienced by these sparsely populated regions. In March 2022, nearly two years later, mobility levels have generally rebounded closer to pre-pandemic baseline levels across different population density categories. Notably, mobility levels in areas characterised by higher population density still remain below the baseline. Low-density areas show even greater variability than during the early days of the pandemic, with mobility levels often exceeding the baseline. These high variability in sparsely populated regions may reflect the ongoing effects of the pandemic on mobility, but they could also be influenced by seasonal variation (e.g. March compared to May). Overall, the observed patterns by population density category are consistent with those reported in a previous work CITE, where the same data was analysed without applying the data processing methodology proposed in this study.
+
+Moving to the patterns by relative deprivation index category, we observe tendencies that mirror the patterns by population density category. Firstly, in March 2020, there is an overall decrease in the number of inflows for all countries and most categories of analysis. Exceptions to this general tendency notably occur in the most deprived (less affluent) areas, especially in Colombia, where mobility levels in some regions are actually above the baseline. This decrease displays a gradient across categories of analysis whereby the more affluent an area is, the higher the losses in the number of inflows. After almost two years, we find evidence for a general recovery of mobility closer to baseline levels across groups regardless of how deprived they are. However, disparities between groups are still visible, indicating that the pandemic has exacerbated behavioral differences among groups with varying socioeconomic statuses.
 
 These patterns can be attributed to...
-remote work, movement to rural areas, affluent people being more able to abide to lockdowns, etc...
-and the patterns are consistent with what has been found in ...
+THIS GOES TO THE DISCUSSION
 
-![Changes in the intensity of inflows as the percentage of change with respect to the pre-pandemic baseline levels, for each country and category of analysis.](figures/Fig2.png)
+![Changes in the intensity of inflows as the percentage of change with respect to the pre-pandemic baseline levels, for each country and category of analysis.](figures/Fig-impact.png)
 
-## Recovery trajectories towards baseline mobility levels are heterogeneous across population categories in Latin America
+## Initial drop in mobility drives current levels, as recovery pace remains consistent across population groups 
+
+Next we focus on 
 
 In this section we explore trends in the intensity of movements over time across population groups.
 Generally, all categories of analysis experienced an initial drop in the number of movements followed by an upwards general trend of recovery towards baseline levels of mobility.
 The extent of the initial drop and the speed of recovery varied by country and by analysis category.
-These general patterns can be visually explored in Figure @Fig3 and @Fig4 for a classification by population density category and by RDI respectively.
+These general patterns can be visually explored in Figure @Fig-recovery-density and @Fig-recovery-rdi for a classification by population density category and by RDI respectively.
 Below we further explore these patterns by following a three-step method consisting in i) time series decomposition into general trend, seasonality and noise, ii) modelling the general trend , iii) analysing the factors that influence the values of the parameters estimated in ii) to characterise the general trend.
 
-![](figures/Fig3.png)
+![](figures/Fig-recovery-density.png)
 
-![](figures/Fig4.png)
+![](figures/Fig-recovery-rdi.png)
+![](figures/Fig-re-density.pdf)
+
+![](figures/Fig-re-rdi.pdf)
+
 
 # Discussion {#sec-discussion}
 
@@ -163,7 +147,7 @@ This includes engaging in activities such as building strategic partnerships wit
 In particular, we call for the creation of resources like those developed by the European Commission Joint Research Centre [@ECJRC22] and the UN Statistics Division [@UNSD], which identify sources of non-traditional data and set methodological protocols for incorporating mobile phone data into official mobility statistics.
 While current resources tend to have a global reach, we advocate for more tailored local initiatives that acknowledge disparities in regional data availability and adoption of digital technologies.
 
-# Data and methods {.unnumbered}
+# Data {.unnumbered}
 
 ## Meta-Facebook data
 
@@ -206,9 +190,33 @@ The GRDI data is made available via NASA's Socioeconomic Data and Applications C
 The index quantifies the relative levels of multidimensional deprivation and poverty, where a value of 100 represents the highest level of deprivation and a value of 0 the lowest.
 We perform a spatial join of the Facebook spatial units and the gridded relative deprivation data and compute the average RDI corresponding to each of the Facebook spatial units.
 
+# Methods
+
 ## Classification of tiles according to level of urbanisation and socioeconomic deprivation
 
 <!-- Decide whether I'm going for natural breaks or my own splitting. The disadvantage of own splitting is that there is no common logic for all four countries !-->
+
+The geographic distribution of categories for each of the countries is displayed in Figures @Fig1-ARG a), @Fig1-CHL a) and @Fig1-COL a) for Argentina, Chile and Colombia respectively.
+
+A key challenge in the in the analysis of population counts and movements with Facebook user data is the absence of small count records, which is a result of privacy-protection techniques applied to ensure that the location of individuals or small groups cannot be identified.
+As a consequence, the countries of the analysis have locations with null values for Facebook population counts and flows.
+These missing data are not distributed randomly.
+For example, the missing values for FB population counts display high spatial autocorrelation as shown in Supplementary Figure SF1.
+Therefore, simply removing the missing records from the analysis could lead to geographically biased results (Afghari et al., 2019).
+To address this, we designed a data processing method to estimate the missing values, both for Facebook population counts and flows.
+Furthermore, this method also applies a correction factor to eliminate the fluctuations in the daily number of observations, assuming that the representativeness of Facebook data across spatial units remains stable during the study period.
+The data processing method is described in section X.
+
+Even after applying the imputation method to estimate missing values, we acknowledge that Facebook data may still overrepresent certain population groups while underrepresenting others.
+For example, Figure @Fig1 shows, for each country, the proportion of the population across the various analysis categories.
+These comparisons use WorldPop population estimates and Facebook population counts, with the latter reflecting active users on an average day during a pre-pandemic baseline period (see Section X of the methodology for details).
+In all three countries, notable discrepancies appear between the population distributions according to WorldPop and Facebook data.
+For instance, in Argentina and Chile, WorldPop data indicates a higher proportion of people living in low-density areas, suggesting that Facebook data underrepresents populations in these regions.
+Similarly, in these countries, Facebook data shows an overrepresentation of the most affluent socioeconomic group.
+While addressing this kind of representativity bias is beyond the scope of this paper, we recognise its significance and the importance of addressing it in future analyses.
+This issue is revisited in the Discussion section.
+
+![Classification of spatial units into categories by population density and by relative deprivation index. Spatial distribution of categories and population share in each category, by country.](figures/Fig-classification.png){#Fig1}
 
 ## Processing Facebook data
 
