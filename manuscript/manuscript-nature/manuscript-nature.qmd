@@ -131,27 +131,15 @@ Time is represented on the $x$-axis, spanning from mid-April 2020 to mid-April 2
 The background of each plot in Figures @fig-recovery-density and @fig-recovery-rdi is colored according to the stringency index, which quantifies the level of non-pharmaceutical interventions implemented at each point in time to mitigate the spread of COVID-19, including measures such as social distancing and lockdowns.
 This data provides context for the observed trends, reflecting the mobility restrictions imposed by each country during the specified periods.
 
-A visual inspection of the evolution patterns by population density category, as shown in @fig-recovery-density, reveals two main commonalities across the three countries.
-First, there is a general upward trend in mobility across all population density categories for all countries.
-Second, more densely populated areas consistently record lower levels of mobility throughout the study period.
-However, there exist variations in the patterns by country.
-Chile experiences greater overall losses in mobility compared to Argentina, while certain areas in Argentina reach levels comparable to the pre-pandemic baseline.
-In contrast, Colombia displays more varied trends across population density categories; low-density areas exhibit above-baseline levels of mobility, whereas high-density areas experience significantly larger losses. Generally, the termporal patterns display fluctuations from the general trend which are likely driven by seasonality effects and by the changing levels of stringency of COVID-19 interventions.
+We highlight four key observations from a visual inspection of the evolution patterns by population density category, as shown in @fig-recovery-density. First, there is a general upward trend in mobility across all population density categories for all countries, reflecting a recovery of mobility levels following the early days of COVID-19. Second, more densely populated areas consistently record lower levels of mobility throughout the study period. Third, there exist some variations in the patterns by country. Chile experiences greater overall losses in mobility compared to Argentina, while certain areas in Argentina reach levels comparable to the pre-pandemic baseline. In contrast, Colombia displays more varied trends across population density categories, with above-baseline levels of mobility in low-density areas, and significantly larger losses in high-density areas. Fourth, the temporal patterns display fluctuations from the general trend. These fluctuations are likely driven by seasonality effects and by the changing levels of stringency of COVID-19 interventions.
 
 ![](figures/Fig-recovery-density.png){#fig-recovery-density}
 
-The evolution patterns by relative deprivation index category mirror those observed by population density category, as it can be deduced from @Fig-recovery-rdi based on visual inspection. 
-First, we observe a general upward trend in mobility across all relative deprivation index categories for all countries.
-Second, less deprived areas consistently record lower levels of mobility throughout the study period.
-In contrast, more deprived areas exhibit higher levels of mobility, particularly in Colombia, where these levels are well above the baseline.
-However, these significant relative changes do not necessarily correspond to large population numbers.
-In Colombia, for example, more deprived regions are often low-density areas that typically contain small populations.
-As a result, minor fluctuations in mobility can lead to substantial percentage changes.
-Nevertheless, the positive percentage changes observed in more deprived areas highlight the variability of the impact across different population groups based on their socioeconomic status.
+Visual inspection of @Fig-recovery-rdi reveals the following four patterns by relative deprivation index category. First, we observe a general upward trend in mobility across all relative deprivation index categories for all countries. Second, less deprived areas consistently record lower levels of mobility throughout the study period. In contrast, more deprived areas exhibit higher levels of mobility. Third, there is variability by country. Colombia stands out for recording mobility levels in the most deprived areas that are well above the baseline. These big relative changes for the most deprived category does not necessarily correspond to large population numbers since for example, in Colombia, more deprived regions are often low-density areas that typically contain small populations. As a result, minor fluctuations in mobility can lead to substantial percentage changes. Nevertheless, the positive percentage changes observed in more deprived areas highlight the variability of the impact across different population groups based on their socioeconomic status. Fourth
 
 ![](figures/Fig-recovery-rdi.png){#fig-recovery-rdi}
 
-Next, we quantitatively model the patterns observed in @fig-recovery-density and @fig-recovery-rdi
+Next, we quantitatively model intergroup differences in mobility trends over @fig-recovery-density and @fig-recovery-rdi. For this purpose we apply a time series decomposition into three components: trend, seasonal and residual. We then focus on the trend, which we model according to five model specifications. 
 
 ![](figures/Fig-re-density.pdf){#fig-re-density}
 
