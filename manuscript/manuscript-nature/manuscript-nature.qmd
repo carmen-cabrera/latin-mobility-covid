@@ -131,21 +131,45 @@ Time is represented on the $x$-axis, spanning from mid-April 2020 to mid-April 2
 The background of each plot in Figures @fig-recovery-density and @fig-recovery-rdi is colored according to the stringency index, which quantifies the level of non-pharmaceutical interventions implemented at each point in time to mitigate the spread of COVID-19, including measures such as social distancing and lockdowns.
 This data provides context for the observed trends, reflecting the mobility restrictions imposed by each country during the specified periods.
 
-We highlight four key observations from a visual inspection of the evolution patterns by population density category, as shown in @fig-recovery-density. First, there is a general upward trend in mobility across all population density categories for all countries, reflecting a recovery of mobility levels following the early days of COVID-19. Second, more densely populated areas consistently record lower levels of mobility throughout the study period. Third, there exist some variations in the patterns by country. Chile experiences greater overall losses in mobility compared to Argentina, while certain areas in Argentina reach levels comparable to the pre-pandemic baseline. In contrast, Colombia displays more varied trends across population density categories, with above-baseline levels of mobility in low-density areas, and significantly larger losses in high-density areas. Fourth, the temporal patterns display fluctuations from the general trend. These fluctuations are likely driven by seasonality effects and by the changing levels of stringency of COVID-19 interventions.
+We highlight four key observations from a visual inspection of the evolution patterns by population density category, as shown in @fig-recovery-density.
+First, there is a general upward trend in mobility across all population density categories for all countries, reflecting a recovery of mobility levels following the early days of COVID-19.
+Second, more densely populated areas consistently record lower levels of mobility throughout the study period.
+Third, there exist some variations in the patterns by country.
+Chile experiences greater overall losses in mobility compared to Argentina, while certain areas in Argentina reach levels comparable to the pre-pandemic baseline.
+In contrast, Colombia displays more varied trends across population density categories, with above-baseline levels of mobility in low-density areas, and significantly larger losses in high-density areas.
+Fourth, the temporal patterns display fluctuations from the general trend.
+These fluctuations are likely driven by seasonality effects and by the changing levels of stringency of COVID-19 interventions.
 
 ![](figures/Fig-recovery-density.png){#fig-recovery-density}
 
-Visual inspection of @Fig-recovery-rdi reveals the following four patterns by relative deprivation index category. First, we observe a general upward trend in mobility across all relative deprivation index categories for all countries. Second, less deprived areas consistently record lower levels of mobility throughout the study period. In contrast, more deprived areas exhibit higher levels of mobility. Third, there is variability by country. Colombia stands out for recording mobility levels in the most deprived areas that are well above the baseline. These big relative changes for the most deprived category does not necessarily correspond to large population numbers since for example, in Colombia, more deprived regions are often low-density areas that typically contain small populations. As a result, minor fluctuations in mobility can lead to substantial percentage changes. Nevertheless, the positive percentage changes observed in more deprived areas highlight the variability of the impact across different population groups based on their socioeconomic status. Fourth
+Visual inspection of @Fig-recovery-rdi reveals the following four patterns by relative deprivation index category.
+First, we observe a general upward trend in mobility across all relative deprivation index categories for all countries.
+Second, less deprived areas consistently record lower levels of mobility throughout the study period.
+In contrast, more deprived areas exhibit higher levels of mobility.
+Third, there is variability by country.
+Colombia stands out for recording mobility levels in the most deprived areas that are well above the baseline.
+These big relative changes for the most deprived category does not necessarily correspond to large population numbers since for example, in Colombia, more deprived regions are often low-density areas that typically contain small populations.
+As a result, minor fluctuations in mobility can lead to substantial percentage changes.
+Nevertheless, the positive percentage changes observed in more deprived areas highlight the variability of the impact across different population groups based on their socioeconomic status.
+Fourth
 
 ![](figures/Fig-recovery-rdi.png){#fig-recovery-rdi}
 
-Next, we quantitatively model intergroup differences in mobility trends over @fig-recovery-density and @fig-recovery-rdi. For this purpose we apply a time series decomposition into three components: trend, seasonal and residual. We then focus on the trend, which we model according to five model specifications. 
+Next, we quantitatively model intergroup differences in mobility trends over @fig-recovery-density and @fig-recovery-rdi.
+To achieve this, we perform a time series decomposition into three components: trend, seasonal, and residual.
+Our analysis focuses on the trend component, which we model using five specifications within a linear mixed-effects modeling framework, all yielding consistent results.
+All models include time as a fixed effect and estimate an intercept and a slope associated with this variable.
+The intercept is interpreted as the magnitude of the initial drop in mobility, while the slope represents the rate at which mobility levels recover over time.
+
+Models 1 and 2 consider only fixed effects.
+Models 3, 4, and 5 incorporate time as a fixed effect while also accounting for random effects to capture variation in the intercept, slope, or both, based on the category of the origin of the flows.
+Further details on the model specifications are provided in Methodology Section X. Figures @fig-re-density and @fig-re-rdi present the random variations in intercept and slope estimated by Models 3, 4, and 5, which provide insights into the drivers of intergroup variation in the recovery towards baseline mobility levels.
 
 ![](figures/Fig-re-density.pdf){#fig-re-density}
 
 ![](figures/Fig-re-rdi.pdf){#fig-re-rdi}
 
-![](figures/Fig-re-rdi.pdf){#Fig-re-rdi}
+INTERPRET
 
 # Discussion {#sec-discussion}
 
@@ -221,8 +245,6 @@ We perform a spatial join of the Facebook spatial units and the gridded relative
 
 ## Classification of tiles according to level of urbanisation and socioeconomic deprivation
 
-<!-- Decide whether I'm going for natural breaks or my own splitting. The disadvantage of own splitting is that there is no common logic for all four countries !-->
-
 The geographic distribution of categories for each of the countries is displayed in Figures @Fig1-ARG a), @Fig1-CHL a) and @Fig1-COL a) for Argentina, Chile and Colombia respectively.
 
 A key challenge in the in the analysis of population counts and movements with Facebook user data is the absence of small count records, which is a result of privacy-protection techniques applied to ensure that the location of individuals or small groups cannot be identified.
@@ -257,7 +279,7 @@ To imput Facebook population baseline values, we first identify all the baseline
 We then estimate the missing baseline values for each weekday, based on a linear model for the relationship between the Worldpop population and the Facebook population counts, which are fitted using ordinary least squares.
 This is illustrated in Supplementary Figure \ref{fig:imput-baseline-population}.
 
-We then use the complete baseline Facebook population values to compute missing Facebook population counts during the crisis period.
+We then use the complete baseline of Facebook population values to compute missing Facebook population counts during the crisis period.
 This is possible because, as mentioned above, Meta reports the percentage change in the number of counts with respect to the baseline, even if the counts are not reported due to low value.
 
 ### Facebook movement data
@@ -265,54 +287,52 @@ This is possible because, as mentioned above, Meta reports the percentage change
 The imputation of Facebook movement baseline values is done according to a spatial interaction model (see e.g. [@rowe2022a]).
 We considered the population flow between an origin and a destination tile, and model this variable as a function of the Facebook population count at the origin tile on the same weekday, the Facebook population count at the destination on the same weekday and the distance between origin and destination; we also included indicator variables to capture the day of the week and the pair of population density classes corresponding to the origin and destination tiles.
 Mathematically, this model can be expressed as \begin{equation}
-\mu_{ijw} = \beta_0 + \beta_1pop_{iw} +\beta_2pop_{jw} + \beta_3d_{ij} + \beta_4W + \beta_5C + \varepsilon
+\mu_{ijw} = \beta_0 + \beta_1pop_{iw} +\beta_2pop_{jw} + \beta_3d_{ij} + \beta_4W + \varepsilon
 \end{equation}
 
-where $\mu_{ijw}$ is the expectation of the flow of people from tile $i$ to tile $j$ on the weekday $w$; $\beta_0$ is an intercept $pop_{iw}$ and $pop_{jw}$ are the Facebook population counts at the origin and destination on weekday $w$ during the baseline period, $d_{ij}$ is the distance between origin and destination, $W$ is a series of indicator variables capturing the day of the week and similarly $C$ is a series of indicator variables reflecting the pair of population density classes for the origin and destination tiles, resulting in X pairs (10 classes × 10 classes minus one so it is not collinear with $\beta_0$), $\beta_{0,1,2,3,4,5}$ are model parameters to be estimated from the observed data.
+where $\mu_{ijw}$ is the expectation of the flow of people from tile $i$ to tile $j$ on the weekday $w$; $\beta_0$ is an intercept $pop_{iw}$ and $pop_{jw}$ are the Facebook population counts at the origin and destination on weekday $w$ during the baseline period, $d_{ij}$ is the distance between origin and destination, $W$ is a series of indicator variables capturing the day of the week, $\beta_{0,1,2,3,4}$ are model parameters to be estimated from the observed data.
 The error term is denoted by \varepsilon.
-
-To estimate the model parameters, we used a count data regression model.
-Specifically, we used a negative binomial regression which is a generalised linear model (GLM) where overdispersion of the error term is assumed, i.e. the variance exceeds the mean.
+To estimate the model parameters, we used a Gaussian regression model, taking the log of the population at origin and at destination, and the log of the distance.
+Residual plots for the spatial interaction model are provided in the Supplementary Figure \ref{fig:residuals-sim}.
 
 We compute missing Facebook movement counts during the crisis period by considering the complete Facebook movements baseline and the percentage change in the number of counts with respect to the baseline, which is reported in the Facebook Movements datasets even when the count is not reported due to its low value.
 
-### Correction factors??? For representativeness
+### Correction factors
 
-## Data analysis
+The total number of active users within a given time window exhibits daily fluctuations due to limitations in Internet connectivity and user data access options [@Maas19].
+Following [@yabe2020] and [@duan2024], we applied a correction factor to account for fluctuations in the daily number of observed users.
+This approach assumes that the representativeness of Facebook data across spatial units remains consistent throughout the study period.
 
-```{=html}
-<!-- EXPLAIN - might include the things I had already written below
+This was done to mitigate the potential impact of variations in the total number of collected users on the results, which could mask the mobility trends within population density and relative deprivation categories.
+The adjusted number of movements between tile $i$ and tile $j$ on day $d$, $y'_{ijd}$ was obtained as:
 
-## Spatiotemporal data aggregation
+$$
+y'_{ijd} = k_d \times y_{ijd}
+$$
 
-Since the focus of this work is on urban mobility, we focus the analysis on Functional Urban Areas (FUAs), defined by the Global Human Settlement Layer (GHSL).
-The spatial extent of the FUAs is often large and may include several towns and neighbourhoods displaying a variety of socioeconomic characteristics, hence using FUAs as the spatial units of aggregation would considerably mask the heterogeneity in the mobility patterns.
-While the original unit of aggregation for the movement data, i.e. the tiles from the Bing Maps Tile System, offers the highest degree of spatial granularity available, the interpretation of findings from an analysis based on administrative units is often more valuable.
-For this reason, we perform a spatial join to aggregate the movement data into administrative units at the GADM level 2 or 3.
-Only flows of people starting or ending within the boundaries of a FUA are considered.
+where $y_{ijd}$ is the original number of movements between tiels $i$ and $j$ on day $d$ and $k_d$ is a correction factor obtained as the median of the sum of user counts on day $d$ divided by the sum of user counts across all spatial units on day $d$.
+Mathematically,
 
-While the original movement data is originally aggregated into 8-hour windows, this resolution is too fine for our analysis.
-Since the analysis is focused on the longer-term evolution of patterns of urban mobility, we aggregate the movement data by month.
+$$k_d = \dfrac{\mbox{Median}\big\{\sum_i{P_{id}}\big\}_d}{\sum_i{P_{id}}}$$.
 
-In our analysis, we use the Relative Deprivation Index (RDI) as a measure of socioeocnomic deprivation.
-The RDI data is made available via NASA's Socioeconomic Data and Applications Centre (SEDAC), with a spatial resolution of 1km pixels.
-We perform a spatial join of the gridded data and the administrative units and compute the average RDI within each of these administrative units.
+### Time series smoothing
 
-## Time series analysis
+A time series for each origin-destination tile pair was generated using data processed as described in Sections X to Y.
+However, these time series still contained missing values due to days when no data was reported for specific location pairs.
+To ensure continuity, we addressed this issue by imputing missing values, replacing them with the average of the nearest 15 observations within the time series.
+This number was chosen to provide an optimal balance between maintaining temporal proximity and ensuring sufficient data coverage.
 
-For the countries included in the analysis, the movement data is available until March 2022.
-In order to gain a better understanding of the recovery trends after the pandemic, we generate a 12-month forecast up to March 2023.
-This is done using Prophet [@prophet17], a procedure developed by Meta's Core Data Science team to forecast time series data based on an additive model.
-Prophet stands out from other forecasting methods due to its ability to capture recurring seasonal trends inherent in mobility data, such as fluctuations during holidays, or changes in the general trend due to the impact of particular circumstances, such as the COVID-19 pandemic.
-It is particularly intuitive to use compared to other models due to its automated trend-detection capabilities, making it accessible to users with no expertise on the underlying model, while being robust to missing data and outliers.
-For the analysis in this paper, yearly seasonality effects are included as they yield the most realistic predictions.
+Additionally, to reduce noise and highlight underlying trends that might be obscured by short-term fluctuations, we applied a rolling-average smoothing technique to the resulting time series.
+This approach was used in the time series presented in Figures X, Y, Z.
 
-Figures 2 and 3 have been created by removing statistical outliers.
-We define these as the administrative units which, at any given month, have a z-score greater than 4 for the percentage change in the number of movements.
-Furthermore, a Savitzky-Golay filter is applied to smooth the time series data, using a length of 4 units for the filter window and order 2 polynomials to fit the samples.
+## Trend analysis
 
-!-->
-```
+Model 1 includes time as the sole explanatory variable, while Model 2 incorporates spatial heterogeneity by adding an indicator variable for the population density or RDI category of the origin.
+Models 3, 4, and 5 include time as a fixed effect but also incorporate random effects.
+Model 3 accounts for a random intercept based on the origin category, Model 4 includes a random slope for the origin category, and Model 5 combines both a random intercept and a random slope by origin category.
+Figures @fig-re-density and @fig-re-rdi illustrate the random variation in intercept and slope estimated by Models 3, 4, and 5.
+Full details on the parameter estimates are provided in Supplementary Tables SX for each country.
+
 # Code availability {.unnumbered}
 
 For all studies using custom code in the generation or processing of datasets, a statement must be included under the heading "Code availability", indicating whether and how the code can be accessed, including any restrictions to access.
