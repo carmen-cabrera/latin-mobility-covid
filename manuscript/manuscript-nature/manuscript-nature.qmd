@@ -33,9 +33,9 @@ abstract: |
 bibliography: bibliography.bib
 ---
 
-# Main {.unnumbered}
+# Main {#sec-introduction}
 
-<!--# CCA: Fr to rewrite section -->
+*`@Francisco to rewrite this section`*
 
 Spatial human mobility is key to creating sustainable, livable and inclusive cities.
 At the societal level, spatial mobility enables the transfer of knowledge, skills and labour to places they are needed [@ackers2005].
@@ -77,9 +77,7 @@ Currently, over 80% of the population in Latin America live in urban areas.
 By 2050, this share is predicted to reach 89%, with the largest share concentrating in a few megacities [@habitat2022world].
 Developing an understanding of human mobility in Latin America is thus important to support sustainable and inclusive spaces [@habitat2022world].
 
-# Results
-
-## Analysing the variability in the impact of COVID-19 on mobility across population groups
+# Results {#sec-results}
 
 We focus on capturing how mobility patterns for different population groups have been impacted by COVID-19 in Latin America.
 We consider populations groups by classifying the spatial units of analysis into categories according to their population density and their relative level of socioeconomic deprivation.
@@ -87,7 +85,7 @@ More details for the classification method are provided in section X.
 The two criteria for classification are chosen due to their relevance for ...
 The analysis of mobility is done using Facebook movement data that has been pre-processed according to our methodology.
 
-## Affluent and densely populated areas saw steepest decline in daily mobility, but all population groups progress towards baseline levels
+## Affluent and densely populated areas saw steepest decline in daily mobility, but all population groups progress towards baseline levels {#sec-resultsevooverview}
 
 We first focus on analysing the variability in COVID-19's impact on daily mobility levels across different population groups.
 @fig-impact shows changes in the intensity of movement measured as the percentage change in the number of inflows relative to pre-pandemic baseline levels, at two key points during the period of analysis, May 2020 and March 2022.
@@ -109,7 +107,7 @@ In March 2022, nearly two years later, mobility levels have generally rebounded 
 Notably, mobility levels in areas characterised by higher population density still remain below the baseline.
 Low-density areas show even greater variability than during the early days of the pandemic, with mobility levels often exceeding the baseline.
 These high variability in sparsely populated regions may reflect the ongoing effects of the pandemic on mobility, but they could also be influenced by seasonal variation (e.g. March compared to May).
-Overall, the observed patterns by population density category are consistent with those reported in CITE for Argentina and Chile, where the data from the same source corresponding to those two countries was analysed without applying the data processing methodology proposed in this study.
+Overall, the observed patterns by population density category are consistent with those reported in [@RoweCCA24] for Argentina and Chile, where data from the same source corresponding to those two countries was analysed without applying the data processing methodology proposed in this study.
 
 Moving to the patterns by relative deprivation index category, we observe tendencies that mirror the patterns by population density category.
 Firstly, in March 2020, there is an overall decrease in the number of inflows for all countries and most categories of analysis.
@@ -118,21 +116,21 @@ This decrease displays a gradient across categories of analysis whereby the more
 After almost two years, we find evidence for a general recovery of mobility closer to baseline levels across groups regardless of how deprived they are.
 However, disparities between groups are still visible, indicating that the pandemic has exacerbated behavioral differences among groups with varying socioeconomic statuses.
 
-These patterns can be attributed to...
-THIS GOES TO THE DISCUSSION
+*`@Miguel, can you elaborate the following in the discussion? - The pattern that we observe in this section can be attributed to... THIS GOES TO THE DISCUSSION`*
 
 ![Changes in the intensity of flows as the percentage of change with respect to the pre-pandemic baseline levels, for each country and category of analysis at the origin location of each flow.](figures/Fig-impact.pdf){#fig-impact}
 
-## Initial drop in mobility drives intergroup variation in mobility levels, as recovery pace is uniform across population groups
+## Initial drop in mobility drives intergroup variation in mobility levels, as recovery pace is uniform across population groups {#sec-resultsintergrouprecovery}
 
 Next we focus on modelling intergroup differences in mobility trends over time, highlighting the variability in the pace of recovery toward baseline mobility levels across population groups.
-@fig-recovery-density and @fig-recovery-rdi show, for each country, the evolution over time in the intensity of movement, grouped into population density and relative deprivation index categories respectively.
+@fig-recoverydensity and @fig-recoveryrdi show, for each country, the evolution over time in the intensity of movement, grouped into population density and relative deprivation index categories respectively.
 Time is represented on the $x$-axis, spanning from mid-April 2020 to mid-April 2022, while the intensity of movement is depicted on the $y$-axis, measured as the percentage change in the number of flows relative to pre-pandemic baseline levels.
-The background of each plot in Figures @fig-recovery-density and @fig-recovery-rdi is colored according to the stringency index, which quantifies the level of non-pharmaceutical interventions implemented at each point in time to mitigate the spread of COVID-19, including measures such as social distancing and lockdowns.
+The background of each plot in Figures @fig-recoverydensity and @fig-recoveryrdi is colored according to the stringency index, which quantifies the level of non-pharmaceutical interventions implemented at each point in time to mitigate the spread of COVID-19, including measures such as social distancing and lockdowns.
 This data provides context for the observed trends, reflecting the mobility restrictions imposed by each country during the specified periods.
 
-We highlight four key observations from a visual inspection of the evolution patterns by population density category, as shown in @fig-recovery-density.
-First, there is a general upward trend in mobility across all population density categories for all countries, reflecting a recovery of mobility levels following the early days of COVID-19.
+*`@Francisco and @Miguel to check that what I wrote below makes sense`*
+
+We highlight four key observations from a visual inspection of the evolution patterns by population density category, as shown in @fig-recoverydensity. First, there is a general upward trend in mobility across all population density categories for all countries, reflecting a recovery of mobility levels following the early days of COVID-19.
 Second, more densely populated areas consistently record lower levels of mobility throughout the study period.
 Third, there exist some variations in the patterns by country.
 Chile experiences greater overall losses in mobility compared to Argentina, while certain areas in Argentina reach levels comparable to the pre-pandemic baseline.
@@ -140,36 +138,38 @@ In contrast, Colombia displays more varied trends across population density cate
 Fourth, the temporal patterns display fluctuations from the general trend.
 These fluctuations are likely driven by seasonality effects and by the changing levels of stringency of COVID-19 interventions.
 
-![](figures/Fig-recovery-density.png){#fig-recovery-density}
+![Figures](figures/Fig-recovery-density.png){#fig-recoverydensity}
 
-Visual inspection of @Fig-recovery-rdi reveals the following four patterns by relative deprivation index category.
+Visual inspection of @fig-recoveryrdi reveals the following four patterns by relative deprivation index category.
 First, we observe a general upward trend in mobility across all relative deprivation index categories for all countries.
 Second, less deprived areas consistently record lower levels of mobility throughout the study period.
 In contrast, more deprived areas exhibit higher levels of mobility.
 Third, there is variability by country.
 Colombia stands out for recording mobility levels in the most deprived areas that are well above the baseline.
-These big relative changes for the most deprived category does not necessarily correspond to large population numbers since for example, in Colombia, more deprived regions are often low-density areas that typically contain small populations.
+These big relative changes for the most deprived category do not necessarily correspond to large population numbers since for example, more deprived regions in Colombia are often low-density areas that typically contain small populations.
 As a result, minor fluctuations in mobility can lead to substantial percentage changes.
-Nevertheless, the positive percentage changes observed in more deprived areas highlight the variability of the impact across different population groups based on their socioeconomic status.
-Fourth
+Nevertheless, the positive percentage change observed in more deprived areas highlight the variability of the impact across different population groups based on their socioeconomic status.
+Fourth, like in @fig-recoverydensity, the temporal patterns display fluctuations from the general trend which are likely driven by seasonality effects and by the changing levels of COVID-19 stringency index.
 
-![](figures/Fig-recovery-rdi.png){#fig-recovery-rdi}
+![Figures RDI](figures/Fig-recovery-rdi.png){#fig-recoveryrdi}
 
-Next, we quantitatively model intergroup differences in mobility trends over @fig-recovery-density and @fig-recovery-rdi.
-To achieve this, we perform a time series decomposition into three components: trend, seasonal, and residual.
+Next, we quantitatively model intergroup differences in mobility trends over @fig-recoverydensity and @fig-recoveryrdi. To achieve this, we perform a time series decomposition into three components: trend, seasonal, and residual.
 Our analysis focuses on the trend component, which we model using five specifications within a linear mixed-effects modeling framework, all yielding consistent results.
-All models include time as a fixed effect and estimate an intercept and a slope associated with this variable.
+All five models include time as a fixed effect and estimate an intercept and a slope associated with this variable.
 The intercept is interpreted as the magnitude of the initial drop in mobility, while the slope represents the rate at which mobility levels recover over time.
+Models 3, 4, and 5 incorporate random effects to capture variation in the intercept, slope, or both, based on the category of the origin of the flows.
+Detailed descriptions of all model specifications are provided in Methodology Section X.
 
-Models 1 and 2 consider only fixed effects.
-Models 3, 4, and 5 incorporate time as a fixed effect while also accounting for random effects to capture variation in the intercept, slope, or both, based on the category of the origin of the flows.
-Further details on the model specifications are provided in Methodology Section X. Figures @fig-re-density and @fig-re-rdi present the random variations in intercept and slope estimated by Models 3, 4, and 5, which provide insights into the drivers of intergroup variation in the recovery towards baseline mobility levels.
+Figures @fig-redensity and @fig-rerdi present, for each country, the random variations in intercept and slope estimated by Models 3, 4, and 5, providing insights into the drivers of intergroup variation in the recovery towards baseline mobility levels.
+Focusing first on @fig-redensity, we observe that
 
-![](figures/Fig-re-density.pdf){#fig-re-density}
+![Figure random effects density](figures/Fig-re-density.pdf){#fig-redensity}
 
-![](figures/Fig-re-rdi.pdf){#fig-re-rdi}
+![Figure random effects RDI](figures/Fig-re-rdi.pdf){#fig-rerdi}
 
-INTERPRET
+## Focus on cities {#sec-cities}
+
+![FUAS netflows](figures/Fig-fuas-netflows.pdf){#fig-cities}
 
 # Discussion {#sec-discussion}
 
