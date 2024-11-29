@@ -50,7 +50,8 @@ Higher engagement with remote working, online schooling and shopping activity re
 
 However, reductions in mobility levels were highly unequal reflecting existing socioeconomic inequalities in our societies [@chang2020].
 In most countries, affluent individuals tended to record the greatest drops in mobility levels as they are predominantly employed in knowledge-intensive jobs which can be done fully or partly remotely [@fraiberger2020; @bonaccorsi2020; @weill2020; @dueñas2021; @santana2023].
-During the COVID-19 pandemic, the adoption of remote work reduced the need of commuting for knowledge-intensive, non-public facing jobs [@florida2021].At the same time, individuals from less privileged socioeconomic backgrounds displayed less pronounced declines mirroring the nature of their work requiring public-facing, face-to-face interaction, and thus a requirement for daily work commutes [@dueñas2021; @santana2023].
+During the COVID-19 pandemic, the adoption of remote work reduced the need of commuting for knowledge-intensive, non-public facing jobs [@florida2021].
+At the same time, individuals from less privileged socioeconomic backgrounds displayed less pronounced declines mirroring the nature of their work requiring public-facing, face-to-face interaction, and thus a requirement for daily work commutes [@dueñas2021; @santana2023].
 
 Thus, while a growing body of empirical evidence has contributed to advancing our understanding of the impacts of the COVID-19 pandemic on spatial mobility within cities, existing research has focused on more developed countries and the immediate effects of the pandemic during 2020.
 Less is known about the longer term patterns of resilience in urban mobility in less developed countries extending beyond this period [@rowe2023a].
@@ -81,9 +82,9 @@ Developing an understanding of human mobility in Latin America is thus important
 
 We focus on capturing how mobility patterns for different population groups have been impacted by COVID-19 in Latin America.
 We consider populations groups by classifying the spatial units of analysis into categories according to their population density and their relative level of socioeconomic deprivation.
-More details for the classification method are provided in section X.
-The two criteria for classification are chosen due to their relevance for ...
-The analysis of mobility is done using Facebook movement data that has been pre-processed according to our methodology.
+More details for the classification method are provided in the Methods section.
+The two criteria for classification are chosen due to their relevance for *`@Francisco, can you help here?`*.
+The analysis of mobility is done using Facebook movement data that has been processed according to our methodology.
 
 ## Affluent and densely populated areas saw steepest decline in daily mobility, but all population groups progress towards baseline levels {#sec-resultsevooverview}
 
@@ -100,9 +101,9 @@ These changes show remarkably consistent patterns across countries for both type
 Focusing first on the patterns by population density category, we generally observe a decrease in the number of inflows for all countries and most categories of analysis in the early pandemic days.
 The extent of this decrease tends to be larger for high-density areas.
 Although the majority of areas saw a decline in mobility during May 2020, some locations actually recorded higher movement levels compared to the pre-pandemic period, particularly in regions classified as low-density.
-In fact, some of these areas saw their mobility levels double, as indicated by outliers with percentage changes exceeding 100%.
-However, this does not imply that these areas correspond to large population numbers, as low-density regions typically contain very few residents, meaning that minor fluctuations in population can lead to significant percentage changes.
-Nonetheless, these percentage changes illustrate the extent of the impacts experienced by these sparsely populated regions.
+In fact, some of these areas saw their mobility levels double, as indicated by outliers with percentage change exceeding 100%.
+However, this does not imply that these areas correspond to large population numbers, as low-density regions typically contain very few residents, meaning that minor fluctuations in population can lead to significant percentage change.
+Nonetheless, these relative changes illustrate the extent of the impacts experienced by these sparsely populated regions.
 In March 2022, nearly two years later, mobility levels have generally rebounded closer to pre-pandemic baseline levels across different population density categories.
 Notably, mobility levels in areas characterised by higher population density still remain below the baseline.
 Low-density areas show even greater variability than during the early days of the pandemic, with mobility levels often exceeding the baseline.
@@ -130,7 +131,8 @@ This data provides context for the observed trends, reflecting the mobility rest
 
 *`@Francisco and @Miguel to check that what I wrote below makes sense`*
 
-We highlight four key observations from a visual inspection of the evolution patterns by population density category, as shown in @fig-recoverydensity. First, there is a general upward trend in mobility across all population density categories for all countries, reflecting a recovery of mobility levels following the early days of COVID-19.
+We highlight four key observations from a visual inspection of the evolution patterns by population density category, as shown in @fig-recoverydensity.
+First, there is a general upward trend in mobility across all population density categories for all countries, reflecting a recovery of mobility levels following the early days of COVID-19.
 Second, more densely populated areas consistently record lower levels of mobility throughout the study period.
 Third, there exist some variations in the patterns by country.
 Chile experiences greater overall losses in mobility compared to Argentina, while certain areas in Argentina reach levels comparable to the pre-pandemic baseline.
@@ -138,7 +140,7 @@ In contrast, Colombia displays more varied trends across population density cate
 Fourth, the temporal patterns display fluctuations from the general trend.
 These fluctuations are likely driven by seasonality effects and by the changing levels of stringency of COVID-19 interventions.
 
-![Figures](figures/Fig-recovery-density.png){#fig-recoverydensity}
+![Evolution of number of flows by population density category of origin for Argentina, Chile and Colombia, as percentage change with respect to pre-pandemic baseline levels.](figures/Fig-recovery-density.png){#fig-recoverydensity}
 
 Visual inspection of @fig-recoveryrdi reveals the following four patterns by relative deprivation index category.
 First, we observe a general upward trend in mobility across all relative deprivation index categories for all countries.
@@ -151,9 +153,10 @@ As a result, minor fluctuations in mobility can lead to substantial percentage c
 Nevertheless, the positive percentage change observed in more deprived areas highlight the variability of the impact across different population groups based on their socioeconomic status.
 Fourth, like in @fig-recoverydensity, the temporal patterns display fluctuations from the general trend which are likely driven by seasonality effects and by the changing levels of COVID-19 stringency index.
 
-![Figures RDI](figures/Fig-recovery-rdi.png){#fig-recoveryrdi}
+![Evolution of number of flows by population density category of origin, as percentage change with respect to pre-pandemic baseline levels.](figures/Fig-recovery-density.png)
 
-Next, we quantitatively model intergroup differences in mobility trends over @fig-recoverydensity and @fig-recoveryrdi. To achieve this, we perform a time series decomposition into three components: trend, seasonal, and residual.
+Next, we quantitatively model intergroup differences in mobility trends over @fig-recoverydensity and @fig-recoveryrdi.
+To achieve this, we perform a time series decomposition into three components: trend, seasonal, and residual.
 Our analysis focuses on the trend component, which we model using five specifications within a linear mixed-effects modeling framework, all yielding consistent results.
 All five models include time as a fixed effect and estimate an intercept and a slope associated with this variable.
 The intercept is interpreted as the magnitude of the initial drop in mobility, while the slope represents the rate at which mobility levels recover over time.
@@ -161,17 +164,31 @@ Models 3, 4, and 5 incorporate random effects to capture variation in the interc
 Detailed descriptions of all model specifications are provided in Methodology Section X.
 
 Figures @fig-redensity and @fig-rerdi present, for each country, the random variations in intercept and slope estimated by Models 3, 4, and 5, providing insights into the drivers of intergroup variation in the recovery towards baseline mobility levels.
-Focusing first on @fig-redensity, we observe that
+Focusing first on @fig-redensity, we observe that...
+*`@Francisco to write this interpretation`*
 
 ![Figure random effects density](figures/Fig-re-density.pdf){#fig-redensity}
 
 ![Figure random effects RDI](figures/Fig-re-rdi.pdf){#fig-rerdi}
 
-## Focus on cities {#sec-cities}
+## Focus on cities - *`@Francisco @Miguel, we need a better title here - any ideas?`* {#sec-cities}
 
-![FUAS netflows](figures/Fig-fuas-netflows.pdf){#fig-cities}
+Turning our focus to cities, we present a city-centric analysis of the evolution of movements.
+Specifically, we examine movements between urban centers and the rest of spatial units within each country, categorising these spatial units by population density to account for variability across the urban hierarchy.
+Urban centers are defined as the most densely populated spatial unit within each Functional Urban Area (FUA).
+The boundaries of these Functional Urban Areas are derived from the European Commission's Human Settlement Layer (GHSL) project [@ceu.jrc.2019] .
+
+For each country, we analyze inflows to all FUA centers, considering two types of movements: those originating from any spatial unit (first column of @fig-fuasflows) and those from spatial units within a 100 km radius of the FUA centers (second column of @fig-fuasflows).
+Additionally, focusing only on urban centres corresponding to the capital FUAs -Buenos Aires, Santiago and Bogotá- we also look at inflows from any spatial unit and from those situated within a 100 km radius (columns third and fourth columns in @fig-fuasflows).
+The analysis is similarly repeated for outflows from urban centers to other spatial units.
+
+*`@Miguel to write this section. What can we learn about the figure? The target journal is nature cities, so we need to talk about cities...`*
+
+![Evolution of number of inflows (and outflows) to (from) functional urban area centres, by population desnity category of origin (destiantion) for Argentina, Chile and Colombia, as percentage change with respect to pre-pandemic baseline levels.](figures/Fig-fuas-flows.png){#fig-fuasflows}
 
 # Discussion {#sec-discussion}
+
+*`@Miguel to revisit this section - the text here was written a long time ago, before the analysis had taken the direction it's taken. Needs to be rewritten. Focus on trajectories of recovery. Focus on differences across population groups. Talk about remaining un-addressed biases in the data. With our methodology what we achieve is 1) data imputation for missing counts in regions that have low counts due to a variety of reasons -discuss- 2) data adjustment for fluctuations in daily number of users. However, our method does not explicitely adjust underrepresentation of specific population groups. This remains as future work and we should acknowledge the importance of this to make research based on digital traces more relevant for policy.`*
 
 Using location data from Meta-Facebook users, our study aimed to examine the evolution of patterns of mobility across socioeconomic groups in functional urban areas from Argentina, Chile, Colombia and Mexico from April 2020 to March 2023, following the COVID-19 pandemic.
 We found a systematic drop in the number of population movements in April 2020, with the largest reductions observed in the most affluent administrative units within functional urban areas (FUAs) from Argentina, Chile and Colombia.
@@ -200,7 +217,7 @@ While current resources tend to have a global reach, we advocate for more tailor
 
 # Data {.unnumbered}
 
-## Meta-Facebook data
+## Meta-Facebook data {#sec-datameta}
 
 <!-- Include here population data too !-->
 
@@ -226,7 +243,7 @@ At each successive level, the resolution increases by a factor of two.
 The data that we used are spatially aggregated into Bing tile levels 13.
 That is about 4.9 x 4.9km at the Equator [@Maas19].
 
-## WorldPpop population data
+## WorldPpop population data {#sec-dataworldpop}
 
 We used data from WorldPop [@tatem2017] to classify the spatial units of analysis according to their level of urbanisation, and to estimate missing baseline values in the Facebook population data.
 WorldPop offers open access gridded population estimates at a resolution as small as 3 arc-seconds approximately 100m and 1km at the Equator, respectively.
@@ -234,18 +251,18 @@ WorldPop produces these gridded datasets using top-down (i.e. dissagregating adm
 For the purposes of this work, we use gridded population data at a resolution of 1km$^2$ in raster format.
 We perform a spatial join of the Facebook spatial units (Bing tiles) with the gridded population data and compute the sum of Worldpop populations corresponding to each of the Facebook spatial units.
 
-## Socioeconomic deprivation data
+## Socioeconomic deprivation data {#sec-datardi}
 
 We use the Global Gridded Relative Deprivation Index (GRDI), Version 1 (GRDIv1) data set as a measure of socioeocnomic deprivation.
 The GRDI data is made available via NASA's Socioeconomic Data and Applications Centre (SEDAC), at a spatial resolution of 30 arc-seconds, or 1 km$^2$ approximately.
 The index quantifies the relative levels of multidimensional deprivation and poverty, where a value of 100 represents the highest level of deprivation and a value of 0 the lowest.
 We perform a spatial join of the Facebook spatial units and the gridded relative deprivation data and compute the average RDI corresponding to each of the Facebook spatial units.
 
-# Methods
+# Methods {#sec-methods}
 
-## Classification of tiles according to level of urbanisation and socioeconomic deprivation
+## Classification of tiles according to level of urbanisation and socioeconomic deprivation {#sec-methodsclassify}
 
-The geographic distribution of categories for each of the countries is displayed in Figures @Fig1-ARG a), @Fig1-CHL a) and @Fig1-COL a) for Argentina, Chile and Colombia respectively.
+The geographic distribution of categories for each of the countries is displayed in @fig-classification for Argentina, Chile and Colombia respectively.
 
 A key challenge in the in the analysis of population counts and movements with Facebook user data is the absence of small count records, which is a result of privacy-protection techniques applied to ensure that the location of individuals or small groups cannot be identified.
 As a consequence, the countries of the analysis have locations with null values for Facebook population counts and flows.
@@ -257,7 +274,7 @@ Furthermore, this method also applies a correction factor to eliminate the fluct
 The data processing method is described in section X.
 
 Even after applying the imputation method to estimate missing values, we acknowledge that Facebook data may still overrepresent certain population groups while underrepresenting others.
-For example, Figure @Fig1 shows, for each country, the proportion of the population across the various analysis categories.
+For example, Figure @fig-classification shows, for each country, the proportion of the population across the various analysis categories.
 These comparisons use WorldPop population estimates and Facebook population counts, with the latter reflecting active users on an average day during a pre-pandemic baseline period (see Section X of the methodology for details).
 In all three countries, notable discrepancies appear between the population distributions according to WorldPop and Facebook data.
 For instance, in Argentina and Chile, WorldPop data indicates a higher proportion of people living in low-density areas, suggesting that Facebook data underrepresents populations in these regions.
@@ -265,9 +282,9 @@ Similarly, in these countries, Facebook data shows an overrepresentation of the 
 While addressing this kind of representativity bias is beyond the scope of this paper, we recognise its significance and the importance of addressing it in future analyses.
 This issue is revisited in the Discussion section.
 
-![Classification of spatial units into categories by population density and by relative deprivation index. Spatial distribution of categories and population share in each category, by country.](figures/Fig-classification.png){#Fig1}
+![Classification of spatial units into categories by population density and by relative deprivation index. Spatial distribution of categories and population share in each category, by country.](figures/Fig-classification.png){#fig-classification}
 
-## Processing Facebook data
+## Processing Facebook data {#sec-methodsprocess}
 
 To ensure the privacy and anonymity of the users' data, Meta removes information corresponding to data entries where the population or movement count is less than 10 for a specific time or day, retaining only information about the percentage change in the number of counts with respect to the baseline period is retained [@Maas19].
 Consequently, we observe many tiles where the population or movement count for either the baseline or crisis period are blank.
@@ -325,7 +342,7 @@ This number was chosen to provide an optimal balance between maintaining tempora
 Additionally, to reduce noise and highlight underlying trends that might be obscured by short-term fluctuations, we applied a rolling-average smoothing technique to the resulting time series.
 This approach was used in the time series presented in Figures X, Y, Z.
 
-## Trend analysis
+## Trend analysis {#sec-methodstrend}
 
 Model 1 includes time as the sole explanatory variable, while Model 2 incorporates spatial heterogeneity by adding an indicator variable for the population density or RDI category of the origin.
 Models 3, 4, and 5 include time as a fixed effect but also incorporate random effects.
@@ -333,15 +350,12 @@ Model 3 accounts for a random intercept based on the origin category, Model 4 in
 Figures @fig-re-density and @fig-re-rdi illustrate the random variation in intercept and slope estimated by Models 3, 4, and 5.
 Full details on the parameter estimates are provided in Supplementary Tables SX for each country.
 
-# Code availability {.unnumbered}
+# Code availability
 
 For all studies using custom code in the generation or processing of datasets, a statement must be included under the heading "Code availability", indicating whether and how the code can be accessed, including any restrictions to access.
 This section should also include information on the versions of any software used, if relevant, and any specific variables or parameters used to generate, test, or process the current dataset.
 
 # References
-
-::: {#refs}
-:::
 
 # Acknowledgements {.unnumbered}
 
