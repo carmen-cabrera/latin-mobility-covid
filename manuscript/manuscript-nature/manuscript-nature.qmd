@@ -21,7 +21,7 @@ authornotes:
     - note: "1"
       text: Geographic Data Science Lab, Department of Geography and Planning, University of Liverpool, Liverpool, UK
     - note: "2"
-      text: Centre for Demographic Urban and Environmental Studies, El Colegio de México, Ciudad de México, México
+      text: Centre for Demographic Urban and Environmental Studies, El Colegio de Mexico, Ciudad de México, México
     - note: "*"
       text: "`c.cabrera-arnau@liverpool.ac.uk`"
 format:
@@ -153,7 +153,7 @@ As a result, minor fluctuations in mobility can lead to substantial percentage c
 Nevertheless, the positive percentage change observed in more deprived areas highlight the variability of the impact across different population groups based on their socioeconomic status.
 Fourth, like in @fig-recoverydensity, the temporal patterns display fluctuations from the general trend which are likely driven by seasonality effects and by the changing levels of COVID-19 stringency index.
 
-![Evolution of number of flows by population density category of origin, as percentage change with respect to pre-pandemic baseline levels.](figures/Fig-recovery-density.png)
+![Evolution of number of flows by population density category of origin, as percentage change with respect to pre-pandemic baseline levels.](figures/Fig-recovery-density.png){#fig-recoveryrdi}
 
 Next, we quantitatively model intergroup differences in mobility trends over @fig-recoverydensity and @fig-recoveryrdi.
 To achieve this, we perform a time series decomposition into three components: trend, seasonal, and residual.
@@ -219,33 +219,78 @@ While current resources tend to have a global reach, we advocate for more tailor
 
 ## Meta-Facebook data {#sec-datameta}
 
-<!-- Include here population data too !-->
+### Facebook Movements
 
-To capture population movements, we used anonymised aggregate mobile phone location data from Meta users for Argentina, Colombia, Chile and Mexico, covering a 24-month period from April 2020 to March 2022.
-We used the dataset Facebook Movements created by Meta and accessed through their Data for Good Initiative (<https://dataforgood.facebook.com>).
+To capture population movements, we used anonymised aggregate mobile phone location data from Meta users for Argentina, Colombia and Chile, covering a 24-month period from April 2020 to March 2022.
+We used the Facebook Movements datasets created by Meta and accessed through their Data for Good Initiative (<https://dataforgood.facebook.com>).
 The data are built from Facebook app users who have the location services setting turned on on their smartphone.
 Prior to releasing the datasets, Meta ensures privacy and anonymity by removing personal information and applying privacy-preserving techniques [@Maas19].
-Small-count dropping is one of these techniques.
-A data entry is removed if the population or movement count for an area is lower than 10.
-The removal of small counts may mean that population counts in small sparsely populated areas are not captured.
-A second technique consists in adding a small undisclosed amount of random noise to ensure that it is not possible to ascertain precise, true counts for sparsely populated locations.
-Third, spatial smoothing using inverse distance-weighted averaging is also applied is applied to produce a smooth population count surface.
-The Facebook Movements dataset offers information on the total number of Facebook users moving between and within spatial units in the form of origin-destination matrices.
-The data is temporally aggregated into three daily 8-hour time windows (i.e. 00:00-08:00, 08:00-16:00 and 16:00-00:00).
-The dataset includes a baseline capturing the number of movements before COVID-19 based on a 45-day period ending on March 10th 2020.
-The baseline is computed using an average for the same time of the day and day of the week in the period preceding March 10th.
-For instance, the baseline for Monday 00:00-08:00 time window is obtained by averaging over data collected on Mondays from 00:00 to 8:00 for the 45-day period.
-Details about the baseline can be found in [@Maas19].
-The Bing Maps Tile System developed by Microsoft (Microsoft) is used a spatial framework to organise the data.
-The Tile System is a geospatial indexing system that partitions the world into tile cells in a hierarchical way, comprising 23 different levels of detail (Microsoft).
-At the lowest level of detail (Level 1), the world is divided into four tiles with a coarse spatial resolution.
-At each successive level, the resolution increases by a factor of two.
-The data that we used are spatially aggregated into Bing tile levels 13.
+One such technique involves adding a small, undisclosed amount of random noise to prevent the determination of precise counts for these areas.
+Another technique consists in applying spatial smoothing, using inverse distance-weighted averaging, to create a smoother data surface.
+Finally, small-count dropping is applied to exclude records where the data counts are below 10.
+
+The Facebook Movements datasets provide information on the aggregated number of Facebook app users moving between pairs of locations, during the 24-month crisis period during COVID-19.
+The data is spatially aggregated into tiles according to the Bing Maps Tile System developed by Microsoft [@microsoftBingMaps].
+The Facebook Movement data for Argentina, Chile and Colombia are spatially aggregated into Bing tile levels 13...
+respectively *`@Carmen to check Bing Tile levels for movement data`*.
 That is about 4.9 x 4.9km at the Equator [@Maas19].
+The data is temporally aggregated into three daily 8-hour time windows which are 00:00-08:00, 08:00-16:00 and 16:00-00:00, Pacific Time (PT).
+These time windows translate to 05:00-13:00, 13:00-21:00, 21:00-05:00 for Argentina and Chile; and 03:00-11:00, 11:00-19:00, 19:00-03:00 for Colombia.
+For each time window, the origin location of a user is defined as the most frequently visited location in the previous time window, while the destination location is the most frequently visited location in the current time window.
+
+In addition, each dataset includes baseline movement counts, which represent the estimated number of people moving prior to COVID-19.
+These baseline counts are calculated based on a 45-day period ending on March 10, 2020, using the average for the same time of day and day of the week within this period.
+For example, the baseline for the 00:00–08:00 (PT) window on Mondays is calculated by averaging all Monday records for that time window across the 45-day period.
+Further details about the baseline can be found in [@Maas19].
+
+Due to the small-count dropping privacy measure, movement counts during both the crisis and baseline periods are excluded if they fall below 10.
+However, even when counts are not reported, the datasets consistently provide the percentage change in movement counts relative to the baseline.
+This percentage change, denoted as $y^{\%}_{ijdt}$, is computed as follows [@Maas19]:
+
+$$
+y^{\%}_{ijdt} = \dfrac{y^{c}_{ijdt} - y^b_{ijdt}}{y^b_{ijdt} - \varepsilon}\times 100.
+$$
+
+Here, $y^c_{ijdt}$ and $y^b_{ijdt}$ represent the crisis and baseline movement counts, respectively, between origin tile $i$ to destination tile $j$ on day $d$ and during time window $t$.
+For the baseline values $y^b_{ijwt}$, the subindex $w$ denotes the day of the week corresponding to day $d$, as the baseline values are recorded by weekday, not by specific date.
+A small constant $\varepsilon$, usually set to 1, is added to the denominator to avoid division by zero [@Maas19].
+
+### Facebook Populations
+
+As part of our proposed data processing methodology, we also utilize the Facebook Population datasets.
+Like the Facebook Movements data, these datasets cover a 24-month period from April 2020 to March 2022 and provide information on the number of active Facebook users at specific locations during the crisis period.
+
+The Facebook Population data is aggregated spatially into Bing tiles and temporally into 8-hour time windows.
+A user's location is defined as the most frequently visited location within each 8-hour time window.
+Similar to the Facebook Movements datasets, the Population datasets include baseline counts, calculated by averaging values for the same day of the week and time of day over the 45-day pre-pandemic baseline period.
+
+The same privacy-preserving techniques are applied to the Facebook Population datasets.
+As a result, population counts during both the crisis and baseline periods are excluded if they fall below 10.
+However, the datasets consistently report the percentage change in active user counts relative to the baseline.
+For tile $i$, day $d$ and time window $t$, the relative change in active user counts $p^{\%}_{idt}$ is computed as:
+
+$$
+p^{\%}_{idt} = \dfrac{p^{c}_{idt} - p^b_{iwt}}{p^b_{iwt} - \varepsilon}\times 100,
+$$ where $p^c_{idt}$ and $p^b_{iwt}$ represent the crisis and baseline active user counts at tile $i$ on day $d$ and during time window $t$.
+Once again, the subindex $w$ in baseline values $p^b_{iwt}$ denotes the day of the week corresponding to day $d$, and $\varepsilon$ is a small constant usually set to 1, added to the denominator to avoid division by zero [@Maas19].
+
+In the remainder of the paper, we sometimes use expressions such as the "Facebook population" or the "population of Facebook users" to refer to the number of active Facebook app users.
+
+### Meta-Facebook data pre-processing
+
+For our analysis, we filter the data to include only one time window per day: 08:00–16:00 Pacific Time (PT), which corresponds to 13:00–21:00 in Argentina and Chile, and 11:00–19:00 in Colombia.
+This window is likely to capture the bulk of socioeconomic daytime activity, as well as a significant portion of morning commutes.
+The choice of considering only one time window per day is driven by the objective of analysing the evolution of movement patterns throughout the pandemic period, without focusing on variations through the day.
+By limiting the analysis to a single time window each day, we reduce potential noise and variability that could arise from considering multiple time windows per day.
+Furthermore, including all time windows could result in opposing movement trends that may cancel each other out when the data is aggregated by day.
+As a result of filtering the data to include only one time window per day, we can drop the subindex $t$ from the variables defined above $y^{c,b,\%}_{ijd}$ and $p^{c,b,\%}_{ijd}$, as the time window is no longer a distinguishing factor in the analysis.
+
+As a pre-processing step, we ensure that both the Facebook movement and population data are aligned in terms of spatial resolution for each country.
+Since the raw Facebook Population datasets are aggregated at a finer spatial resolution, we re-aggregate them to match the spatial resolution of the Facebook Movements data.
 
 ## WorldPpop population data {#sec-dataworldpop}
 
-We used data from WorldPop [@tatem2017] to classify the spatial units of analysis according to their level of urbanisation, and to estimate missing baseline values in the Facebook population data.
+We used data from WorldPop [@tatem2017] to classify the spatial units of analysis according to their population density, and to estimate missing baseline values in the Facebook population data.
 WorldPop offers open access gridded population estimates at a resolution as small as 3 arc-seconds approximately 100m and 1km at the Equator, respectively.
 WorldPop produces these gridded datasets using top-down (i.e. dissagregating administrative area counts into smaller grid cells) or bottom-up (i.e. interpolating data from counts from sample locations into grid cells) approaches.
 For the purposes of this work, we use gridded population data at a resolution of 1km$^2$ in raster format.
@@ -253,29 +298,90 @@ We perform a spatial join of the Facebook spatial units (Bing tiles) with the gr
 
 ## Socioeconomic deprivation data {#sec-datardi}
 
-We use the Global Gridded Relative Deprivation Index (GRDI), Version 1 (GRDIv1) data set as a measure of socioeocnomic deprivation.
+We use the Global Gridded Relative Deprivation Index (GRDI), Version 1 (GRDIv1) [@RDI2022] data set as a measure of socioeconomic deprivation.
 The GRDI data is made available via NASA's Socioeconomic Data and Applications Centre (SEDAC), at a spatial resolution of 30 arc-seconds, or 1 km$^2$ approximately.
 The index quantifies the relative levels of multidimensional deprivation and poverty, where a value of 100 represents the highest level of deprivation and a value of 0 the lowest.
 We perform a spatial join of the Facebook spatial units and the gridded relative deprivation data and compute the average RDI corresponding to each of the Facebook spatial units.
 
 # Methods {#sec-methods}
 
+`@Francisco to revise the whole section`
+
+## Processing Facebook data {#sec-methodsprocess}
+
+A significant challenge in analysing population counts and movements using Facebook user data is the absence of records for small counts.
+This limitation stems from privacy-protection measures designed to prevent the identification of individuals or small groups based on their location.
+The missing data in the Facebook Movements and Facebook Population datasets are not distributed randomly.
+Spatially, these missing values display high spatial autocorrelation as shown in Supplementary Figure [@fig-autocorrelation] for the Facebook Population datasets.
+Furthermore, due to the non-random nature of these missing values, spatial units that are sparsely populated or that have a low number of Facebook app users could potentially be underrepresented in the analysis.
+Therefore, simply removing the missing records from the analysis could lead to geographically biased results [@afghari2019].
+To address this, we designed a data processing method for missing data imputation.
+An overview of this data imputation method is provided in [@fig-dataimputation].
+
+![Workflow diagram for data imputation method.](figures/workflow-diagram.png){#fig-dataimputation}
+
+Additionally, we apply correction factors and time series smoothing to eliminate the fluctuations in the daily number of observations, assuming that the representativeness of Facebook data across spatial units remains stable during the study period.
+The steps of our data-processing workflow are further described in the next four subsections.
+
+### Imputing Facebook Population data
+
+We begin by identifying all the baseline values reported in the Facebook Population datasets, which form the basis for creating a new dataset that includes all available baseline information.
+Next, following [@duan2024], we use linear models to estimate the missing Facebook population baseline counts based on Worldpop population data.
+These models are fitted using ordinary least squares regression, with Worldpop data as the explanatory variable and the available baseline counts from the Facebook Population dataset as the dependent variable.
+The estimation process and its accuracy are illustrated in Supplementary Figure [@fig-imputbaselinepop].
+
+We then use the complete baseline of Facebook population counts to compute missing Facebook population counts during the crisis period.
+This is possible because, as mentioned above, Meta reports the percentage change in the number of counts with respect to the baseline $p^{\%}_{id}$, even if the counts are not reported due to low value.
+
+### Imputing Facebook movement data
+
+The imputation of Facebook movement baseline values is done according to a spatial interaction model (see e.g. [@rowe2022a]).
+We consider baseline movement counts $y^b_{ijw}$ between pairs of origin $i$ and a destination $j$ tiles on weekday $w$, and model this variable as a function of the Facebook population count at the origin tile on the same weekday, the Facebook population count at the destination on the same weekday and the distance between origin and destination.
+We also include indicator variables to capture the day of the week.
+Mathematically, this model can be expressed as \begin{equation}
+\mu^b_{ijw} = \beta_0 + \beta_1p^b_{iw} +\beta_2p^b_{jw} + \beta_3d_{ij} + \beta_4w + \varepsilon
+\end{equation}
+
+where $\mu^b_{ijw} = E[y^b_{ijw}]$ is the expectation of the flow of people from tile $i$ to tile $j$ on the weekday $w$ during the baseline period; $\beta_0$ is an intercept, $p^b_{iw}$ and $p^b_{jw}$ are the Facebook population counts at the origin and destination on weekday $w$ during the baseline period, $d_{ij}$ is the distance between origin and destination, $w$ is a series of indicator variables capturing the day of the week, and $\beta_{0,1,2,3,4}$ are model parameters to be estimated from the observed data.
+The error term is denoted by \varepsilon.
+To estimate the model parameters, we used a Gaussian regression model, taking the log of the population at origin and at destination, and the log of the distance.
+Residual plots for the spatial interaction model are provided in the Supplementary Figure @fig-residualsim.
+
+We compute missing Facebook movement counts during the crisis period by considering the complete Facebook movements baseline and the percentage change in the number of counts with respect to the baseline, which is reported in the Facebook Movements datasets even when the count is not reported due to its low value.
+
+### Applying correction factors
+
+The total number of active users within a given time window exhibits daily fluctuations due to limitations in Internet connectivity and user data access options [@Maas19].
+Following [@yabe2020] and [@duan2024], we applied a correction factor to mitigate the potential impact of these daily fluctuations on the results, since they could mask the mobility trends.
+This approach assumes that the representativeness of Facebook data across spatial units remains consistent throughout the study period.
+
+The adjusted number of movements between tile $i$ and tile $j$ on day $d$, $y'_{ijd}$ was obtained as:
+
+$$
+y'_{ijd} = k_d \times y^c_{ijd}
+$$
+
+where $y^c_{ijd}$ is the original number of movements between tiles $i$ and $j$ on day $d$ during the crises period and $k_d$ is a correction factor computed as the median of the sum of active user counts across all days $d$ divided by the sum of active user counts across all spatial units on day $d$.
+Mathematically,
+
+$$k_d = \dfrac{\mbox{med}_d\big(\sum_i{p^c_{id}}\big)}{\sum_i{p^c_{id}}}.$$
+
+### Time series smoothing
+
+A time series for each pair of origin-destination tiles was generated using data processed as described above.
+However, the resulting time series still contained missing values due to days when no data was reported for specific location pairs.
+To ensure continuity, we addressed this issue by imputing missing values within the time series, replacing them with the average of the nearest 15 observations within the time series.
+This number was chosen to provide an optimal balance between maintaining temporal proximity and ensuring sufficient data coverage.
+
+Additionally, to reduce noise and highlight underlying trends that might be obscured by short-term fluctuations, we applied a rolling-average smoothing technique to the resulting time series.
+This approach was used in the time series presented in @fig-recoverydensity, @fig-recoveryrdi and @fig-fuasflows.
+
 ## Classification of tiles according to level of urbanisation and socioeconomic deprivation {#sec-methodsclassify}
 
 The geographic distribution of categories for each of the countries is displayed in @fig-classification for Argentina, Chile and Colombia respectively.
+@fig-classification also shows, for each country, the proportion of the population across the various analysis categories is presented, based on both Facebook population counts and Worldpop population estimates.
+The Facebook population counts reflect the average number of active users across all weekdays in the pre-pandemic baseline period.
 
-A key challenge in the in the analysis of population counts and movements with Facebook user data is the absence of small count records, which is a result of privacy-protection techniques applied to ensure that the location of individuals or small groups cannot be identified.
-As a consequence, the countries of the analysis have locations with null values for Facebook population counts and flows.
-These missing data are not distributed randomly.
-For example, the missing values for FB population counts display high spatial autocorrelation as shown in Supplementary Figure SF1.
-Therefore, simply removing the missing records from the analysis could lead to geographically biased results (Afghari et al., 2019).
-To address this, we designed a data processing method to estimate the missing values, both for Facebook population counts and flows.
-Furthermore, this method also applies a correction factor to eliminate the fluctuations in the daily number of observations, assuming that the representativeness of Facebook data across spatial units remains stable during the study period.
-The data processing method is described in section X.
-
-Even after applying the imputation method to estimate missing values, we acknowledge that Facebook data may still overrepresent certain population groups while underrepresenting others.
-For example, Figure @fig-classification shows, for each country, the proportion of the population across the various analysis categories.
-These comparisons use WorldPop population estimates and Facebook population counts, with the latter reflecting active users on an average day during a pre-pandemic baseline period (see Section X of the methodology for details).
 In all three countries, notable discrepancies appear between the population distributions according to WorldPop and Facebook data.
 For instance, in Argentina and Chile, WorldPop data indicates a higher proportion of people living in low-density areas, suggesting that Facebook data underrepresents populations in these regions.
 Similarly, in these countries, Facebook data shows an overrepresentation of the most affluent socioeconomic group.
@@ -284,71 +390,17 @@ This issue is revisited in the Discussion section.
 
 ![Classification of spatial units into categories by population density and by relative deprivation index. Spatial distribution of categories and population share in each category, by country.](figures/Fig-classification.png){#fig-classification}
 
-## Processing Facebook data {#sec-methodsprocess}
-
-To ensure the privacy and anonymity of the users' data, Meta removes information corresponding to data entries where the population or movement count is less than 10 for a specific time or day, retaining only information about the percentage change in the number of counts with respect to the baseline period is retained [@Maas19].
-Consequently, we observe many tiles where the population or movement count for either the baseline or crisis period are blank.
-<!-- Justify why we do the imputation. Spatial bias (maybe show Moran's I for missing values on a selected day? Or everyday?). Small number bias, underrespresentation of dataentries with low counts that we know for sure exist !-->
-
-### Facebook population data
-
-To imput Facebook population baseline values, we first identify all the baseline values that are available for each spatial unit and weekday (of the three available time windows, we only consider one per day).
-We then estimate the missing baseline values for each weekday, based on a linear model for the relationship between the Worldpop population and the Facebook population counts, which are fitted using ordinary least squares.
-This is illustrated in Supplementary Figure \ref{fig:imput-baseline-population}.
-
-We then use the complete baseline of Facebook population values to compute missing Facebook population counts during the crisis period.
-This is possible because, as mentioned above, Meta reports the percentage change in the number of counts with respect to the baseline, even if the counts are not reported due to low value.
-
-### Facebook movement data
-
-The imputation of Facebook movement baseline values is done according to a spatial interaction model (see e.g. [@rowe2022a]).
-We considered the population flow between an origin and a destination tile, and model this variable as a function of the Facebook population count at the origin tile on the same weekday, the Facebook population count at the destination on the same weekday and the distance between origin and destination; we also included indicator variables to capture the day of the week and the pair of population density classes corresponding to the origin and destination tiles.
-Mathematically, this model can be expressed as \begin{equation}
-\mu_{ijw} = \beta_0 + \beta_1pop_{iw} +\beta_2pop_{jw} + \beta_3d_{ij} + \beta_4W + \varepsilon
-\end{equation}
-
-where $\mu_{ijw}$ is the expectation of the flow of people from tile $i$ to tile $j$ on the weekday $w$; $\beta_0$ is an intercept $pop_{iw}$ and $pop_{jw}$ are the Facebook population counts at the origin and destination on weekday $w$ during the baseline period, $d_{ij}$ is the distance between origin and destination, $W$ is a series of indicator variables capturing the day of the week, $\beta_{0,1,2,3,4}$ are model parameters to be estimated from the observed data.
-The error term is denoted by \varepsilon.
-To estimate the model parameters, we used a Gaussian regression model, taking the log of the population at origin and at destination, and the log of the distance.
-Residual plots for the spatial interaction model are provided in the Supplementary Figure \ref{fig:residuals-sim}.
-
-We compute missing Facebook movement counts during the crisis period by considering the complete Facebook movements baseline and the percentage change in the number of counts with respect to the baseline, which is reported in the Facebook Movements datasets even when the count is not reported due to its low value.
-
-### Correction factors
-
-The total number of active users within a given time window exhibits daily fluctuations due to limitations in Internet connectivity and user data access options [@Maas19].
-Following [@yabe2020] and [@duan2024], we applied a correction factor to account for fluctuations in the daily number of observed users.
-This approach assumes that the representativeness of Facebook data across spatial units remains consistent throughout the study period.
-
-This was done to mitigate the potential impact of variations in the total number of collected users on the results, which could mask the mobility trends within population density and relative deprivation categories.
-The adjusted number of movements between tile $i$ and tile $j$ on day $d$, $y'_{ijd}$ was obtained as:
-
-$$
-y'_{ijd} = k_d \times y_{ijd}
-$$
-
-where $y_{ijd}$ is the original number of movements between tiels $i$ and $j$ on day $d$ and $k_d$ is a correction factor obtained as the median of the sum of user counts on day $d$ divided by the sum of user counts across all spatial units on day $d$.
-Mathematically,
-
-$$k_d = \dfrac{\mbox{Median}\big\{\sum_i{P_{id}}\big\}_d}{\sum_i{P_{id}}}$$.
-
-### Time series smoothing
-
-A time series for each origin-destination tile pair was generated using data processed as described in Sections X to Y.
-However, these time series still contained missing values due to days when no data was reported for specific location pairs.
-To ensure continuity, we addressed this issue by imputing missing values, replacing them with the average of the nearest 15 observations within the time series.
-This number was chosen to provide an optimal balance between maintaining temporal proximity and ensuring sufficient data coverage.
-
-Additionally, to reduce noise and highlight underlying trends that might be obscured by short-term fluctuations, we applied a rolling-average smoothing technique to the resulting time series.
-This approach was used in the time series presented in Figures X, Y, Z.
-
 ## Trend analysis {#sec-methodstrend}
+
+In order to quantify intergroup differences in the evolution towards pre-pandemic mobility patterns, we model the time series displayed in @fig-recoverydensity and @fig-recoveryrdi.
+To this end, we extract the trend, seasonal, and noise components of each time series using the `seasonal_decompose()` method from the time-series models and methods API in Python's `statsmodels` package (version 0.14.4).
+We then model the trend component according to five linear mixed-effects model specifications, using R's `glmmTMB` library (version 1.1.10).
 
 Model 1 includes time as the sole explanatory variable, while Model 2 incorporates spatial heterogeneity by adding an indicator variable for the population density or RDI category of the origin.
 Models 3, 4, and 5 include time as a fixed effect but also incorporate random effects.
 Model 3 accounts for a random intercept based on the origin category, Model 4 includes a random slope for the origin category, and Model 5 combines both a random intercept and a random slope by origin category.
-Figures @fig-re-density and @fig-re-rdi illustrate the random variation in intercept and slope estimated by Models 3, 4, and 5.
-Full details on the parameter estimates are provided in Supplementary Tables SX for each country.
+Figures @fig-redensity and @fig-rerdi illustrate the random variation in intercept and slope estimated by Models 3, 4, and 5.
+Full details on the parameter estimates are provided in Supplementary Tables @tab-trendanalysis for each country.
 
 # Code availability
 
