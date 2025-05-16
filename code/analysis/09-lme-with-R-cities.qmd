@@ -1,0 +1,414 @@
+---
+title: "lme-r"
+format: html
+editor: visual
+---
+
+## Dependencies
+
+```{r}
+# data wrangling
+library(tidyverse)
+# data utilities
+library(timetk)
+# estimating mixed effects models
+library(lme4)
+library(merTools)
+library(glmmTMB)
+library(nlme)
+# correlograms
+library(ggcorrplot)
+library(corrplot)
+# data visualisation
+library(viridis)
+library(ggthemes)
+library(ggpubr)
+library(zoo)
+library(showtext)
+library(patchwork)
+library(ggrepel)
+# display regression equation
+library(equatiomatic)
+# standardise input variables
+  #library(arm)
+  # reporting regression results
+library(broom.mixed)
+library(gtsummary)
+library(sjPlot)
+```
+
+## Data import
+
+```{r}
+# Set working directory
+wd <- '/Users/carmen/Library/CloudStorage/OneDrive-TheUniversityofLiverpool/research/RECAST/latin-mobility-covid-local-files'
+
+# Set the country
+country <- 'Chile'
+
+# Initialize variables for country_short and country_code
+country_short <- ""
+country_code <- ""
+
+# Assign country_short and country_code based on the country
+if (country == 'Argentina') {
+    country_short <- 'ARG'
+    country_code <- 'AR'
+} else if (country == 'Chile') {
+    country_short <- 'CHL'
+    country_code <- 'CL'
+} else if (country == 'Colombia') {
+    country_short <- 'COL'
+    country_code <- 'CO'
+} 
+```
+
+```{r}
+category <- "density"
+capital <- TRUE
+
+if (capital == TRUE) {
+  place <- 'capital'
+} else {
+  place <- 'fuas'
+}
+```
+
+```{r}
+capital
+# Read the CSV file
+file_path <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/trend_', place, '.csv')
+df <- read.csv(file_path)
+
+df$time2 <- df$time^2
+```
+
+```{r}
+dates <- read.csv(paste0(wd, '/data/outputs/', country_short, '/mov-analysis/dates.csv'))
+
+df_stringency <- read.csv(paste0(wd, '/data/inputs/covid-stringency/owid-covid-data.csv')) %>%
+  filter(location == "Argentina") %>% 
+  filter(date %in% dates$date) %>% 
+  slice(seq(1, n(), by = 7)) %>% 
+  mutate(time = seq(0, n() - 1)) %>%
+  select(time, stringency_index)
+
+df <- df %>% left_join(df_stringency, by = "time")
+
+df <- df[, !(names(df) == "X")]
+
+```
+
+## Define models
+
+```{r}
+
+eq1 <- y ~ time
+m1 <- glmmTMB(eq1, data = df)
+
+###
+
+eq1s <- y ~ time + stringency_index
+m1s <- glmmTMB(eq1s, data = df)
+
+###
+
+eq2cat <- y ~ time + cat
+m2cat <- glmmTMB(eq2cat, data = df)
+
+eq2cats <- y ~ time + cat + stringency_index
+m2cats <- glmmTMB(eq2cats, data = df)
+
+###
+
+eq3cat <- y ~ time + (1|cat)
+m3cat <- glmmTMB(eq3cat, data = df)
+m3cat_re <- plot_model(m3cat, type ="re")
+
+eq3cats <- y ~ time + (1|cat) + stringency_index
+m3cats <- glmmTMB(eq3cats, data = df)
+m3cats_re <- plot_model(m3cats, type ="re")
+
+###
+
+df$catf <- factor(df$cat)
+eq4cat <- y ~ time + (0 + time|catf) 
+m4cat <- glmmTMB(eq4cat, data = df)
+m4cat_re <- plot_model(m4cat, type ="re")
+
+df$catf <- factor(df$cat)
+eq4cats <- y ~ time + (0 + time|catf) + stringency_index
+m4cats <- glmmTMB(eq4cats, data = df)
+m4cats_re <- plot_model(m4cats, type ="re")
+
+###
+
+df$catf <- factor(df$cat)
+eq5cat <- y ~ time + (time|catf) 
+m5cat <- glmmTMB(eq5cat, data = df)
+m5cat_re <- plot_model(m5cat, type ="re")
+
+df$catf <- factor(df$cat)
+eq5cats <- y ~ time + (time|catf) + stringency_index
+m5cats <- glmmTMB(eq5cats, data = df)
+m5cats_re <- plot_model(m5cats, type ="re")
+
+###
+
+eq6cat <- y ~ time + time2 + (time|cat) 
+m6cat <- glmmTMB(eq6cat, data = df)
+m6cat_re <- plot_model(m6cat, type ="re")
+
+eq6cats <- y ~ time + time2 + (time|cat) + stringency_index
+m6cats <- glmmTMB(eq6cats, data = df)
+m6cats_re <- plot_model(m6cats, type ="re")
+
+###
+
+eq7cat <- y ~ time + time2 + (time + time2 | cat)
+m7cat <- glmmTMB(eq7cat, data = df)
+m7cat_re <- plot_model(m7cat, type ="re")
+
+eq7cats <- y ~ time + time2 + (time + time2|cat) + stringency_index
+m7cats <- glmmTMB(eq7cats, data = df)
+m7cats_re <- plot_model(m7cats, type ="re")
+
+```
+
+## Save model data
+
+```{r}
+models_cat <- list(
+  m1,
+  m2cat,
+  m3cat,
+  m4cat,
+  m5cat,
+  m6cat,
+  m7cat
+  )
+tidy_results_cat <- map_df(models_cat, tidy, .id = "model")
+file_tidy_results_cat <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_netflows_', place, '_param_tidy_results_cat.csv')
+write.csv(tidy_results_cat, file_tidy_results_cat, row.names = FALSE)
+
+glance_results_cat <- map_df(models_cat, glance, .id = "model")
+file_glance_results_cat <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_netflows_', place, '_param_glance_results_cat.csv')
+write.csv(glance_results_cat, file_glance_results_cat, row.names = FALSE)
+
+models_cats <- list(
+  m1s,
+  m2cats,
+  m3cats,
+  m4cats,
+  m5cats,
+  m6cats,
+  m7cats
+  )
+tidy_results_cats <- map_df(models_cats, tidy, .id = "model")
+file_tidy_results_cats <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_netflows_', place, '_param_tidy_results_cats.csv')
+write.csv(tidy_results_cats, file_tidy_results_cats, row.names = FALSE)
+
+glance_results_cats <- map_df(models_cats, glance, .id = "model")
+file_glance_results_cats <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_netflows_', place, '_param_glance_results_cats.csv')
+write.csv(glance_results_cats, file_glance_results_cats, row.names = FALSE)
+```
+
+## Save random effects data
+
+```{r}
+
+file_m3cat_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_', place, '_m3cat_re.csv')
+write.csv(m3cat_re[[1]], file_m3cat_re, row.names = FALSE)
+
+file_m3cats_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_', place, '_m3cats_re.csv')
+write.csv(m3cats_re[[1]], file_m3cats_re, row.names = FALSE)
+
+###
+
+file_m4cat_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_', place, '_m4cat_re.csv')
+write.csv(m4cat_re[[1]], file_m4cat_re, row.names = FALSE)
+
+file_m4cats_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_', place, '_m4cats_re.csv')
+write.csv(m4cats_re[[1]], file_m4cats_re, row.names = FALSE)
+
+###
+
+file_m5cat_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_', place, '_m5cat_re.csv')
+write.csv(m5cat_re[[1]], file_m5cat_re, row.names = FALSE)
+
+file_m5cats_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_', place, '_m5cats_re.csv')
+write.csv(m5cats_re[[1]], file_m5cats_re, row.names = FALSE)
+
+###
+
+file_m6cat_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_', place, '_m6cat_re.csv')
+write.csv(m6cat_re[[1]], file_m6cat_re, row.names = FALSE)
+
+file_m6cats_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_', place, '_m6cats_re.csv')
+write.csv(m6cats_re[[1]], file_m6cats_re, row.names = FALSE)
+
+###
+
+file_m7cat_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_', place, '_m7cat_re.csv')
+write.csv(m7cat_re[[1]], file_m7cat_re, row.names = FALSE)
+
+file_m7cats_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_', place, '_m7cats_re.csv')
+write.csv(m7cats_re[[1]], file_m7cats_re, row.names = FALSE)
+
+```
+
+
+## Other
+
+```{r}
+# p1_m1me <- plot_model(m3o_re, terms = c("1", "time")) %>% 
+#   .$data %>% ggplot(aes(x=estimate, y=term, color=group)) +
+#   geom_point(size = 3.5,  colour = "black") +
+#   geom_errorbar(aes(xmin = conf.low, xmax = conf.high), 
+#                 width=.05, color= "black") +
+#   geom_pointrange(aes(xmin = conf.low, xmax = conf.high)) +
+#   scale_color_manual(values=c("#88ccee")) +
+#   theme(legend.position = "none",
+#         axis.title.y = element_blank(),
+#         axis.text = element_text(size = 10.5)
+#   ) +
+#   scale_y_discrete(labels=c("time" = "Week", 
+#                             "1" = "Intercept")) +
+#   geom_vline(xintercept=0, 
+#              linetype="solid", 
+#              color = "grey20",
+#              linewidth=1,
+#              alpha =.2) +
+#   labs(title = "Main fixed effects")
+# 
+# p1_m1me
+```
+
+```{r}
+# m2_re <- plot_model(m,
+#            type ="re", terms = "O")
+# 
+# m2_re <- m2_re[[1]]$data
+# 
+# p2_m2re <- m2_re %>% filter(facet == "O (Intercept)") %>% 
+#   ggplot(aes(x=estimate, y=term, color=group)) +
+#   geom_point(size = 3.5,  colour = "black") +
+#   geom_errorbar(aes(xmin = conf.low, xmax = conf.high), 
+#                 width=.8, color= "black") +
+#   geom_pointrange(aes(xmin = conf.low, xmax = conf.high)) +
+#   scale_color_manual(values=c("#ddcc77", "#88ccee")) +
+#   theme(legend.position = "none",
+#         axis.title.y = element_blank(),
+#         axis.text = element_text(size = 10.5)
+#         ) +
+#   geom_vline(xintercept=0, 
+#              linetype="solid", 
+#              color = "grey20",
+#              size=1,
+#              alpha =.2) +
+#   labs(title = "d")
+# 
+# p2_m2re
+```
+
+```{r}
+# eq <- y ~  time + (time | O) + (time | D)
+# model <- glmmTMB(eq, data = df)
+```
+
+```{r}
+# pm3o <- plot_model(m3o, terms = c("time", "O")) %>% 
+#   .$df %>% ggplot(aes(x=estimate, y=term, color=group)) +
+#   geom_point(size = 3.5,  colour = "black") +
+#   geom_errorbar(aes(xmin = conf.low, xmax = conf.high), 
+#                 width=.05, color= "black") +
+#   geom_pointrange(aes(xmin = conf.low, xmax = conf.high)) +
+#   scale_color_manual(values=c("#88ccee")) +
+#   theme(legend.position = "none",
+#         axis.title.y = element_blank(),
+#         axis.text = element_text(size = 10.5)
+#   ) +
+#   scale_y_discrete(labels=c("z_stringency_index" = "Stringency t", 
+#                             "z_cases" = "New cases t",
+#                             "lag(z_stringency_index, 1)" = "Stringency t-1")) +
+#   geom_vline(xintercept=0, 
+#              linetype="solid", 
+#              color = "grey20",
+#              linewidth=1,
+#              alpha =.2) +
+#   labs(title = "c",
+#        subtitle = " Main fixed effects")
+# 
+# p1_m
+```
+
+## Plots of RE
+
+```{r}
+m3cat_re
+m3cats_re
+m4cat_re
+m4cats_re
+m5cat_re
+m5cats_re
+m6cat_re
+m6cats_re
+m7cat_re
+m7cats_re
+```
+
+```{r}
+m6cat_re[[1]]$estimate[[6]]
+
+m6cat$fit$par
+```
+
+```{r}
+# Create predicted data frame for time 1 to 1000
+pred_df_1 <- tibble(time = 1:300, time2 = time^2,
+  fitted = (m6cat$fit$par[[1]] + m6cat_re[[1]]$estimate[[1]]) +
+    (m6cat$fit$par[[2]] + m6cat_re[[1]]$estimate[[6]]) * time + 
+    m6cat$fit$par[[3]] * time2)
+
+# Create predicted data frame for time 1 to 1000
+pred_df_2 <- tibble(time = 1:300, time2 = time^2,
+  fitted = (m6cat$fit$par[[1]] + m6cat_re[[1]]$estimate[[2]]) +
+    (m6cat$fit$par[[2]] + m6cat_re[[1]]$estimate[[7]]) * time + 
+    m6cat$fit$par[[3]] * time2)
+
+# Create predicted data frame for time 1 to 1000
+pred_df_3 <- tibble(time = 1:300, time2 = time^2,
+  fitted = (m6cat$fit$par[[1]] + m6cat_re[[1]]$estimate[[3]]) +
+    (m6cat$fit$par[[2]] + m6cat_re[[1]]$estimate[[8]]) * time + 
+    m6cat$fit$par[[3]] * time2)
+
+# Create predicted data frame for time 1 to 1000
+pred_df_4 <- tibble(time = 1:300, time2 = time^2,
+  fitted = (m6cat$fit$par[[1]] + m6cat_re[[1]]$estimate[[4]]) +
+    (m6cat$fit$par[[2]] + m6cat_re[[1]]$estimate[[9]]) * time + 
+    m6cat$fit$par[[3]] * time2)
+
+# Create predicted data frame for time 1 to 1000
+pred_df_5 <- tibble(time = 1:300, time2 = time^2,
+  fitted = (m6cat$fit$par[[1]] + m6cat_re[[1]]$estimate[[5]]) +
+    (m6cat$fit$par[[2]] + m6cat_re[[1]]$estimate[[10]]) * time + 
+    m6cat$fit$par[[3]] * time2)
+
+# Plot using ggplot
+ggplot() +
+  geom_point(data = df, aes(x = time, y = y), color = "blue", alpha = 0.6, size = 2) +
+  geom_point(data = pred_df_1, aes(x = time, y = fitted), color = "red", alpha = 0.6, size = 1.5) +
+  geom_point(data = pred_df_2, aes(x = time, y = fitted), color = "red3", alpha = 0.6, size = 1.5) +
+  geom_point(data = pred_df_3, aes(x = time, y = fitted), color = "darkred", alpha = 0.6, size = 1.5) +
+  geom_point(data = pred_df_4, aes(x = time, y = fitted), color = "purple4", alpha = 0.6, size = 1.5) +
+  geom_point(data = pred_df_5, aes(x = time, y = fitted), color = "midnightblue", alpha = 0.6, size = 1.5) +
+  labs(title = "Observed vs Predicted (Quadratic Fit)",
+       x = "Time", y = "Y") +
+  xlim(0, 300) +
+  ylim(min(c(df$y, pred_df$fitted), na.rm = TRUE),
+       max(c(df$y, pred_df$fitted, 20), na.rm = TRUE)) +
+  theme_minimal()
+
+```
+
+

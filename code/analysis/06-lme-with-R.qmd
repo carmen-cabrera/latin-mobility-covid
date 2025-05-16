@@ -4,6 +4,8 @@ format: html
 editor: visual
 ---
 
+## Dependencies
+
 ```{r}
 # data wrangling
 library(tidyverse)
@@ -33,7 +35,10 @@ library(equatiomatic)
 library(broom.mixed)
 library(gtsummary)
 library(sjPlot)
+library(modelsummary)
 ```
+
+## Data import
 
 ```{r}
 # Set working directory
@@ -56,10 +61,7 @@ if (country == 'Argentina') {
 } else if (country == 'Colombia') {
     country_short <- 'COL'
     country_code <- 'CO'
-} else if (country == 'Mexico') {
-    country_short <- 'MEX'
-    country_code <- 'MX'
-}
+} 
 ```
 
 ```{r}
@@ -68,206 +70,258 @@ category <- "rdi"
 
 ```{r}
 # Read the CSV file
-file_path <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend.csv')
+file_path <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_new.csv')
 df <- read.csv(file_path)
 
 df$time2 <- df$time^2
 ```
 
 ```{r}
+dates <- read.csv(paste0(wd, '/data/outputs/', country_short, '/mov-analysis/dates.csv'))
+
+df_stringency <- read.csv(paste0(wd, '/data/inputs/covid-stringency/owid-covid-data.csv')) %>%
+  filter(location == "Chile") %>% 
+  filter(date %in% dates$date) %>% 
+  slice(seq(1, n(), by = 7)) %>% 
+  mutate(time = seq(0, n() - 1)) %>%
+  select(time, stringency_index)
+
+df <- df %>% left_join(df_stringency, by = "time") %>% rename("O" = "cat")
+```
+
+```{r}
+df_stringency$stringency_index
+```
+
+## Define models
+
+```{r}
 
 eq1 <- y ~ time
 m1 <- glmmTMB(eq1, data = df)
-summary(m1)
+
+###
+
+eq1s <- y ~ time + stringency_index
+m1s <- glmmTMB(eq1s, data = df)
 
 ###
   
-eq2 <- y ~ time + O + D
-m2 <- glmmTMB(eq2, data = df)
-summary(m2)
+# eq2 <- y ~ time + O + D
+# m2 <- glmmTMB(eq2, data = df)
+# 
+# eq2s <- y ~ time + O + D + stringency_index
+# m2s <- glmmTMB(eq2s, data = df)
 
 eq2o <- y ~ time + O
 m2o <- glmmTMB(eq2o, data = df)
-summary(m2o)
+
+eq2os <- y ~ time + O + stringency_index
+m2os <- glmmTMB(eq2os, data = df)
 
 ###
 
-eq3 <- y ~ time + (1|O) + (1|D)
-m3 <- glmmTMB(eq3, data = df)
-m3_re <- plot_model(m3, type ="re")
-summary(m3)
+# eq3 <- y ~ time + (1|O) + (1|D)
+# m3 <- glmmTMB(eq3, data = df)
+# m3_re <- plot_model(m3, type ="re")
+# 
+# eq3s <- y ~ time + (1|O) + (1|D) + stringency_index
+# m3s <- glmmTMB(eq3s, data = df)
+# m3s_re <- plot_model(m3s, type ="re")
 
 eq3o <- y ~ time + (1|O)
 m3o <- glmmTMB(eq3o, data = df)
 m3o_re <- plot_model(m3o, type ="re")
-summary(m3o)
+
+eq3os <- y ~ time + (1|O) + stringency_index
+m3os <- glmmTMB(eq3os, data = df)
+m3os_re <- plot_model(m3os, type ="re")
 
 ###
 
-df$Of <- factor(df$O)
-df$Df <- factor(df$D)
-eq4 <- y ~ time + (0 + time|Of) + (0 + time|Df)
-m4 <- glmmTMB(eq4, data = df)
-m4_re <- plot_model(m4, type ="re")
-summary(m4)
+# df$Of <- factor(df$O)
+# df$Df <- factor(df$D)
+# eq4 <- y ~ time + (0 + time|Of) + (0 + time|Df)
+# m4 <- glmmTMB(eq4, data = df)
+# m4_re <- plot_model(m4, type ="re")
+# 
+# df$Of <- factor(df$O)
+# df$Df <- factor(df$D)
+# eq4s <- y ~ time + (0 + time|Of) + (0 + time|Df) + stringency_index
+# m4s <- glmmTMB(eq4s, data = df)
+# m4s_re <- plot_model(m4s, type ="re")
 
 df$Of <- factor(df$O)
 eq4o <- y ~ time + (0 + time|Of) 
 m4o <- glmmTMB(eq4o, data = df)
 m4o_re <- plot_model(m4o, type ="re")
-summary(m4o)
+
+df$Of <- factor(df$O)
+eq4os <- y ~ time + (0 + time|Of) + stringency_index
+m4os <- glmmTMB(eq4os, data = df)
+m4os_re <- plot_model(m4os, type ="re")
 
 ###
 
-df$Of <- factor(df$O)
-df$Df <- factor(df$D)
-eq5 <- y ~ time + (time|Of) + (time|Df)
-m5 <- glmmTMB(eq5, data = df)
-m5_re <- plot_model(m5, type ="re")
-summary(m5)
+# df$Of <- factor(df$O)
+# df$Df <- factor(df$D)
+# eq5 <- y ~ time + (time|Of) + (time|Df)
+# m5 <- glmmTMB(eq5, data = df)
+# m5_re <- plot_model(m5, type ="re")
+# 
+# df$Of <- factor(df$O)
+# df$Df <- factor(df$D)
+# eq5s <- y ~ time + (time|Of) + (time|Df) + stringency_index
+# m5s <- glmmTMB(eq5s, data = df)
+# m5s_re <- plot_model(m5s, type ="re")
 
 df$Of <- factor(df$O)
 eq5o <- y ~ time + (time|Of) 
 m5o <- glmmTMB(eq5o, data = df)
 m5o_re <- plot_model(m5o, type ="re")
-summary(m5o)
+
+df$Of <- factor(df$O)
+eq5os <- y ~ time + (time|Of) + stringency_index
+m5os <- glmmTMB(eq5os, data = df)
+m5os_re <- plot_model(m5os, type ="re")
 
 ###
 
-eq6 <- y ~ time + time2 + (time|O) + (time|D)
-m6 <- glmmTMB(eq6, data = df)
-m6_re <- plot_model(m6, type ="re")
-summary(m6)
+# eq6 <- y ~ time + time2 + (time|O) + (time|D)
+# m6 <- glmmTMB(eq6, data = df)
+# m6_re <- plot_model(m6, type ="re")
+# 
+# eq6s <- y ~ time + time2 + (time|O) + (time|D) + stringency_index
+# m6s <- glmmTMB(eq6s, data = df)
+# m6s_re <- plot_model(m6s, type ="re")
+
+eq6o <- y ~ time + time2 + (time|O) 
+m6o <- glmmTMB(eq6o, data = df)
+m6o_re <- plot_model(m6o, type ="re")
+
+eq6os <- y ~ time + time2 + (time|O) + stringency_index
+m6os <- glmmTMB(eq6os, data = df)
+m6os_re <- plot_model(m6os, type ="re")
+
+###
+
+# eq7 <- y ~ time + time2 + (time + time2|O) + (time + time2|D)
+# m7 <- glmmTMB(eq7, data = df)
+# m7_re <- plot_model(m7, type ="re")
+# 
+# eq7s <- y ~ time + time2 + (time + time2|O) + (time + time2|D) + stringency_index
+# m7s <- glmmTMB(eq7s, data = df)
+# m7s_re <- plot_model(m7s, type ="re")
+
+eq7o <- y ~ time + time2 + (time + time2|O) 
+m7o <- glmmTMB(eq7o, data = df)
+m7o_re <- plot_model(m7o, type ="re")
+
+eq7os <- y ~ time + time2 + (time + time2|O) + stringency_index
+m7os <- glmmTMB(eq7os, data = df)
+m7os_re <- plot_model(m7os, type ="re")
 
 ```
 
-|     |
-|-----|
-|     |
+## Save model data
 
 ```{r}
-m3o$fit$par
-m4o$fit$par
-m5o$fit$par
-m3o_re
-m4o_re
-m5o_re
+models_o <- list(
+  m1,
+  m2o,
+  m3o,
+  m4o,
+  m5o,
+  m6o,
+  m7o
+  )
+tidy_results_o <- map_df(models_o, tidy, .id = "model")
+tidy_results_o <- map_df(models_o, tidy, .id = "model")
+file_tidy_results_o <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_tidy_results_o_new.csv')
+write.csv(tidy_results_o, file_tidy_results_o, row.names = FALSE)
+
+glance_results_o <- map_df(models_o, glance, .id = "model")
+file_glance_results_o <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_glance_results_o_new.csv')
+write.csv(glance_results_o, file_glance_results_o, row.names = FALSE)
+
+models_os <- list(
+  m1s,
+  m2os,
+  m3os,
+  m4os,
+  m5os,
+  m6os,
+  m7os
+  )
+tidy_results_os <- map_df(models_os, tidy, .id = "model")
+file_tidy_results_os <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_tidy_results_os_new.csv')
+write.csv(tidy_results_os, file_tidy_results_os, row.names = FALSE)
+
+glance_results_os <- map_df(models_os, glance, .id = "model")
+file_glance_results_os <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_glance_results_os_new.csv')
+write.csv(glance_results_os, file_glance_results_os, row.names = FALSE)
 ```
 
+## Save random effects data
 
 ```{r}
 
-file_m3o <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_m3o.csv')
-write.csv(m3o$fit$par, file_m3o, row.names = FALSE)
 
-file_m3o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_m3o_re.csv')
+file_m3o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m3o_re_new.csv')
 write.csv(m3o_re[[1]], file_m3o_re, row.names = FALSE)
 
+file_m3os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m3os_re_new.csv')
+write.csv(m3os_re[[1]], file_m3os_re, row.names = FALSE)
+
 ###
 
-file_m4o <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_m4o.csv')
-write.csv(m4o$fit$par, file_m4o, row.names = FALSE)
-
-file_m4o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_m4o_re.csv')
+file_m4o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m4o_re_new.csv')
 write.csv(m4o_re[[1]], file_m4o_re, row.names = FALSE)
 
+file_m4os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m4os_re_new.csv')
+write.csv(m4os_re[[1]], file_m4os_re, row.names = FALSE)
+
 ###
 
-file_m5o <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_m5o.csv')
-write.csv(m5o$fit$par, file_m5o, row.names = FALSE)
-
-file_m5o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_m5o_re.csv')
+file_m5o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m5o_re_new.csv')
 write.csv(m5o_re[[1]], file_m5o_re, row.names = FALSE)
 
+file_m5os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m5os_re_new.csv')
+write.csv(m5os_re[[1]], file_m5os_re, row.names = FALSE)
+
+###
+
+file_m6o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m6o_re_new.csv')
+write.csv(m6o_re[[1]], file_m6o_re, row.names = FALSE)
+
+file_m6os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m6os_re_new.csv')
+write.csv(m6os_re[[1]], file_m6os_re, row.names = FALSE)
+
+###
+
+file_m7o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m7o_re_new.csv')
+write.csv(m7o_re[[1]], file_m7o_re, row.names = FALSE)
+
+file_m7os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m7os_re_new.csv')
+write.csv(m7os_re[[1]], file_m7os_re, row.names = FALSE)
 
 
 ```
 
 
 
-
-
-
+## Plots of RE
 
 ```{r}
-p1_m1me <- plot_model(m3o_re, terms = c("1", "time")) %>% 
-  .$data %>% ggplot(aes(x=estimate, y=term, color=group)) +
-  geom_point(size = 3.5,  colour = "black") +
-  geom_errorbar(aes(xmin = conf.low, xmax = conf.high), 
-                width=.05, color= "black") +
-  geom_pointrange(aes(xmin = conf.low, xmax = conf.high)) +
-  scale_color_manual(values=c("#88ccee")) +
-  theme(legend.position = "none",
-        axis.title.y = element_blank(),
-        axis.text = element_text(size = 10.5)
-  ) +
-  scale_y_discrete(labels=c("time" = "Week", 
-                            "1" = "Intercept")) +
-  geom_vline(xintercept=0, 
-             linetype="solid", 
-             color = "grey20",
-             linewidth=1,
-             alpha =.2) +
-  labs(title = "Main fixed effects")
-
-p1_m1me
+m3o_re
+m3os_re
+m4o_re
+m4os_re
+m5o_re
+m5os_re
+m6o_re
+m6os_re
+m7o_re
+m7os_re
 ```
 
-```{r}
-m2_re <- plot_model(m,
-           type ="re", terms = "O")
-
-m2_re <- m2_re[[1]]$data
-
-p2_m2re <- m2_re %>% filter(facet == "O (Intercept)") %>% 
-  ggplot(aes(x=estimate, y=term, color=group)) +
-  geom_point(size = 3.5,  colour = "black") +
-  geom_errorbar(aes(xmin = conf.low, xmax = conf.high), 
-                width=.8, color= "black") +
-  geom_pointrange(aes(xmin = conf.low, xmax = conf.high)) +
-  scale_color_manual(values=c("#ddcc77", "#88ccee")) +
-  theme(legend.position = "none",
-        axis.title.y = element_blank(),
-        axis.text = element_text(size = 10.5)
-        ) +
-  geom_vline(xintercept=0, 
-             linetype="solid", 
-             color = "grey20",
-             size=1,
-             alpha =.2) +
-  labs(title = "d")
-
-p2_m2re
-```
-
-```{r}
-eq <- y ~  time + (time | O) + (time | D)
-model <- glmmTMB(eq, data = df)
-```
-`
-
-```{r}
-pm3o <- plot_model(m3o, terms = c("time", "O")) %>% 
-  .$df %>% ggplot(aes(x=estimate, y=term, color=group)) +
-  geom_point(size = 3.5,  colour = "black") +
-  geom_errorbar(aes(xmin = conf.low, xmax = conf.high), 
-                width=.05, color= "black") +
-  geom_pointrange(aes(xmin = conf.low, xmax = conf.high)) +
-  scale_color_manual(values=c("#88ccee")) +
-  theme(legend.position = "none",
-        axis.title.y = element_blank(),
-        axis.text = element_text(size = 10.5)
-  ) +
-  scale_y_discrete(labels=c("z_stringency_index" = "Stringency t", 
-                            "z_cases" = "New cases t",
-                            "lag(z_stringency_index, 1)" = "Stringency t-1")) +
-  geom_vline(xintercept=0, 
-             linetype="solid", 
-             color = "grey20",
-             linewidth=1,
-             alpha =.2) +
-  labs(title = "c",
-       subtitle = " Main fixed effects")
-
-p1_m
-```
