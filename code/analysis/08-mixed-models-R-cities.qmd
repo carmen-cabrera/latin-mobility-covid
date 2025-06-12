@@ -41,7 +41,7 @@ library(sjPlot)
 
 ```{r}
 # Set working directory
-wd <- '/Users/carmen/Library/CloudStorage/OneDrive-TheUniversityofLiverpool/research/RECAST/latin-mobility-covid-local-files'
+wd <- '/your/path/to/working/directory/'
 
 # Set the country
 country <- 'Chile'
@@ -257,7 +257,6 @@ write.csv(m7cats_re[[1]], file_m7cats_re, row.names = FALSE)
 
 ```
 
-
 ## Other
 
 ```{r}
@@ -410,5 +409,3 @@ ggplot() +
   theme_minimal()
 
 ```
-
-

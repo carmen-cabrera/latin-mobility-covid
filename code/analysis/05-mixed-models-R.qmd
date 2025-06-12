@@ -42,7 +42,7 @@ library(modelsummary)
 
 ```{r}
 # Set working directory
-wd <- '/Users/carmen/Library/CloudStorage/OneDrive-TheUniversityofLiverpool/research/RECAST/latin-mobility-covid-local-files'
+wd <- '/your/path/to/working/directory/'
 
 # Set the country
 country <- 'Argentina'
@@ -308,8 +308,6 @@ write.csv(m7os_re[[1]], file_m7os_re, row.names = FALSE)
 
 ```
 
-
-
 ## Plots of RE
 
 ```{r}
@@ -324,4 +322,3 @@ m6os_re
 m7o_re
 m7os_re
 ```
-
