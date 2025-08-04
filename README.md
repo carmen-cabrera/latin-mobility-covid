@@ -7,7 +7,7 @@ The analysis draws on anonymised, aggregated Meta-Facebook mobility data from Ar
 
 Due to data licensing restrictions, the dataset is not included. However, code and instructions are provided for reproducing the analysis with approved access.
 
-------------------------------------------------------------------------
+
 
 ## System Requirements
 
@@ -17,7 +17,7 @@ Due to data licensing restrictions, the dataset is not included. However, code a
 
 All dependencies are managed through Conda (see `environment.yml`).
 
-------------------------------------------------------------------------
+
 
 ## Installation Guide
 
@@ -40,7 +40,7 @@ conda env create -f environment.yml conda activate geo-env
 jupyter notebook
 ```
 
-------------------------------------------------------------------------
+
 
 ## Demo Instructions
 
@@ -58,7 +58,7 @@ The code will generate:
 
 Each notebook can be run on a standard desktop machine with 16 GB RAM.
 
-------------------------------------------------------------------------
+
 
 ## Reproducing the analysis
 
@@ -68,13 +68,13 @@ To reproduce the analysis:
 -   Follow the notebook sequence
 -   Modify file paths as needed in the notebooks
 
-------------------------------------------------------------------------
+
 
 ## License
 
 This code is released under the [MIT License](LICENSE).
 
-------------------------------------------------------------------------
+
 
 ## Contact
 
