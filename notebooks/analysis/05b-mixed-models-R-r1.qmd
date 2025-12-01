@@ -36,6 +36,7 @@ library(broom.mixed)
 library(gtsummary)
 library(sjPlot)
 library(modelsummary)
+library(brms)
 ```
 
 ## Data import
@@ -81,19 +82,14 @@ df$time2 <- df$time^2
 dates <- read.csv(paste0(wd, '/data/outputs/', country_short, '/mov-analysis/dates.csv'))
 
 df_stringency <- read.csv(paste0(wd, '/data/inputs/covid-stringency/owid-covid-data.csv')) %>%
-  filter(location == "Chile") %>% 
+  filter(location == country) %>% 
   filter(date %in% dates$date) %>% 
   slice(seq(1, n(), by = 7)) %>% 
   mutate(time = seq(0, n() - 1)) %>%
   select(time, stringency_index)
 
-df_old <- read.csv(paste0(wd, '/data/inputs/population/worldpop/old-age-dependency/', country_short, '/per_old_cat_', category, '.csv')) %>% rename("O" = "X")
+df <- df %>% left_join(df_stringency, by = "time") %>% rename("O" = "cat")
 
-df <- df %>% left_join(df_stringency, by = "time") %>% rename("O" = "cat") %>% left_join(df_old, by = "O")
-```
-
-```{r}
-df_stringency$stringency_index
 ```
 
 ## Define models
@@ -105,38 +101,38 @@ m1 <- glmmTMB(eq1, data = df)
 
 ###
 
-eq1s <- y ~ time + stringency_index
+eq1s <- y ~ time + stringency_index 
 m1s <- glmmTMB(eq1s, data = df)
 
 ###
   
-# eq2 <- y ~ time + O + D
+# eq2 <- y ~ time + O + D 
 # m2 <- glmmTMB(eq2, data = df)
 # 
-# eq2s <- y ~ time + O + D + stringency_index
+# eq2s <- y ~ time + O + D + stringency_index 
 # m2s <- glmmTMB(eq2s, data = df)
 
-eq2o <- y ~ time + O
+eq2o <- y ~ time + O 
 m2o <- glmmTMB(eq2o, data = df)
 
-eq2os <- y ~ time + O + stringency_index
+eq2os <- y ~ time + O + stringency_index 
 m2os <- glmmTMB(eq2os, data = df)
 
 ###
 
-# eq3 <- y ~ time + (1|O) + (1|D)
+# eq3 <- y ~ time + (1|O) + (1|D) 
 # m3 <- glmmTMB(eq3, data = df)
 # m3_re <- plot_model(m3, type ="re")
 # 
-# eq3s <- y ~ time + (1|O) + (1|D) + stringency_index
+# eq3s <- y ~ time + (1|O) + (1|D) + stringency_index 
 # m3s <- glmmTMB(eq3s, data = df)
 # m3s_re <- plot_model(m3s, type ="re")
 
-eq3o <- y ~ time + (1|O)
+eq3o <- y ~ time + (1|O) 
 m3o <- glmmTMB(eq3o, data = df)
 m3o_re <- plot_model(m3o, type ="re")
 
-eq3os <- y ~ time + (1|O) + stringency_index
+eq3os <- y ~ time + (1|O) + stringency_index 
 m3os <- glmmTMB(eq3os, data = df)
 m3os_re <- plot_model(m3os, type ="re")
 
@@ -144,13 +140,13 @@ m3os_re <- plot_model(m3os, type ="re")
 
 # df$Of <- factor(df$O)
 # df$Df <- factor(df$D)
-# eq4 <- y ~ time + (0 + time|Of) + (0 + time|Df)
+# eq4 <- y ~ time + (0 + time|Of) + (0 + time|Df) 
 # m4 <- glmmTMB(eq4, data = df)
 # m4_re <- plot_model(m4, type ="re")
 # 
 # df$Of <- factor(df$O)
 # df$Df <- factor(df$D)
-# eq4s <- y ~ time + (0 + time|Of) + (0 + time|Df) + stringency_index
+# eq4s <- y ~ time + (0 + time|Of) + (0 + time|Df) + stringency_index 
 # m4s <- glmmTMB(eq4s, data = df)
 # m4s_re <- plot_model(m4s, type ="re")
 
@@ -160,7 +156,7 @@ m4o <- glmmTMB(eq4o, data = df)
 m4o_re <- plot_model(m4o, type ="re")
 
 df$Of <- factor(df$O)
-eq4os <- y ~ time + (0 + time|Of) + stringency_index
+eq4os <- y ~ time + (0 + time|Of) + stringency_index 
 m4os <- glmmTMB(eq4os, data = df)
 m4os_re <- plot_model(m4os, type ="re")
 
@@ -168,13 +164,13 @@ m4os_re <- plot_model(m4os, type ="re")
 
 # df$Of <- factor(df$O)
 # df$Df <- factor(df$D)
-# eq5 <- y ~ time + (time|Of) + (time|Df)
+# eq5 <- y ~ time + (time|Of) + (time|Df) + ratio
 # m5 <- glmmTMB(eq5, data = df)
 # m5_re <- plot_model(m5, type ="re")
 # 
 # df$Of <- factor(df$O)
 # df$Df <- factor(df$D)
-# eq5s <- y ~ time + (time|Of) + (time|Df) + stringency_index
+# eq5s <- y ~ time + (time|Of) + (time|Df) + stringency_index + ratio
 # m5s <- glmmTMB(eq5s, data = df)
 # m5s_re <- plot_model(m5s, type ="re")
 
@@ -184,17 +180,17 @@ m5o <- glmmTMB(eq5o, data = df)
 m5o_re <- plot_model(m5o, type ="re")
 
 df$Of <- factor(df$O)
-eq5os <- y ~ time + (time|Of) + stringency_index
+eq5os <- y ~ time + (time|Of) + stringency_index 
 m5os <- glmmTMB(eq5os, data = df)
 m5os_re <- plot_model(m5os, type ="re")
 
 ###
 
-# eq6 <- y ~ time + time2 + (time|O) + (time|D)
+# eq6 <- y ~ time + time2 + (time|O) + (time|D) + ratio
 # m6 <- glmmTMB(eq6, data = df)
 # m6_re <- plot_model(m6, type ="re")
 # 
-# eq6s <- y ~ time + time2 + (time|O) + (time|D) + stringency_index
+# eq6s <- y ~ time + time2 + (time|O) + (time|D) + stringency_index + ratio
 # m6s <- glmmTMB(eq6s, data = df)
 # m6s_re <- plot_model(m6s, type ="re")
 
@@ -202,17 +198,17 @@ eq6o <- y ~ time + time2 + (time|O)
 m6o <- glmmTMB(eq6o, data = df)
 m6o_re <- plot_model(m6o, type ="re")
 
-eq6os <- y ~ time + time2 + (time|O) + stringency_index
+eq6os <- y ~ time + time2 + (time|O) + stringency_index 
 m6os <- glmmTMB(eq6os, data = df)
 m6os_re <- plot_model(m6os, type ="re")
 
 ###
 
-# eq7 <- y ~ time + time2 + (time + time2|O) + (time + time2|D)
+# eq7 <- y ~ time + time2 + (time + time2|O) + (time + time2|D) + ratio
 # m7 <- glmmTMB(eq7, data = df)
 # m7_re <- plot_model(m7, type ="re")
 # 
-# eq7s <- y ~ time + time2 + (time + time2|O) + (time + time2|D) + stringency_index
+# eq7s <- y ~ time + time2 + (time + time2|O) + (time + time2|D) + stringency_index + ratio
 # m7s <- glmmTMB(eq7s, data = df)
 # m7s_re <- plot_model(m7s, type ="re")
 
@@ -220,10 +216,31 @@ eq7o <- y ~ time + time2 + (time + time2|O)
 m7o <- glmmTMB(eq7o, data = df)
 m7o_re <- plot_model(m7o, type ="re")
 
-eq7os <- y ~ time + time2 + (time + time2|O) + stringency_index
+eq7os <- y ~ time + time2 + (time + time2|O) + stringency_index 
 m7os <- glmmTMB(eq7os, data = df)
 m7os_re <- plot_model(m7os, type ="re")
 
+df$O  <- factor(df$O)
+eq8o <- y ~ 
+    s(time, k = 8) + 
+    s(time, O, bs = "fs", k = 7)
+m_gam <- gam(eq8o, data = df, method = "REML")
+
+df$O  <- factor(df$O)
+eq8os <- y ~ 
+    s(time, k = 8) + 
+    stringency_index + 
+    s(time, O, bs = "fs", k = 7)
+m_gams <- gam(eq8os, data   = df, method = "REML")
+
+```
+
+```{r}
+summary(m_gam)$s.table
+```
+
+```{r}
+plot(m_gam, pages = 1, rug = FALSE, scheme = 1, shade = TRUE)
 ```
 
 ## Save model data
@@ -236,10 +253,15 @@ models_o <- list(
   m4o,
   m5o,
   m6o,
-  m7o
+  m7o, 
+  m_gam
   )
-tidy_results_o <- map_df(models_o, tidy, .id = "model")
-tidy_results_o <- map_df(models_o, tidy, .id = "model")
+tidy_fixed <- map_df(models_o, ~ tidy(.x, parametric = TRUE), .id = "model")
+tidy_smooth <- map_df(models_o, ~ tidy(.x, smooth = TRUE), .id = "model")
+
+tidy_results_o <- bind_rows(tidy_fixed, tidy_smooth) %>%
+  distinct()
+
 file_tidy_results_o <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_tidy_results_o_new.csv')
 write.csv(tidy_results_o, file_tidy_results_o, row.names = FALSE)
 
@@ -254,9 +276,13 @@ models_os <- list(
   m4os,
   m5os,
   m6os,
-  m7os
+  m7os,
+  m_gams
   )
-tidy_results_os <- map_df(models_os, tidy, .id = "model")
+tidy_fixed <- map_df(models_os, ~ tidy(.x, parametric = TRUE), .id = "model")
+tidy_smooth <- map_df(models_os, ~ tidy(.x, smooth = TRUE), .id = "model")
+tidy_results_os <- bind_rows(tidy_fixed, tidy_smooth) %>%
+  distinct()
 file_tidy_results_os <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_tidy_results_os_new.csv')
 write.csv(tidy_results_os, file_tidy_results_os, row.names = FALSE)
 
@@ -307,21 +333,147 @@ write.csv(m7o_re[[1]], file_m7o_re, row.names = FALSE)
 
 file_m7os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m7os_re_new.csv')
 write.csv(m7os_re[[1]], file_m7os_re, row.names = FALSE)
-
-
 ```
 
 ## Plots of RE
 
 ```{r}
-m3o_re
-m3os_re
-m4o_re
-m4os_re
-m5o_re
-m5os_re
-m6o_re
-m6os_re
-m7o_re
-m7os_re
+# m3o_re
+# m3os_re
+# m4o_re
+# m4os_re
+# m5o_re
+# m5os_re
+# m6o_re
+# m6os_re
+# m7o_re
+# m7os_re
+```
+
+## Compute recovery times for spline model. The 95% confidence intervals are computed via bootstrap.
+
+```{r}
+stringency <- FALSE
+```
+
+```{r}
+# Create new time sequence covering the range of your original data
+new_time <- expand.grid(
+  time = seq(min(df$time), max(df$time)*100, length.out = max(df$time)*100-min(df$time)+1),
+  O = levels(df$O)   # one dataset per group
+)
+
+new_time <- new_time %>%
+  left_join(df[, c("time", "O", "stringency_index")], by = c("time", "O"))
+
+new_time$stringency_index[is.na(new_time$stringency_index)] <- 0
+
+
+if (stringency == FALSE) {
+  new_time <- expand.grid(
+  time = seq(min(df$time), max(df$time)*100, length.out = max(df$time)*100-min(df$time)+1),
+  O = levels(df$O)   # one dataset per group
+)
+  pred_base <- predict(m_gam, newdata = new_time, se.fit = TRUE)
+} else {
+  pred_base <- predict(m_gams, newdata = new_time, se.fit = TRUE)
+}
+
+new_time$fit <- pred_base$fit
+new_time$se  <- pred_base$se.fit
+
+# Find FIRST root where preds(t) == target
+get_root_threshold <- function(time, preds, target) {
+  diff_sign <- diff(sign(preds - target))
+  crossings <- which(diff_sign != 0)
+  if (length(crossings) == 0) return(NA)
+  
+  i <- crossings[1]  # first crossing
+  out <- tryCatch(
+    uniroot(function(t) {
+      approx(time, preds - target, xout = t)$y
+    },
+    lower = time[i],
+    upper = time[i + 1])$root,
+    error = function(e) NA
+  )
+  return(out)
+}
+
+alphas <- seq(0, 1, by = 0.05)   # adjust resolution as needed
+
+# Bootstrap confidence intervals
+set.seed(123)
+n_boot <- 200   # increase to 500–1000 for publication
+
+results_alpha <- map_df(levels(df$O), function(g) {
+  
+  group_data <- new_time %>% filter(O == g)
+
+  # group-specific y(t=0): use earliest time in grid for that group
+  idx0 <- which.min(group_data$time)
+  y0_group <- group_data$fit[idx0]
+  
+  # For each alpha / target, bootstrap
+  map_df(seq_along(alphas), function(j) {
+    alpha   <- alphas[j]
+    target <- (1 - alpha) * y0_group
+    
+    boot_roots <- replicate(n_boot, {
+      # simulate one curve from uncertainty
+      y_sim <- rnorm(nrow(group_data), mean = group_data$fit, sd = group_data$se)
+      get_root_threshold(group_data$time, y_sim, target)
+    })
+    
+    data.frame(
+      O        = g,
+      alpha    = alpha,
+      y_target = target,
+      t_alpha  = median(boot_roots, na.rm = TRUE),
+      CI_lower = quantile(boot_roots, 0.025, na.rm = TRUE),
+      CI_upper = quantile(boot_roots, 0.975, na.rm = TRUE),
+      SD_t_alpha = sd(boot_roots, na.rm = TRUE)
+    )
+  })
+})
+
+results_alpha <- as_tibble(results_alpha)  
+
+```
+
+## Save recovery times for splines model
+
+```{r}
+
+if (stringency == FALSE) {
+  file_results_alpha <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/recovery-times-gam-r1.csv')
+} else {
+  file_results_alpha <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/recovery-times-gams-r1.csv')
+}
+write.csv(results_alpha, file_results_alpha, row.names = FALSE)
+
+```
+
+## Plot recovery times splines model for various alpha
+
+```{r}
+ggplot(results_alpha, aes(x = alpha, y = t_alpha, color = O, group = O)) +
+  geom_line(size = 1) +
+  geom_ribbon(aes(ymin = CI_lower, ymax = CI_upper, fill = O),
+              alpha = 0.15, color = NA) +
+  labs(
+    title = "Time to reach threshold level (1 - α)",
+    x = expression(alpha),
+    y = expression(t(alpha)),
+    color = "Group (O)",
+    fill = "Group (O)"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "right",
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 11),
+    plot.title = element_text(face = "bold", size = 16)
+  )
+
 ```
