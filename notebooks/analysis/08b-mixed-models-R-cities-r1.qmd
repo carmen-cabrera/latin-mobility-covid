@@ -35,6 +35,7 @@ library(equatiomatic)
 library(broom.mixed)
 library(gtsummary)
 library(sjPlot)
+library(mgcv)
 ```
 
 ## Data import
@@ -557,4 +558,3 @@ ggplot(results_alpha, aes(x = alpha, y = t_alpha, color = cat, group = cat)) +
   )
 
 ```
-

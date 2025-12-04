@@ -36,7 +36,8 @@ library(broom.mixed)
 library(gtsummary)
 library(sjPlot)
 library(modelsummary)
-library(brms)
+library(mgcv)
+
 ```
 
 ## Data import
