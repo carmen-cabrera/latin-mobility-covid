@@ -1,0 +1,60 @@
+\documentclass[fleqn,10pt]{letter}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper, margin=0.87in]{geometry}
+
+\begin{document}
+
+\centre{\Large{\textbf{Long-term disparities in the recovery of urban mobility after COVID-19 in Latin America}}}
+
+Key points:
+
+
+\begin{itemize}
+    \item We introduce a novel methodology for mobility data imputation
+    \begin{itemize}
+        \item Our study introduces a data processing method to address missing values in mobility datasets, a common issue in digital trace data.
+        \item It combines population estimates (e.g., WorldPop data) and spatial interaction models to reconstruct baseline mobility counts.
+        \item This approach addresses the biases introduced by missing data due to low counts in sparsely populated areas or areas where Facebook app usage is not widespread. It addresses the underrepresentation of areas with low population density.
+    \end{itemize}
+    
+    \item We focus on long-term recovery trends:
+    \begin{itemize}
+        \item Unlike most studies that focus on mobility patterns during 2020 and maybe 2021, our study extends the analysis up to 2022.
+        \item We evaluate the speed and extent of recovery across socioeconomic groups, revealing that initial changes in urban mobility have persisted to shape the long-term trajectory of mobility levels.
+    \end{itemize}
+    
+    \item We focus on Latin America cities
+    \begin{itemize}
+        \item Our study covers multiple Latin American countries (Argentina, Chile, Colombia), a region underrepresented in mobility studies.
+        \item Latin America is one of the most unequal regions in the world and we know COVID-19 exacerbated inequalities.
+        \item We leverage 213 million observations from Meta-Facebook’s mobile location data, providing an unprecedented level of spatiotemporal granularity.
+        \item This allows for a comparative assessment of mobility trends across urban and socioeconomic contexts.
+    \end{itemize}
+    
+    \item Results, focusing on the persistence of mobility disparities over time and how initial changes have shaped the speed of recovery
+    \begin{itemize}
+        \item Disparities in recovery trends. Our findings show that mobility inequalities observed in early 2020 did not disappear but persisted well into 2022. Particularly, here are some observations relating to differences in recovery trends:
+        \begin{itemize}
+            \item Recovery times vary by country and within countries by population density category. Higher population density generally leads to longer recovery times, particularly in Chile (up to 3 years and 9 month predicted recovery time in highly dense areas). In Argentina up to 1 year and 11 months, and in Colombia up to 2 years and 9 months.
+            \item Economic deprivation also affects mobility. More deprived areas in Argentina and Chile experience faster recovery (negative recovery times in most deprived areas of Argentina). Less deprived areas have longer recovery times. Results for Colombia are more mixed, with medium-deprivation groups showing negative recovery times.
+            \item So, perhaps contrary to expectations, the least deprived groups recorded the steepest and most persistent losses in mobility.
+            \item Remote and hybrid work have altered commuting behaviours, and have reduced the necessity of travel for higher-income groups, to a greater extent than less deprived communities.
+            \item What are the consequences? Wealthier people don't need to commute as much, saving time and money. Does this amplify inequalities?
+        \end{itemize}
+        
+        \item Cities. We see a decay in mobility to urban cores which makes us question the new role of cities after the pandemic
+        \begin{itemize}
+            \item Mobility to urban cores (centres of functional urban areas) has not returned to pre-pandemic levels, even after restrictions were lifted
+            \item This raises questions about the changing function of cities, particularly:
+            \begin{itemize}
+                \item The future of central business districts in an era of hybrid/remote work.
+                \item The role of cities as centres for innovation, culture, etc. as the frequency of in-person encounters decreases.
+                \item The redistribution of economic activities across metropolitan areas.
+                \item Potential long-term shifts in transportation, housing demand, and urban planning.
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,78 @@
+\documentclass[fleqn,10pt]{wlscirep}
+\usepackage[utf8]{inputenc}
+\usepackage{units}
+\usepackage{makecell}
+\usepackage{float}
+\usepackage[T1]{fontenc}
+\title{Sustained changes to urban mobility after COVID-19 amplified socio-economic inequalities in Latin America}
+
+
+
+\author[1,2,*,\textsuperscript{\textdagger}]{Carmen Cabrera}
+\author[3]{Miguel González-Leonardo}
+\author[1]{Andrea Nasuto}
+\author[2]{Ruth Neville}
+\author[1,\textsuperscript{\textdagger}]{Francisco Rowe}
+\affil[1]{Geographic Data Science Lab, Department of Geography and Planning, University of Liverpool, Liverpool, UK}
+\affil[2]{Centre for Advanced Spatial Analysis, University College London, London, UK}
+\affil[3]{Centre for Demographic Urban and Environmental Studies, El Colegio de México, México City, México}
+
+
+\affil[*]{Corresponding author: c.cabrera@liverpool.ac.uk}
+
+\affil[ \textsuperscript{\textdagger}]{These authors have contributed equally to this study.}
+
+%\keywords{Keyword1, Keyword2, Keyword3}
+
+
+\begin{abstract}
+
+Urban mobility is central to economic activity, social inclusion and access to services. COVID-19 caused disruptions to mobility globally, yet its long-term impacts in less developed countries remain poorly understood. Using an unprecedentedly large dataset of $>$170 million mobile phone records from Meta-Facebook users in Argentina, Chile, and Colombia (March 2020–May 2022), we find sustained changes in mobility across socioeconomic and rural–urban gradients. We reveal that mobility recorded the sharpest declines and remained below pre-pandemic levels in most high-density and low socio-economic deprivation areas, while low-density and more deprived communities returned to baseline. These differences reflect the scale of the initial mobility shock, rather than subsequent recovery rates. Our findings reveal how a global shock can entrench disparities in human mobility, with implications for economic resilience, social inclusion and urban planning in unequal nations. Our study underscores the need for proactive policies to prevent long‑lasting inequalities in mobility.
+
+\end{abstract}
+
+\begin{document}
+
+\flushbottom
+\maketitle
+
+\thispagestyle{empty}
+
+Cities were epicentres of the COVID-19 pandemic. By November 2020, approximately 95\% of all the reported infections and fatalities had concentrated in a few large cities \cite{Pomeroy2021}. Stringency measures to contain the spread of COVID-19 reshaped the global patterns of urban mobility in the early months of 2020 \cite{nouvellet2021}. Social distancing, lockdowns, and business and school closures forced sharp declines in human mobility, notably in large cities \cite{florida2021}, responding to a need for limited social face-to-face contact and a transition to increased digital interaction. Against this backdrop, media headlines portrayed a gloomy prospect for cities pointing to an ``urban exodus'' with anecdotal evidence showing an intensification in the relative number of people moving from large cities to suburbs and rural locations \cite{paybarah2020new, marsh2020escape}.
+
+Subsequent scientific studies examined these patterns, providing empirical evidence for widespread reductions in the intensity of both short- and long-distance movements from cities \cite{de2022overview}, particularly during the outbreak of the COVID-19 pandemic in the early months of 2020. While the extent of these changes varied widely across cities \cite{hunter2024city, kephart2021effect}, they were consistently documented across many developed and developing countries during the early months of 2020 \cite{nouvellet2021, rowe2023}. Mobility from dense metropolitan areas contributed to reinvigorating ongoing processes of counter-urbanisation and suburbanisation in some countries \cite{rowe2023}, or setting these processes in motion in others \cite{halfacree2024counterurbanisation}. In the United States, COVID-19 is attributed with a hollowing out of large cities, creating a ``doughnut'' shape in metropolitan areas that reflects movements away from core city areas to suburban and outer parts \cite{ramani2024working}.
+
+Layered onto these patterns, existing evidence indicates that the impact of COVID-19 on human mobility was unevenly across socio-economic groups \cite{duenas2021changes, do2021association, elejalde2024}. Stringency measures to curb the spread of COVID-19 infections sought to restrict mobility, with exceptions made for those with essential occupations in healthcare, transportation and retail services, such as in supermarkets \cite{florida2021}. To a large extent, these occupations included lower-paid jobs and relied heavily in public-facing face-to-face interactions \cite{florida2021}. As such, less socio-economically deprived communities recorded larger reductions in mobility than more deprived groups, as the former could shift to remote working and thus avoid the need for commuting to work \cite{nathan2020}. 
+
+While existing work has advanced our understanding of the COVID-19 impacts on human mobility in more developed countries \cite{gonzález-leonardo2022b, roweCalafiore2022, rowe2023, wang2022}, less is known about the extent and persistence of mobility changes in less developed nations beyond the year 2020. The lack of suitable data has been a major limitation to capture national-scale changes to human mobility in less developed countries during the pandemic \cite{ RoweCCA24}. Traditionally, census and survey data comprise the main source to study human mobility patterns in these countries \cite{bell2014}. Yet, these data systems are not frequently updated and suffer from slow releases \cite{rowe2023big, Cabrera-Arnau2023}, with census data for example being collected over intervals of ten years in most Latin American countries, and released with a considerable time lag \cite{bell2014}. 
+
+Data resulting from social interactions on digital platforms have emerged as a unique source of information to capture human population movement in less developed countries \cite{rowe2023big}. Particularly, location data from mobile phone applications have become a prominent source to sense patterns of human mobility at higher geographical and temporal resolution in real time \cite{calafiore2023, iradukunda2025}. These data sources have consistently documented the sharp and widespread mobility declines during the early months of the pandemic across Latin American cities \cite{RoweCCA24, covidMexico24, elejalde2024, demography25}, providing a well-established empirical foundation for focusing on the persistence and inequality of the post-pandemic recovery in the present study.
+
+Drawing on a large dataset of 170 million observations from Meta-Facebook users' mobile location data, we aim to assess the extent and pace of urban mobility recovery in Argentina, Chile and Colombia over a 26-month period from March 2020 to May 2022 following abrupt declines during early phases of the COVID-19 pandemic. Specifically, we seek to address the following set of questions:
+
+$\bullet$ To what extent have declines in human mobility endured the COVID-19 outbreak? 
+ 
+$\bullet$ How has the recovery of mobility levels varied across rural-urban and socioeconomic gradients?
+
+$\bullet$ How has COVID-19 impacted human mobility in high-density urban cores?
+
+Latin America provides an ideal test-bed for addressing these questions because of its exceptionally high levels of inequalities \cite{de2004inequality, carranza2023wealth} and urbanisation \cite{united2023world}. Half of the 20 most unequal countries on the planet are in this region. The average income Gini index of the region is 4 percentage points higher than Africa's and 11 higher than China's \cite{milanovic2016global}. Cities display some of the starkest inequalities \cite{habitat2022world}. Reportedly, their public transit riderships have remained well below pre-pandemic levels \cite{bloomberg2025transit}. Currently, over 80\% of the population in Latin America live in urban areas. By 2050, this share is predicted to reach 89\% \cite{habitat2022world}. Developing an understanding of human mobility in Latin America is thus important to support sustainable and inclusive cities \cite{habitat2022world}.
+
+\bibliography{bibliography.bib}
+
+\section*{Acknowledgements}
+
+The authors acknowledge the financial support of Research England through the Public Policy Quality-Related Pump-Priming Fund (project ID: 177990). CC and FR acknowledge the financial support of the UK's Economic and Social Research Council (project ID: ES/Y010787/1).
+
+\section*{Author contributions statement}
+
+C.C.: conceived the study, designed the methodology, carried out the data analysis, contributed towards the interpretation of results, wrote and revised the manuscript; F.R.: conceived the study, designed the methodology, contributed towards the interpretation of results, wrote and revised the manuscript; M. G.-L.: conceived the study, wrote and revised the manuscript; A. N. and R. N: carried out the data analysis, revised the manuscript. All authors gave their final approval for publication.
+
+\section*{Additional information}
+
+The code for this study will be made available on GitHub shortly.
+
+%through the following link: \href{https://github.com/carmen-cabrera/latin-mobility-covid}{https://github.com/carmen-cabrera/latin-mobility-covid}.
+
+
+\end{document}
