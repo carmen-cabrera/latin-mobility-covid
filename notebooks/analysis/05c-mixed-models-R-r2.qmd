@@ -46,7 +46,7 @@ wd <- '/your/path/to/working/directory/'
 wd <- '/Users/carmen/Library/CloudStorage/OneDrive-TheUniversityofLiverpool/research/latin-mobility-covid'
 
 # Set the country
-country <- 'Argentina'
+country <- 'Colombia'
 
 # Initialize variables for country_short and country_code
 country_short <- ""
@@ -66,18 +66,22 @@ if (country == 'Argentina') {
 ```
 
 ```{r}
-category <- "density"
-data_version <- "new"  # use "subunit0" for the conservative-imputed branch
-output_version <- ifelse(data_version == "new", "new", data_version)
+category <- "rdi"
+data_version <- "raw_adjusted_no_imputation_r2"
 ```
 
 ```{r}
 # Read the CSV file
-file_path <- if (data_version == "new") {
-  paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_new.csv')
-} else {
-  paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_', data_version, '.csv')
-}
+file_path <- paste0(
+  wd,
+  '/data/outputs/',
+  country_short,
+  '/mov-analysis/by-',
+  category,
+  '/data_trend_',
+  data_version,
+  '.csv'
+)
 df <- read.csv(file_path)
 
 df$time2 <- df$time^2
@@ -246,11 +250,11 @@ models_o <- list(
   )
 tidy_results_o <- map_df(models_o, tidy, .id = "model")
 tidy_results_o <- map_df(models_o, tidy, .id = "model")
-file_tidy_results_o <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_tidy_results_o_', output_version, '.csv')
+file_tidy_results_o <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_tidy_results_o_', data_version, '.csv')
 write.csv(tidy_results_o, file_tidy_results_o, row.names = FALSE)
 
 glance_results_o <- map_df(models_o, glance, .id = "model")
-file_glance_results_o <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_glance_results_o_', output_version, '.csv')
+file_glance_results_o <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_glance_results_o_', data_version, '.csv')
 write.csv(glance_results_o, file_glance_results_o, row.names = FALSE)
 
 models_os <- list(
@@ -263,11 +267,11 @@ models_os <- list(
   m7os
   )
 tidy_results_os <- map_df(models_os, tidy, .id = "model")
-file_tidy_results_os <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_tidy_results_os_', output_version, '.csv')
+file_tidy_results_os <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_tidy_results_os_', data_version, '.csv')
 write.csv(tidy_results_os, file_tidy_results_os, row.names = FALSE)
 
 glance_results_os <- map_df(models_os, glance, .id = "model")
-file_glance_results_os <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_glance_results_os_', output_version, '.csv')
+file_glance_results_os <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_glance_results_os_', data_version, '.csv')
 write.csv(glance_results_os, file_glance_results_os, row.names = FALSE)
 ```
 
@@ -276,42 +280,42 @@ write.csv(glance_results_os, file_glance_results_os, row.names = FALSE)
 ```{r}
 
 
-file_m3o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m3o_re_', output_version, '.csv')
+file_m3o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m3o_re_', data_version, '.csv')
 write.csv(m3o_re[[1]], file_m3o_re, row.names = FALSE)
 
-file_m3os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m3os_re_', output_version, '.csv')
+file_m3os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m3os_re_', data_version, '.csv')
 write.csv(m3os_re[[1]], file_m3os_re, row.names = FALSE)
 
 ###
 
-file_m4o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m4o_re_', output_version, '.csv')
+file_m4o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m4o_re_', data_version, '.csv')
 write.csv(m4o_re[[1]], file_m4o_re, row.names = FALSE)
 
-file_m4os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m4os_re_', output_version, '.csv')
+file_m4os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m4os_re_', data_version, '.csv')
 write.csv(m4os_re[[1]], file_m4os_re, row.names = FALSE)
 
 ###
 
-file_m5o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m5o_re_', output_version, '.csv')
+file_m5o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m5o_re_', data_version, '.csv')
 write.csv(m5o_re[[1]], file_m5o_re, row.names = FALSE)
 
-file_m5os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m5os_re_', output_version, '.csv')
+file_m5os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m5os_re_', data_version, '.csv')
 write.csv(m5os_re[[1]], file_m5os_re, row.names = FALSE)
 
 ###
 
-file_m6o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m6o_re_', output_version, '.csv')
+file_m6o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m6o_re_', data_version, '.csv')
 write.csv(m6o_re[[1]], file_m6o_re, row.names = FALSE)
 
-file_m6os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m6os_re_', output_version, '.csv')
+file_m6os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m6os_re_', data_version, '.csv')
 write.csv(m6os_re[[1]], file_m6os_re, row.names = FALSE)
 
 ###
 
-file_m7o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m7o_re_', output_version, '.csv')
+file_m7o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m7o_re_', data_version, '.csv')
 write.csv(m7o_re[[1]], file_m7o_re, row.names = FALSE)
 
-file_m7os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m7os_re_', output_version, '.csv')
+file_m7os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m7os_re_', data_version, '.csv')
 write.csv(m7os_re[[1]], file_m7os_re, row.names = FALSE)
 
 
