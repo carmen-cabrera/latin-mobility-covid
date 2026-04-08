@@ -36,6 +36,7 @@ library(broom.mixed)
 library(gtsummary)
 library(sjPlot)
 library(modelsummary)
+library(mgcv)
 ```
 
 ## Data import
@@ -67,21 +68,55 @@ if (country == 'Argentina') {
 
 ```{r}
 category <- "rdi"
-data_version <- "raw_adjusted_no_imputation_r2"
+data_version <- "censored10"  # options: "standard", "subunit0", "censored10", "raw"
+
+valid_versions <- c("standard", "subunit0", "censored10", "raw")
+
+if (!(data_version %in% valid_versions)) {
+  stop(
+    "Unsupported data_version. Choose one of: ",
+    paste(valid_versions, collapse = ", ")
+  )
+}
+
+input_version_candidates <- switch(
+  data_version,
+  "standard" = c("new", "standard"),
+  "subunit0" = c("subunit0", "new-subunit0"),
+  "censored10" = c("new-censored10", "censored10"),
+  "raw" = c("raw_adjusted_no_imputation_r2", "raw")
+)
+
+output_version <- data_version
 ```
 
 ```{r}
 # Read the CSV file
-file_path <- paste0(
+trend_dir <- paste0(
   wd,
   '/data/outputs/',
   country_short,
   '/mov-analysis/by-',
-  category,
+  category
+)
+
+candidate_paths <- paste0(
+  trend_dir,
   '/data_trend_',
-  data_version,
+  input_version_candidates,
   '.csv'
 )
+
+existing_paths <- candidate_paths[file.exists(candidate_paths)]
+
+if (length(existing_paths) == 0) {
+  stop(
+    "No trend file found for data_version = '", data_version, "'. Tried: ",
+    paste(basename(candidate_paths), collapse = ", ")
+  )
+}
+
+file_path <- existing_paths[[1]]
 df <- read.csv(file_path)
 
 df$time2 <- df$time^2
@@ -91,20 +126,16 @@ df$time2 <- df$time^2
 dates <- read.csv(paste0(wd, '/data/outputs/', country_short, '/mov-analysis/dates.csv'))
 
 df_stringency <- read.csv(paste0(wd, '/data/inputs/covid-stringency/owid-covid-data.csv')) %>%
-  filter(location == "Chile") %>% 
+  filter(location == country) %>% 
   filter(date %in% dates$date) %>% 
   slice(seq(1, n(), by = 7)) %>% 
   mutate(time = seq(0, n() - 1)) %>%
   select(time, stringency_index)
 
-df_old <- read.csv(paste0(wd, '/data/inputs/population/worldpop/old-age-dependency/', country_short, '/per_old_cat_', category, '.csv')) %>% rename("O" = "X")
 
-df <- df %>% left_join(df_stringency, by = "time") %>% rename("O" = "cat") %>% left_join(df_old, by = "O")
+df <- df %>% left_join(df_stringency, by = "time") %>% rename("O" = "cat") 
 ```
 
-```{r}
-df_stringency$stringency_index
-```
 
 ## Define models
 
@@ -234,6 +265,19 @@ eq7os <- y ~ time + time2 + (time + time2|O) + stringency_index
 m7os <- glmmTMB(eq7os, data = df)
 m7os_re <- plot_model(m7os, type ="re")
 
+df$O <- factor(df$O)
+eq8o <- y ~
+  s(time, k = 8) +
+  s(time, O, bs = "fs", k = 7)
+m_gam <- gam(eq8o, data = df, method = "REML")
+
+df$O <- factor(df$O)
+eq8os <- y ~
+  s(time, k = 8) +
+  stringency_index +
+  s(time, O, bs = "fs", k = 7)
+m_gams <- gam(eq8os, data = df, method = "REML")
+
 ```
 
 ## Save model data
@@ -246,15 +290,18 @@ models_o <- list(
   m4o,
   m5o,
   m6o,
-  m7o
+  m7o,
+  m_gam
   )
-tidy_results_o <- map_df(models_o, tidy, .id = "model")
-tidy_results_o <- map_df(models_o, tidy, .id = "model")
-file_tidy_results_o <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_tidy_results_o_', data_version, '.csv')
+tidy_fixed <- map_df(models_o, ~ tidy(.x, parametric = TRUE), .id = "model")
+tidy_smooth <- map_df(models_o, ~ tidy(.x, smooth = TRUE), .id = "model")
+tidy_results_o <- bind_rows(tidy_fixed, tidy_smooth) %>%
+  distinct()
+file_tidy_results_o <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_tidy_results_o_', output_version, '.csv')
 write.csv(tidy_results_o, file_tidy_results_o, row.names = FALSE)
 
 glance_results_o <- map_df(models_o, glance, .id = "model")
-file_glance_results_o <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_glance_results_o_', data_version, '.csv')
+file_glance_results_o <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_glance_results_o_', output_version, '.csv')
 write.csv(glance_results_o, file_glance_results_o, row.names = FALSE)
 
 models_os <- list(
@@ -264,14 +311,18 @@ models_os <- list(
   m4os,
   m5os,
   m6os,
-  m7os
+  m7os,
+  m_gams
   )
-tidy_results_os <- map_df(models_os, tidy, .id = "model")
-file_tidy_results_os <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_tidy_results_os_', data_version, '.csv')
+tidy_fixed <- map_df(models_os, ~ tidy(.x, parametric = TRUE), .id = "model")
+tidy_smooth <- map_df(models_os, ~ tidy(.x, smooth = TRUE), .id = "model")
+tidy_results_os <- bind_rows(tidy_fixed, tidy_smooth) %>%
+  distinct()
+file_tidy_results_os <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_tidy_results_os_', output_version, '.csv')
 write.csv(tidy_results_os, file_tidy_results_os, row.names = FALSE)
 
 glance_results_os <- map_df(models_os, glance, .id = "model")
-file_glance_results_os <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_glance_results_os_', data_version, '.csv')
+file_glance_results_os <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_outflows_param_glance_results_os_', output_version, '.csv')
 write.csv(glance_results_os, file_glance_results_os, row.names = FALSE)
 ```
 
@@ -280,42 +331,42 @@ write.csv(glance_results_os, file_glance_results_os, row.names = FALSE)
 ```{r}
 
 
-file_m3o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m3o_re_', data_version, '.csv')
+file_m3o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m3o_re_', output_version, '.csv')
 write.csv(m3o_re[[1]], file_m3o_re, row.names = FALSE)
 
-file_m3os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m3os_re_', data_version, '.csv')
+file_m3os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m3os_re_', output_version, '.csv')
 write.csv(m3os_re[[1]], file_m3os_re, row.names = FALSE)
 
 ###
 
-file_m4o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m4o_re_', data_version, '.csv')
+file_m4o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m4o_re_', output_version, '.csv')
 write.csv(m4o_re[[1]], file_m4o_re, row.names = FALSE)
 
-file_m4os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m4os_re_', data_version, '.csv')
+file_m4os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m4os_re_', output_version, '.csv')
 write.csv(m4os_re[[1]], file_m4os_re, row.names = FALSE)
 
 ###
 
-file_m5o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m5o_re_', data_version, '.csv')
+file_m5o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m5o_re_', output_version, '.csv')
 write.csv(m5o_re[[1]], file_m5o_re, row.names = FALSE)
 
-file_m5os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m5os_re_', data_version, '.csv')
+file_m5os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m5os_re_', output_version, '.csv')
 write.csv(m5os_re[[1]], file_m5os_re, row.names = FALSE)
 
 ###
 
-file_m6o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m6o_re_', data_version, '.csv')
+file_m6o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m6o_re_', output_version, '.csv')
 write.csv(m6o_re[[1]], file_m6o_re, row.names = FALSE)
 
-file_m6os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m6os_re_', data_version, '.csv')
+file_m6os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m6os_re_', output_version, '.csv')
 write.csv(m6os_re[[1]], file_m6os_re, row.names = FALSE)
 
 ###
 
-file_m7o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m7o_re_', data_version, '.csv')
+file_m7o_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m7o_re_', output_version, '.csv')
 write.csv(m7o_re[[1]], file_m7o_re, row.names = FALSE)
 
-file_m7os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m7os_re_', data_version, '.csv')
+file_m7os_re <- paste0(wd, '/data/outputs/', country_short, '/mov-analysis/by-', category, '/data_trend_param_quad_m7os_re_', output_version, '.csv')
 write.csv(m7os_re[[1]], file_m7os_re, row.names = FALSE)
 
 
@@ -334,4 +385,139 @@ m6o_re
 m6os_re
 m7o_re
 m7os_re
+```
+
+## Compute recovery times for spline model
+
+```{r}
+stringency <- FALSE
+```
+
+```{r}
+new_time <- expand.grid(
+  time = seq(min(df$time), max(df$time) * 100, length.out = max(df$time) * 100 - min(df$time) + 1),
+  O = levels(df$O)
+)
+
+new_time <- new_time %>%
+  left_join(df[, c("time", "O", "stringency_index")], by = c("time", "O"))
+
+new_time$stringency_index[is.na(new_time$stringency_index)] <- 0
+
+if (stringency == FALSE) {
+  new_time <- expand.grid(
+    time = seq(min(df$time), max(df$time) * 100, length.out = max(df$time) * 100 - min(df$time) + 1),
+    O = levels(df$O)
+  )
+  pred_base <- predict(m_gam, newdata = new_time, se.fit = TRUE)
+} else {
+  pred_base <- predict(m_gams, newdata = new_time, se.fit = TRUE)
+}
+
+new_time$fit <- pred_base$fit
+new_time$se <- pred_base$se.fit
+
+get_root_threshold <- function(time, preds, target) {
+  diff_sign <- diff(sign(preds - target))
+  crossings <- which(diff_sign != 0)
+  if (length(crossings) == 0) return(NA)
+
+  i <- crossings[1]
+  out <- tryCatch(
+    uniroot(
+      function(t) {
+        approx(time, preds - target, xout = t)$y
+      },
+      lower = time[i],
+      upper = time[i + 1]
+    )$root,
+    error = function(e) NA
+  )
+  return(out)
+}
+
+alphas <- seq(0, 1, by = 0.05)
+
+set.seed(123)
+n_boot <- 200
+
+results_alpha <- map_df(levels(df$O), function(g) {
+  group_data <- new_time %>% filter(O == g)
+  idx0 <- which.min(group_data$time)
+  y0_group <- group_data$fit[idx0]
+
+  map_df(seq_along(alphas), function(j) {
+    alpha <- alphas[j]
+    target <- (1 - alpha) * y0_group
+
+    boot_roots <- replicate(n_boot, {
+      y_sim <- rnorm(nrow(group_data), mean = group_data$fit, sd = group_data$se)
+      get_root_threshold(group_data$time, y_sim, target)
+    })
+
+    data.frame(
+      O = g,
+      alpha = alpha,
+      y_target = target,
+      t_alpha = median(boot_roots, na.rm = TRUE),
+      CI_lower = quantile(boot_roots, 0.025, na.rm = TRUE),
+      CI_upper = quantile(boot_roots, 0.975, na.rm = TRUE),
+      SD_t_alpha = sd(boot_roots, na.rm = TRUE)
+    )
+  })
+})
+
+results_alpha <- as_tibble(results_alpha)
+```
+
+## Save recovery times for spline model
+
+```{r}
+if (stringency == FALSE) {
+  file_results_alpha <- paste0(
+    wd,
+    '/data/outputs/',
+    country_short,
+    '/mov-analysis/by-',
+    category,
+    '/recovery-times-gam_',
+    output_version,
+    '.csv'
+  )
+} else {
+  file_results_alpha <- paste0(
+    wd,
+    '/data/outputs/',
+    country_short,
+    '/mov-analysis/by-',
+    category,
+    '/recovery-times-gams_',
+    output_version,
+    '.csv'
+  )
+}
+write.csv(results_alpha, file_results_alpha, row.names = FALSE)
+```
+
+## Plot recovery times for spline model
+
+```{r}
+ggplot(results_alpha, aes(x = alpha, y = t_alpha, color = O, group = O)) +
+  geom_line(size = 1) +
+  geom_ribbon(aes(ymin = CI_lower, ymax = CI_upper, fill = O),
+              alpha = 0.15, color = NA) +
+  labs(
+    title = "Time to reach threshold level (1 - alpha)",
+    x = expression(alpha),
+    y = expression(t(alpha)),
+    color = "Group (O)",
+    fill = "Group (O)"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "right",
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 11),
+    plot.title = element_text(face = "bold", size = 16)
+  )
 ```
