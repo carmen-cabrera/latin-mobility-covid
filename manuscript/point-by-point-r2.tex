@@ -1,0 +1,252 @@
+\documentclass[12pt,a4paper,oneside, reqno]{amsart}
+%\documentclass[12pt]{book}%{amsart}
+\usepackage[top=.65in, bottom=0.85in, left=0.8in, right=1.2in]{geometry}
+\usepackage[hyphens]{url}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+%\usepackage{fullpage}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{color,soul}
+\usepackage{changes}
+\usepackage{lipsum}
+\usepackage{enumitem}
+\usepackage{ulem}
+\usepackage{soul}
+
+\usepackage[backend=biber,style=apa]{biblatex}
+\addbibresource{bibliography.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+%\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{xca}[theorem]{Exercise}
+
+\setlength\parindent{0pt}
+
+
+\fancyfoot[R]{\thepage}
+
+%\addtolength{\oddsidemargin}{-0.20in}
+%\addtolength{\evensidemargin}{-0.20in}
+\addtolength{\textwidth}{0.6in}
+%\addtolength{\topmargin}{1.0in}
+%\addtolength{\textheight}{1.0in}
+
+\setlength{\parskip}{4pt}
+
+\begin{document}
+
+\newpage
+
+\thispagestyle{empty}
+
+
+\mbox{}
+
+\vspace{1pt}
+
+\begin{flushright}
+
+
+{\large Response to Reviewers}
+
+\end{flushright}
+
+\vspace{15pt}
+
+
+\vspace{10pt}
+
+\section*{\textbf{REVIEWER 1}}
+\vspace{-16pt}
+\begin{center}
+    \rule{\textwidth}{.1pt}
+\end{center}
+
+\vspace{5pt}
+
+\setlength{\leftskip}{0cm} \textit{\textbf{Reviewer 1 (R1)}: I thank the authors for the effort spend on this round of revision. Most of my concerns are adequately addressed. I have no further comment.}
+
+\setlength{\leftskip}{1cm}\textbf{Authors (A):} We thank the reviewer for their constructive comments that have contributed to improving the manuscript.
+
+\vspace{10pt}
+
+\section*{\textbf{REVIEWER 2}}
+\setlength{\leftskip}{0cm} 
+\vspace{-16pt}
+\begin{center}
+    \rule{\textwidth}{.1pt}
+\end{center}
+
+\vspace{5pt}
+
+\setlength{\leftskip}{0cm} \textit{\textbf{Reviewer 2, Comment 1 (R2.1)}: I thank the authors for their substantial effort in revising the manuscript and for addressing several points raised in the previous round. However, based on the current data processing choices and analytical framework, I cannot recommend the manuscript for publication at this time.}
+
+\setlength{\leftskip}{1cm}\textbf{Authors (A):} Thank you for the careful re-evaluation of the manuscript and for highlighting the central concern raised by the high level of missingness in the Facebook data. This prompted us to strengthen the analysis substantially. 
+
+\setlength{\leftskip}{0cm} \textit{\textbf{R2.2}: More than 70\% of the dataset is imputed (and over 90\% for movement data). At this level, it is difficult to determine whether the results presented in the paper reflect patterns in the Facebook (FB) data itself or are largely driven by the imputation method. This raises concerns about whether the conclusions are about mobility or about modelling assumptions embedded in the imputation process.}
+
+\setlength{\leftskip}{1cm}\textbf{A:} Thanks for this comment. We are confident that our conclusions are about the observed mobility patterns and not about the modelling assumptions embedded in the imputation process or elsewhere in the methodology. The exhaustive set of sensitivity tests demonstrates the robustness of our findings to methodological choices. To specifically address R2.2 in this round of reviews, we have implemented additional tests. First, we distinguish between (i) the share of data records imputed (i.e. how many rows of population or mobility data are imputed) and (ii) the share of total population or flow volume imputed. Although the proportion of imputed records is high, the contribution of imputed values to total population or flow volume is much smaller. For individual countries and periods of analysis (i.e. baseline period or crisis period), the share of imputed population with respect to the total population is consistently lower than 15.7\%, and the share of imputed flow volume with respect to the total flow volume is consistently lower 13.4\% (see new Supplementary Table ST1).
+
+Second, we now show evidence that our conclusions are robust to the imputation procedure (see new Supplementary Figures SF7, SF13, SF14). We observe consistency in findings obtained with imputed data and data without imputation. Therefore, the imputation is used to account for privacy-related data suppression, but our substantive conclusions are not an artefact of the imputation procedure or modelling assumptions.
+
+We would also like to point out that the imputation procedure, despite not altering the conclusions, makes the data more representative, as evidenced by Supplementary Figure SF9. The Figure shows that after imputation, the distribution of Facebook Population across density classes aligns more closely with the WorldPop benchmark, indicating improved representativeness across the rural-urban gradient. Without imputation, the data could be under-representing sparsely populated areas.
+
+\textcolor{blue}{\textbf{Action:} In particular, we have taken four actions to address concerns on the imputation process.
+\begin{itemize}[noitemsep, topsep=0pt]
+\item We revised Supplementary Table ST1, which now reports the number and percentage of imputed records, but also the proportion of total population and movement flows which are imputed.
+\item We added Supplementary Figure SF7, which compares the main descriptive results of Figure 2 in the body of the paper, obtained with the calibrated data and with the original observed Meta data without imputation. SF7 reports the median percentage change in mobility for May 2020 and May 2022, by country, across population-density and deprivation categories. 
+\item We added a new Supplementary Figure SF13 reporting a sensitivity analysis for the modelling results presented in Figure 3 from the main body of the paper. Specifically, SF13 compares estimates from our preferred mobility recovery model (Model 6) obtained with imputed data and data with no imputation. This comparison shows that the magnitude of model coefficients may vary slightly for different input data, but importantly, the key conclusions remain consistent.
+\item We added a new Supplementary Figure SF14 reporting a sensitivity analysis for the modelling results relating to urban cores.
+\item We revised the text in the ``Results'' and ``Methods'' sections of the manuscript to explain the new evidence.
+\end{itemize}}
+
+\setlength{\leftskip}{0cm} \textit{\textbf{R2.3}: Using FB Bing tiles is acceptable. However, when analysis is conducted at this resolution, researchers need to be very cautious. A large proportion of tiles contain very few people and are masked in the data release (<10 people) due to privacy and anomaly controls as author mentioned. Thus, statistical models are dominated by less-dense areas. This is reflected in Supplementary Information Figures 2-4 and can lead to systematic underestimation of mobility patterns in urban cores. This makes me question whether the results are representative of city-level dynamics. I wonder if aggregating data to neighbourhoods or census tracts, where population counts are more comparable across units, may help reduce this bias and yield more interpretable results.}
+
+\setlength{\leftskip}{1cm}\textbf{A:} We are confident that the patterns reported in the manuscript are not driven by an over-representation of sparsely populated tiles and that our results do not underestimate city-level dynamics. However, we agree that the manuscript should more clearly justify the choice of spatial scale and explain why city-related dynamics are adequately captured in our analysis.
+
+First, SF14 addresses the concern that urban-core dynamics may be under-represented after imputation. The Figure shows that modelling results for capitals and functional urban areas remain strongly consistent when estimated with and without imputation. This indicates that the effects of imputation on city-level dynamics are minimal and that the findings are not driven by assumptions in the imputation procedure.
+
+Second, our objective is to capture changes in movement patterns across the urban–rural gradient. The objective is not to produce estimates of movement within urban cores. In particular, we study movement away from highly dense urban areas toward lower-density areas (for example, suburban zones and rural areas). In the manuscript, these area types are defined using population density classes, which are intended to distinguish broad settlement contexts. Although tiles are a relatively coarse spatial unit, they are sufficient to capture the broad redistribution of mobility that is the focus of the study. 
+
+Third, aggregation to neighbourhoods or census tracts is not feasible because the Meta data are released at Bing-tile resolution. These tiles are generally larger than neighbourhood units, so we are working at the finest spatial resolution available. Further disaggregation would require an additional modelling step and could introduce further error.
+
+Fourth, SF2-4 display only tiles where Facebook Population values are observed, that is, tiles above Meta’s disclosure threshold of 10. These figures are used to illustrate the relationship in the observed data that we then use to estimate missing low-count baseline values in areas suppressed for privacy reasons; we do not impute values that are already observed. Revised ST1 shows that, although the number of imputed records is large, the share of total population and movement volume contributed by imputed values is relatively small. SF9 further shows that, after imputation, the distribution of Facebook Population across density classes aligns more closely with the WorldPop benchmark, indicating improved representativeness across the rural-urban gradient. If data missingness was left unaddressed, the data would under-represent sparsely populated areas.
+
+
+
+\textcolor{blue}{\textbf{Action:} We clarified the rationale for the Bing-tile scale of analysis in the ``Methods - Data - Meta-Facebook data pre-processing'' section and added new validation and sensitivity analyses (ST1, SF7, SF9, SF13 and SF14) showing that imputation improves representativeness, particularly in low-density areas, without altering the main conclusions relating to urban dynamics.}
+
+\setlength{\leftskip}{0cm} \textit{\textbf{R2.4}: Before aggregating movement data into 8-hour time windows, I would suggest keeping the data at the hourly level first, or at least conducting validation using local household travel surveys from large cities, even if only for a limited subset. Such validation would help demonstrate correspondence between FB movement data and ground-truth mobility patterns and improve credibility.}
+
+\setlength{\leftskip}{1cm}\textbf{A:} First, we agree that external validation strengthens confidence in the mobility patterns captured by the Meta data. In response, we examined independent official mobility statistics for settings covered by our study.
+\begin{itemize}[noitemsep, topsep=0pt]
+\item The latest (March 2026) official mobility monitoring report for Buenos Aires, Argentina, shows the same temporal dynamics identified in our analysis \parencite{OMSV2026BA}, i.e. a sharp decline in mobility during the pandemic period followed by gradual but incomplete recovery. By March 2026, daily unique public transport users in Buenos Aires remained 19.7\% below the same month in 2019.
+\item For Colombia, we consulted the Urban Transport Survey (ETUP) produced by the National Administrative Department of Statistics (DANE), which covers 8 metropolitan areas and 15 cities \parencite{DANE2025}. The ETUP similarly shows a drop in mobility following the pandemic, and then a gradual but incomplete recovery in urban public transport demand. The number of total passengers transported fell from 935 million in the fourth quarter of 2019 to 534 million in 2020, then recovered to 682 million in 2021, 757 million in 2022, 776 million in 2023, 789 million in 2024 and 754 million in 2025. This pattern is consistent with our finding that post-pandemic mobility recovery in urban cores has not returned to baseline. 
+\item We also consulted the results of the 2024 Santiago's Mobility Survey (EMS) for Chile \parencite{Hurtubia2024EMS}. While the results focus on the relative use of different modes of transport and are therefore not directly comparable to our analysis, the report explicitly notes the value of mobile-phone and other digital trace data for tracking mobility dynamics when conventional survey data are infrequent or limited in scope. This is precisely the gap our analysis addresses.
+\item Finally, two recent reports from the UN International Labour Organization focused on Latin America and the Caribbean \parencite{ILO2023PanoramaLaboral, BertranouGontero2024LACWork} note that, before the pandemic, only around 3\% of employed people worked remotely, whereas this proportion rose to 20--30\% during COVID-19 while lockdown measures were in place. Although the share of remote work declined afterwards, it remained above pre-pandemic levels. For example, in Chile, the proportion of home workers increased from 4.6\% of all workers in 2019 to 21\% in 2020, before falling to 8.6\% in 2023 \parencite{ILO2023PanoramaLaboral}. However, in absolute terms, the number of people working from home in 2023 was still 86\% higher than in 2019. These figures, based on national labour and household surveys across countries in Latin American and the Caribbean, provide further external evidence consistent with our finding that the volume of daily mobility has not fully returned to its pre-COVID baseline.
+\end{itemize}
+
+Second, there are important limits to how far the external validations can be taken. Meta’s movement data are released only in aggregated 8-hour windows, so hourly analysis of Meta data is not possible. In addition, there are no household travel survey datasets for Argentina, Chile or Colombia that would allow direct validation across rural–urban and socio-economic gradients at the same spatial and temporal resolution as our analysis. Therefore, the external sources we were able to consult should be understood as consistency checks on the broad temporal dynamics captured by the Meta data. 
+
+\textcolor{blue}{\textbf{Action:} We have taken the following actions:
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item We added a Supplementary Note reporting external consistency checks for our results using independent survey and monitoring sources. In particular, we added text describing official mobility statistics from Buenos Aires, multiple Colombian cities, Chile, and regional evidence for Latin America and the Caribbean. These sources show patterns consistent with those identified in our analysis. We refer readers to this note at the end of the third paragraph of the ``Results'' section in the main text.
+    \item We expanded the ``Discussion'', summarising the consistency between our results and these external sources. We also state more explicitly that household travel survey data are not available at the spatial and temporal resolution required to directly validate mobility patterns across rural--urban and socio-economic gradients. Therefore, only broad, aggregated patterns can be validated.
+    \item We clarified the data constraints more explicitly in the ``Methods -- Data'' section, where we added: \textit{\uline{The data are temporally aggregated into three daily 8-hour time windows which are 00:00--08:00, 08:00--16:00 and 16:00--00:00, Pacific Time (PT). Since the Meta data are released only in these pre-aggregated 8-hour intervals, analysis at lower temporal resolution is not possible.''}}
+\end{itemize} }
+
+\setlength{\leftskip}{0cm} \textit{\textbf{R2.5}: All findings are reported at the Bing tile level, which is difficult to interpret and may itself introduce bias. Results at this spatial resolution are also subject to the modifiable areal unit problem (MAUP), meaning that effect sizes and spatial patterns may change substantially under alternative aggregation schemes. For meaningful interpretation and policy implementation, I would strongly suggest aggregating results back to the city level or other administratively relevant units.}
+
+\setlength{\leftskip}{1cm}\textbf{A:} We appreciate that Bing tiles is not the ideal spatial unit, especially for interpretation purposes. This is a discussion we had at a workshop we hosted with government officials at the UN Economic Commission for Latin America and the Caribbean (CEPAL). During this workshop, the use of Bing tiles was recognised to be a constraint but it was also noted that the generated evidence is still valuable to guide policy discussions in relation to the broad structural changes resulting from the COVID-19 pandemic. Alternative data sources providing more granular data would be more appropriate for intra-city variability.
+
+For our analysis, we are limited by the structure of the original data. Meta releases the data in Bing tile format. Converting Bing tiles into administrative units is challenging and may introduce distortions to the data. Bing tiles can be larger than administrative level 3 geographies (particularly in urban areas) which would be the ideal spatial scale (i.e. municipalities) for the countries in our sample. Converting Bing tiles into administrative level 3 units would then require some heroic assumptions to interpolate movements across geographies, adding an unquantifiable level of uncertainty and going against some of the valuable points raised by the reviewer. 
+
+We also recognise that, as for any spatial analysis, the modifiable areal unit problem (MAUP) is a concern. Yet, here we would also like to note that this is exactly a motivation for us to rely on tile units. They provide a regular spatial framework that facilitates comparison across countries, whereas administrative areas vary substantially in size, shape and definition between national contexts. Using tiles therefore does not remove MAUP, but it avoids introducing an additional source of cross-country inconsistency that would arise if the analysis was based on non-equivalent administrative units.
+
+We do not claim that Bing tiles eliminate MAUP. MAUP affects any spatially aggregated analysis, including those based on administrative units, because results depend on the scale of aggregation and the way boundaries are drawn \parencite{openshaw83}. Replacing tiles with administrative areas would therefore not remove MAUP. Instead, it would substitute one aggregation system for another while adding an extra source of estimation error. For these reasons, we consider the original Bing-tile geography the most appropriate choice for this study and we now state this more explicitly in the manuscript.
+
+\textcolor{blue}{\textbf{Action:} We have clarified our rationale to work with Bing Tiles as well as their advantages and limitations in the ``Methods - Data - Meta-Facebook data pre-processing'' section: \textit{\uline{``We retain the Bing-tile geography as our unit of analysis because it provides the finest, most spatially standardised and cross-country comparable unit available in the Meta data. Aggregating or disaggregating to alternative areal units would require an additional estimation step, which could introduce further uncertainty and not remove the general modifiable areal unit problem} \parencite{openshaw83}.}}
+
+\setlength{\leftskip}{0cm} \textit{\textbf{R2.6}: It is unclear why the authors use level-10 Bing tiles for FB movement data but level 11 tiles for FB population data in Argentina and Chile. This inconsistency needs to be explicitly justified, as it directly affects comparability and downstream analysis.}
+
+\setlength{\leftskip}{1cm}\textbf{A:} The apparent inconsistency arises because the original Meta products are released at different Bing tile resolutions for each country. In Argentina and Chile, the movement dataset is provided at level 10, whereas the population dataset is provided at the finer level 11. In Colombia, both datasets are provided at level 12.
+
+To ensure consistency in the analysis, we harmonised the population and movement data to a common spatial resolution within each country before combining them. Given that the movement data are only available at the coarser resolution, we aggregated the population data to match the resolution of the movement data. 
+
+\textcolor{blue}{\textbf{Action:} We have revised the section ``Methods - Data - Meta-Facebook data pre-processing'' to make this preprocessing step more explicit. We also clarify that no analysis combines datasets at different spatial resolutions. All downstream analyses are conducted using harmonised spatial units within each country.}
+
+\setlength{\leftskip}{0cm} \textit{\textbf{R2.7}: Because the FB dataset itself is not shareable, only scripts are provided in the GitHub repository. The codebase requires reorganization. Currently, not all figures used in the manuscript have corresponding scripts or clearly identified sections that reproduce them.}
+
+\setlength{\leftskip}{1cm}\textbf{A:} Thank you for pointing this out. Because the FB dataset cannot be shared, we provide only the scripts in the GitHub repository. We have now reorganised the codebase and clearly indicated the scripts corresponding to each figure in the manuscript.
+
+\textcolor{blue}{\textbf{Action:} Carmen TODO for next week.}
+
+\vspace{10pt}
+
+\section*{\textbf{REVIEWER 3}}
+\setlength{\leftskip}{0cm} 
+\vspace{-16pt}
+\begin{center}
+    \rule{\textwidth}{.1pt}
+\end{center}
+
+\vspace{5pt}
+
+\setlength{\leftskip}{0cm} \textit{\textbf{Reviewer 3, Comment 1 (R3.1):} I think the authors should mention that the paper has the limitation of not including modal split in the analysis.}
+
+\setlength{\leftskip}{1cm}\textbf{A:} Our analysis does not examine modal split, as the Meta-Facebook dataset does not contain information on transport mode or trip purpose. The data capture aggregate movements of active users between spatial units over time. The focus of the paper is on changes in the volume and spatial distribution of mobility across socioeconomic and rural-urban gradients, rather than on changes between specific transport modes.
+
+\textcolor{blue}{\textbf{Action:} We mention the lack of modal split as a limitation in the ``Discussion''. Furthermore, we have updated the ``Abstract'' and ``Introduction'' to clarify that the data captures aggregate movements and that the focus of the analysis is on changes in the volume and spatial distribution of mobility over time, not on modal split.}
+
+\setlength{\leftskip}{0cm} \textit{\textbf{R3.2}: I think the authors should acknowledge that the data analysis does not include controls for the restrictions on urban mobility during the pandemic of COVID-19. Also, the authors should also acknowledge that given the limitations of the analysis, the discussion is providing the formulation of new hypotheses.}
+
+\setlength{\leftskip}{1cm}\textbf{A:} Thank you for this comment. We would like to clarify that \textbf{our analysis does include controls for the restrictions on urban mobility during the pandemic}. This is achieved via the COVID-19 Stringency Index developed by the University of Oxford, which captures the intensity of containment and closure measures over time. The results from models incorporating the Stringency Index are reported in Supplementary Tables 5, 7, 9, 11, 13, 15, 17, 19, 21, 22, 23, 24 and 25. We have expanded the relevant text in the ``Introduction'', ``Results'' and ``Methods'' to reflect this more clearly.
+
+We also agree that, given the limitations of the data and the observational nature of the analysis, some of the mechanisms discussed in the manuscript should be interpreted cautiously. Our findings allow us to identify robust patterns in post-pandemic mobility change, but some of the explanations proposed in the ``Discussion'' are better understood as plausible hypotheses that can guide future research rather than as definitive causal claims. We have revised the ``Discussion'' to make this distinction clearer.
+
+\textcolor{blue}{\textbf{Action:} To make our explanations clearer in the manuscript:
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item We have included the following text in the ``Results'' section: \textit{``Stringency levels are measured via the COVID-19 Stringency Index created by \cite{hale2021global}, which we include to assess the influence of changes in government restrictions on mobility. The index aggregates daily data on nine policy indicators including school and workplace closures, cancellation of public events, restrictions on gatherings and movement, public transport closures, stay-at-home requirements, international travel controls and public information campaigns. \uline{Specifically, the inclusion of the variables internal travel and mobility restrictions and stay-at-home into the stringency index allows us to control for restrictions on population movements during the COVID-19 pandemic.}''}
+    \item We have revised the ``Discussion'' to include the following: \textit{``Despite our robustness and validation tests, key challenges should be considered when interpreting our results, \uline{which are better understood as plausible hypotheses that can guide future research rather than as definitive causal claims''}}.
+\end{itemize}}
+
+% The variable internal travel and mobility restrictions includes the categories 0 (no restrictions), 1 (recommendation of not to travel) and 2 (prohibiting internal movements), and stay-at-home can be 0 (no restrictions), 1 (recommendation of not leaving home), 2 (require not leaving house with exceptions) and 3 (total confinement with minimal exceptions)." -TODO!! And revise Discussion! TODO}
+
+\setlength{\leftskip}{0cm} \textit{\textbf{R3.3}: Although the introduction section is including the literature review, I think the paper is still lacking a proper literature review section. Moreover, the review is providing little information regarding the studies conducted about the implications of the pandemic on urban mobility globally, such as changes on the urban space distribution for active mobility. Moreover, there is not information regarding a review regarding informal transport.}
+
+\setlength{\leftskip}{1cm}\textbf{A:} Thank you for this comment. We have expanded the ``Introduction'', including more relevant references on the impacts of the pandemic on urban mobility globally, on active travel and on informal transport. We do so within the ``Introduction'', in line with the formatting guidelines of \textit{Nature Communications}. Given the journal’s format and word limits, the ``Introduction'' must also remain concise and aligned with the scope of the study.  
+
+\textcolor{blue}{\textbf{Action:} To address the reviewer’s suggestion, we have added the following text and references in the ``Introduction'': \textit{ \uline{``This evidence also points to a temporary reallocation of urban space towards active mobility, often reflected in increases in walking and cycling} \parencite{Brooks2021, DavoudiZavareh2025, Delbosc25, An2025, Nourmohammadi25, Ortar25} \uline{, as well as shifts in travel purposes and use patterns within informal and paratransit systems} \parencite{DiefAllah2025Paratransit, Saha2026}. }}
+
+\setlength{\leftskip}{0cm} \textit{\textbf{R3.4}: I think the authors should provide a clear description of the data and data analysis in the methods section. It is also important to describe clearly how time is incorporated into the analysis. It is unclear if the analysis is providing insights and findings regarding temporal changes.}
+
+\setlength{\leftskip}{1cm}\textbf{A:} We agree that the research design and analytical approach should be easy for readers to identify and follow. While the manuscript already has a full ``Methods'' section (including detailed descriptions of the data and how it is processed and analysed), we have revised the manuscript to guide the reader more clearly through the design of the study. In particular, we now point more explicitly from the ``Results'' and Figure 1 to the ``Methods'' section and ``Supplementary Information'', where the full analytical workflow is described. We also clarify that the study analyses temporal changes in mobility by modelling time series of mobility relative to pre-pandemic baseline levels, including trend extraction and subsequent statistical modelling of recovery trajectories across countries and regions. 
+
+\textcolor{blue}{\textbf{Action:} We would like to note that we have included a five-page long careful and detailed description of the data, methods and analysis in the ``Methods`` section on pages 9-14. Sections ``Time series smoothing`` and ``Trend analysis`` include detailed descriptions on how we incorporated time into our analysis, involving trend extraction, trend modelling and recovery time estimates. We have improved our Figure 1 which provides a high-level representation of our methodology and summarises the steps described in the ``Methods`` section. We have also included extensive Supplementary Information reporting more details about the methods and decisions implemented for our analysis and multiple validation assessments carried out and discussed throughout the manuscript and this response letter. Additionally, we are sharing a GitHub repository including all the code necessary to replicate our analysis. We believe that, together, all of these components provide a comprehensive and detailed description of the data, methods and analysis used in our manuscript.}
+
+\setlength{\leftskip}{0cm} \textit{\textbf{R3.5}: I think the authors should acknowledge the limitations of the database, such as the lack of information regarding modal split. Moreover, authors should mention in detail the limitations of the database for analysis, such as the aggregate movement flows between spatial units.}
+
+\setlength{\leftskip}{1cm}\textcolor{blue}{\textbf{Action:} We have discussed and acknowledged the lack of information regarding model split as a limitation of our study in the ``Discussion''. We also argue that future work should expand our analysis on this direction as suitable data become available. However, in the present paper, our focus is not understanding changes in different modes of transport. We acknowledge that our data captures aggregate movements between areas in the ``Abstract'', ``Introduction'' and ``Methods'' sections. These sections also emphasise that our focus is on understanding the process of recovery of broad patterns of mobility over time following the COVID-19 pandemic.  }
+
+
+\setlength{\leftskip}{0cm} \textit{\textbf{R3.6}: I think the authors should provide more information regarding the assumptions [with regard to what is urban on each country and how the analysis incorporates with precision urban population density] made in the figure [Figure 2]. The connection between the assumptions and the research design is unclear.}
+
+\setlength{\leftskip}{1cm}\textbf{A:} As the reviewer highlighted in their original comment, we assume that population density offers an accurate representation of the rural-to-urban gradient within individual countries.  We are not the first assuming this. This is a well validated assumption. Various flagship projects have assessed and relied on this assumption. In the context of population settlement, population density was proposed by \parencite{championhugo2004} and then implemented by Rees et al. \parencite{rees1999internal, rees2017impact} as a practical, effective way to investigate internal migration across the rural-to-urban hierarchy. More recently, population density has been adopted by the European Union Joint Research Centre for their flagship data product, the Global Human Settlement Layer (GHSL) \parencite{GHSL19}, to define degrees of urbanisation and the UN Population Division for the World Urbanization Prospects 2025 \parencite{UNpopulation25}. We revised text in the ``Results'' and ``Methods'' sections to emphasise our assumption and the point this is based on a widely adopted framework.
+
+\setlength{\leftskip}{1cm}\textcolor{blue}{\textbf{Action:} To address the reviewer’s concern, we have updated the caption of Figure 2 to explain more explicitly how the population density and relative deprivation categories are defined and what assumptions are made in the Figure. We also direct readers to the relevant ``Methods'' section for a more detailed description. The caption now reads as follows: \textit{``\uline{Figure 2. Percentage change in mobility counts in May 2020 and March 2022, relative to the pre-pandemic baseline levels in Argentina, Chile and Colombia. Mobility flows are aggregated by area type, with areas classified along two independent dimensions used in the research design: population density and socioeconomic deprivation. Population density is used as a proxy for position along the rural–urban gradient within each country, following an established approach in the migration and settlement literature and in applied classification frameworks} \parencite{championhugo2004, rees1999internal, rees2017impact, GHSL19, UNpopulation25}\uline{. Socioeconomic deprivation is classified into three categories based on the Relative Deprivation Index (RDI)} \parencite{RDI2022}\uline{. The figure presents descriptive comparisons across these groups and does not include interaction effects between density and deprivation. Full details on the data, classifications and assumptions are provided in the Methods section.''}}}
+
+\setlength{\leftskip}{0cm} \textit{\textbf{R3.7}: I think the authors should include a clear description (table) of all variables and measurement levels to develop the calculation of the [relative deprivation] index. Moreover, I think the authors should provide information regarding how each variable is used in the estimation of the index.}
+
+\setlength{\leftskip}{1cm}\textcolor{blue}{\textbf{Action:} We have added a new table in the Supplementary Information (Supplementary Table 2), with all the variables used by NASA to calculate the deprivation index. The index is already computed by NASA, we use it as secondary data. In the table, we have included a column explaining how each variable contributes to the index and another one explaining the underlying source of input data. We also include a reference to the methodology used by NASA to compute the index, so readers can obtain a detailed explanation of the multiple steps used to compute the final index.}
+
+\setlength{\leftskip}{0cm} \textit{\textbf{R3.8}: Estimation of population density, in relation to Figure 4. I think the authors should acknowledge the limitations of the estimations of population densities.}
+
+\setlength{\leftskip}{1cm}\textcolor{blue}{\textbf{Action:} We have included text to acknowledge the limitations of the estimations of population densities. In particular:
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item At the beginning of the ``Results'' section: \textit{\uline{``While population density is an imperfect proxy for the functional character of places and does not fully capture all dimensions of urban activity or land use, it provides a practical and well-established way to move beyond a simple rural/urban dichotomy and represent variation in the degree of urbanisation within countries} \parencite{championhugo2004, rees1999internal, rees2017impact, UNpopulation25, GHSL19}.'' }
+    \item In the ``Methods'' section we have added: \textit{``\uline{Population density is derived from harmonised WorldPop gridded population surfaces aggregated to the Meta Bing tiles and then classified into fixed density categories. This provides a consistent cross-country framework for analysis. However, the resulting categories should be interpreted as broad positions along the rural–urban continuum and not as exact measures of local settlement form. In particular, it is important to note that aggregation to tile units may smooth fine-scale variation in density and the threshold-based classification proposed here simplifies what is in reality a continuous population distribution.''}}
+\end{itemize}}
+
+
+\setlength{\leftskip}{0cm} \textit{\textbf{R3.9}: Please add the limitations describe above in my comments.}
+
+\setlength{\leftskip}{1cm}\textbf{A:} Thank you. We have revised the whole manuscript as highlighted in our responses to the comments above. Additionally, we have revised the limitations paragraph in the ``Discussion'' to reflect more explicitly the concerns raised by the reviewer. Given the journal’s word limits, this discussion remains concise, but we now clarify the main limitations of the data, methodology and interpretation more directly.
+
+\textcolor{blue}{\textbf{Action:} We have rewritten the limitations paragraph in the ``Discussion'' to more strongly emphasise that: 1) our data does not include information on transport modes or trip purpose, so the analysis cannot address modal split; 2) the Meta data consist of aggregate movement flows between spatial units and does not contain individual-level characteristics, which limits the interpretation of behavioural mechanisms; 3) our population-density categories should be interpreted as broad groupings rather than precise representations of local urban form; and 4) the study is observational, so the mechanisms discussed in the manuscript should be understood as plausible interpretations and hypotheses for future research rather than as definitive causal claims. Particularly, the paragraph now reads: \textit{\ul{``Despite our robustness and validation tests, key challenges should be considered when interpreting our results, which are better understood as plausible hypotheses that can guide future research rather than as definitive causal claim. First, limitations related to the use of aggregated mobile-phone–derived mobility indicators. These data are generated from a non-random sample of users providing variable coverage across space and time, and potentially under-representing population groups with lower smartphone access, limited digital connectivity or higher privacy opt-out rates}} \parencite{cabrera2025bias}\textit{\ul{.  As such, inferred mobility changes may not fully reflect the behaviour of all sociodemographic groups, particularly in more disadvantaged areas. Second, the pre-pandemic baseline used to define reference mobility levels is limited to a 45-day period provided by Meta and therefore does not capture longer-term seasonal variability. While this baseline precedes mobility restrictions and accounts for day-of-week effects, it may affect estimates of the absolute magnitude of the initial mobility drop, though relative recovery trajectories are less sensitive to this limitation. Third, our data do not provide information on modal split, limiting inference on the persistence of changes in specific transport modes, such as walking, cycling or micromobility}} \parencite{zhang2023impacts, KaganCapkin25}\textit{\ul{. Fourth, observed mobility changes reflect outcomes rather than travel motivations, constraining our ability to distinguish behavioural adaptation from mobility reductions driven by affordability, service availability or labour informality. Fifth, our analyses are observational and conducted at an aggregate spatial scale, so associations between mobility recovery and city characteristics should not be interpreted as causal and may be influenced by unobserved factors, such as changes in transport supply or concurrent economic shocks. Finally, while external benchmark data for population counts are available consistently across countries, comparable external movement data are not generally available at the spatial and temporal scale required to validate mobility patterns across rural-urban and socioeconomic gradients. These limitations motivate future work combining digital trace mobility data with external validation sources and complementary data to assess representativeness, modal split and causal mechanisms.''}}}
+
+%
+
+\newpage
+
+\clearpage
+\pagestyle{plain}   
+\printbibliography  
+
+
+\end{document}
+
