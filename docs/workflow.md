@@ -1,6 +1,6 @@
 # Workflow overview
 
-This document provides an overview of the analysis workflow. It is intended to complement Figure 1 in the main manuscript by mapping each stage of the conceptual workflow to the corresponding notebooks in this repository.
+This document provides an overview of the analysis workflow. It is intended to complement Figure 1 and Figure 5 in the main manuscript by mapping each stage of the conceptual and methodological workflow to the corresponding notebooks in this repository.
 
 The restricted Meta-Facebook input datasets are not distributed with the repository. With approved access to the data, the notebooks should be run in sequence, starting with preprocessing and then moving to the analysis notebooks.
 
