@@ -9,7 +9,7 @@ Due to data licensing restrictions, the dataset is not included. However, code a
 
 
 
-## System Requirements
+## System requirements
 
 -   Python version: 3.10.9
 -   Operating system: macOS, Linux, or Windows
@@ -19,7 +19,7 @@ Python dependencies are managed through Conda (see `environment.yml`). Some stat
 
 
 
-## Installation Guide
+## Installation guide
 
 ### 1. Clone the repository
 
@@ -43,7 +43,7 @@ jupyter notebook
 
 
 
-## Demo Instructions
+## Demo instructions
 
 No demo dataset is included in this repository due to restrictions on the original data.
 
@@ -85,8 +85,6 @@ This code is released under the [MIT License](LICENSE).
 
 ## Contact
 
-Carmen Cabrera
-
+Dr Carmen Cabrera
 University of Liverpool
-
 email: c.cabrera@liverpool.ac.uk
