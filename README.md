@@ -71,6 +71,8 @@ To reproduce the analysis:
 
 The main preprocessing workflow is in `notebooks/preprocessing/`. The `notebooks/preprocessing/builtup-experiments/` folder contains an experimental robustness branch that only imputes data in built-up areas; it is not required for the main analysis.
 
+An overview of the analysis workflow, following the conceptual structure shown in Figure 1 of the manuscript, is provided in `docs/workflow.md`.
+
 The mapping between manuscript figures and the scripts that generate their underlying outputs or source panels is documented in `docs/figure-reproducibility.md`. Final composite figures were assembled manually from locally generated panels because the restricted Meta-Facebook datasets and derived plot outputs are not redistributed in this repository.
 
 
