@@ -45,7 +45,6 @@ library(mgcv)
 ```{r}
 # Set working directory
 wd <- '/your/path/to/working/directory/'
-wd <- '/Users/carmen/Library/CloudStorage/OneDrive-TheUniversityofLiverpool/research/latin-mobility-covid'
 
 # Set the country
 country <- 'Argentina'
