@@ -1,7 +1,9 @@
 # Latin America mobility during COVID-19
 
 This repository contains the code developed for the study:\
-**"Sustained changes to urban mobility after COVID-19 amplified socio-economic inequalities in Latin America."**
+**"Sustained changes to urban mobility after COVID-19
+reinforced socio-economic inequalities in Argentina,
+Chile and Colombia."**
 
 The analysis draws on anonymised, aggregated Meta-Facebook mobility data from Argentina, Chile, and Colombia (April 2020–May 2022), examining long-term changes in mobility across socio-economic and rural–urban gradients.
 
