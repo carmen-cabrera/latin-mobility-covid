@@ -44,7 +44,6 @@ jupyter notebook
 ```
 
 
-
 ## Demo instructions
 
 No demo dataset is included in this repository due to restrictions on the original data.
@@ -83,7 +82,11 @@ The mapping between manuscript figures and the scripts that generate their under
 
 This code is released under the [MIT License](LICENSE).
 
+## Citation
 
+If you use **latin-mobility-covid** code in your research, please cite:
+
+[![DOI](https://zenodo.org/badge/699302637.svg)](https://doi.org/10.5281/zenodo.22027258)
 
 ## Contact
 
