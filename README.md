@@ -89,6 +89,8 @@ If you use **latin-mobility-covid** code in your research, please cite:
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22027259.svg)](https://doi.org/10.5281/zenodo.22027259)
 
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.22027259-blue)](https://doi.org/10.5281/zenodo.22027259)
+
 ## Contact
 
 Dr Carmen Cabrera
