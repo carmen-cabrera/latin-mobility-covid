@@ -89,7 +89,7 @@ This code is released under the [MIT License](LICENSE).
 
 If you use **latin-mobility-covid** code in your research, please cite:
 
-[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.22027259-blue)](https://doi.org/10.5281/zenodo.22027259)
+Carmen Cabrera, & Francisco Rowe. (2026). carmen-cabrera/latin-mobility-covid: v1.0.0 (Version v1.0.0) [Computer software]. Zenodo. [https://doi.org/10.5281/zenodo.22027259](https://doi.org/10.5281/zenodo.22027259)
 
 ## Contact
 
